@@ -1,0 +1,138 @@
+---
+title: "Charts: BarCharts"
+output:
+  html_document:
+    code_folding: hide
+    toc: true
+    toc_float:
+      collapsed: true
+editor_options: 
+  chunk_output_type: console
+---
+
+## What is a barchart?
+
+Barcharts are very flexible visualisations that allow viewers to quickly compare the relative magnitude/ranking of multiple categories of data. By using grouped or stacked barcharts it is also possible to compare subcategories within each category.
+
+Required Data:
+
+- Categories: For instance, class of animal e.g. mammal or reptile
+- Values: For instance, number of animals of each class
+
+Additional Data/Options:
+
+- Subcategories: For instance, species of animal within a class e.g. snake and iguana
+- Group/Stacking Type: Should sub-categories be grouped together or stacked?
+
+Minimal examples using `R` and the `highcharter` library:
+
+<!--html_preserve-->
+<div class="row">
+   <div class="col-md-4">
+
+```{r basic_barchart, echo=FALSE, message=FALSE, warning=FALSE}
+library("highcharter")
+library("tidyverse")
+my_data <- tribble(
+  ~category, ~subcategory, ~value,
+  "Mammal", "human", 3,
+  "Mammal", "non-human", 4,
+  "Reptile", "snake", 6,
+  "Reptile", "iguana", 8
+)
+my_data %>%
+  hchart(
+    type = "bar",
+    hcaes(
+      x = category,
+      y = value
+    )
+  ) %>%
+  hc_size(width = "250px", height = "250px") %>%
+  hc_title(text = "Normal barchart",
+           style = list(fontSize = 12))
+```
+
+</div>
+
+<div class="col-md-4">
+
+```{r grouped_barchart, echo=FALSE, message=FALSE, warning=FALSE}
+library("highcharter")
+library("tidyverse")
+my_data <- tribble(
+  ~category, ~subcategory, ~value,
+  "Mammal", "human", 3,
+  "Mammal", "non-human", 4,
+  "Reptile", "snake", 6,
+  "Reptile", "iguana", 8
+)
+my_data %>%
+  hchart(
+    type = "bar",
+    hcaes(
+      x = category,
+      y = value,
+      group = subcategory
+    )
+  ) %>%
+  hc_size(width = "250px", height = "250px") %>%
+  hc_title(text = "Grouped barchart",
+           style = list(fontSize = 12))
+```
+
+</div>
+
+<div class="col-md-4">
+
+```{r stacked_barchart, echo=FALSE, message=FALSE, warning=FALSE}
+library("highcharter")
+library("tidyverse")
+my_data <- tribble(
+  ~category, ~subcategory, ~value,
+  "Mammal", "human", 3,
+  "Mammal", "non-human", 4,
+  "Reptile", "snake", 6,
+  "Reptile", "iguana", 8
+)
+my_data %>%
+  hchart(
+    type = "bar",
+    hcaes(
+      x = category,
+      y = value,
+      group = subcategory
+    )
+  ) %>%
+  hc_size(width = "250px", height = "250px") %>%
+  hc_plotOptions(series = list(stacking = "percent")) %>%
+  hc_title(text = "Stacked percentage barchart",
+           style = list(fontSize = 12))
+```
+
+</div>
+</div>
+<!--/html_preserve-->
+
+## The mechanics of barcharts in R
+
+Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
+Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
+Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum  Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
+Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
+Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
+
+## IDN Shiny Apps that use barcharts
+
+
+
+
+
+
+
+
+
+
+
+
+

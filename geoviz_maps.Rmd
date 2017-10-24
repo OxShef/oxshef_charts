@@ -1,0 +1,53 @@
+---
+title: "Geovisualistions (Maps)"
+output:
+  html_document:
+    toc: true
+    toc_float:
+      collapsed: false
+    includes:
+      before_body: [includes/include_header.html, includes/include_header_navpage.html]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+# Geovisualisations (Maps)
+
+Maps are great
+
+### Comparison / Ranking / Magnitude
+
+<!--html_preserve-->
+<div class="row">
+   <div class="col-md-6">
+   <span><a href="geoviz_choropleth.html">Choropleth</a> useful for colouring regions.</span>
+   <br>
+   <strong>Required Data:</strong>
+   <ul>
+   <li>Categories: For instance, school subjects</li>
+   <li>Values: For instance, number of students in subject</li>
+   </ul>
+   </div>
+   <div class="col-md-4">
+```{r echo=FALSE}
+library("leaflet")
+library("tidyverse")
+library("statesRcontiguous")
+library("RColorBrewer")
+us_contiguous <- shp_all_us_states %>%
+  filter(contiguous.united.states == TRUE)
+us_palette <- colorFactor(brewer.pal(length(unique(us_contiguous$state.region)), "Dark2"), unique(us_contiguous$state.region))
+us_contiguous %>%
+  leaflet(width = "200px", height = "200px") %>%
+  addPolygons(fillColor = ~us_palette(state.region), fillOpacity = 1)
+```
+   </div>
+   </div>
+<!--/html_preserve-->
+
