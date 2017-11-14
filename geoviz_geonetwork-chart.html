@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Geoviz: Geonetwork chart</title>
+
+<script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<script src="site_libs/htmlwidgets-0.9/htmlwidgets.js"></script>
+<link href="site_libs/leaflet-0.7.7/leaflet.css" rel="stylesheet" />
+<script src="site_libs/leaflet-0.7.7/leaflet.js"></script>
+<link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<link href="site_libs/leaflet-label-0.2.2/leaflet.label.css" rel="stylesheet" />
+<script src="site_libs/leaflet-label-0.2.2/leaflet.label.js"></script>
+<script src="site_libs/Proj4Leaflet-0.7.2/proj4-compressed.js"></script>
+<script src="site_libs/Proj4Leaflet-0.7.2/proj4leaflet.js"></script>
+<script src="site_libs/leaflet-binding-1.1.0/leaflet.js"></script>
+
+<meta name="description" content="Turn your analyses into high quality documents, reports, presentations and dashboards with R Markdown. Use a productive notebook interface to weave together narrative text and code to produce elegantly formatted output. Use multiple languages including R, Python, and SQL. R Markdown supports a reproducible workflow for dozens of static and dynamic output formats including HTML, PDF, MS Word, Beamer, HTML5 slides, Tufte-style handouts, books, dashboards, shiny applications, scientific articles, websites, and more." />
+
+<link rel="icon" type="image/png" href="images/favicon.png" />
+
+<script type="text/javascript" src="js/rmarkdown.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-20375833-14', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="css/rmarkdown.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div id="rStudioHeader" class="alwaysShrunk">
+  <div class="innards bandContent">
+    <div>
+      <a class="menuItem" href="index.html">IDN: Charts</a>
+    </div>
+
+    <div id="menu">
+      <div id="menuToggler"></div>
+      <div id="menuItems">
+        <a class="menuItem" href="tools.html">Tools</a>
+        <a class="menuItem" href="why-visualise-data.html">Why visualise data?</a>
+        <a class="menuItem" href="charts.html">Charts</a>
+        <a class="menuItem" href="geoviz_maps.html">Geoviz (Maps)</a>
+        <a class="menuItem" href="networks.html">Networks</a>
+        <a class="menuItem" href="timeseries.html">Time Series</a>
+        <a class="menuItem" href="other.html">Other Visualisations</a>
+        <a class="menuItem gitHub" href="https://github.com/ox-it/OxfordIDN_charts"></a>
+        <a class="menuItem gitHubText" href="https://github.com/ox-it/OxfordIDN_charts">Source on GitHub</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style type="text/css">
+#TOC {
+  margin-left: 35px;
+  margin-top: 90px;
+}
+</style>
+
+<script type="text/javascript">
+$(".main-container").removeClass("main-container").removeClass("container-fluid").addClass("footerPushDown");
+</script>
+
+
+<div id="pageContent" class="standardPadding">
+  <div class="articleBandContent">
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Geoviz: Geonetwork chart</h1>
+
+</div>
+
+
+<div id="overview" class="section level2">
+<h2>Overview</h2>
+<p>Overlaying networks on maps using as reference <a href="http://gis.stackexchange.com/questions/172606/how-to-use-igraph-with-leaflet-for-r" class="uri">http://gis.stackexchange.com/questions/172606/how-to-use-igraph-with-leaflet-for-r</a></p>
+<p>Create sample datasets:</p>
+<pre class="r"><code>library(igraph)
+df&lt;-data.frame(&quot;from&quot; = c(&quot;Lyon&quot;, &quot;Toulouse&quot;, &quot;Paris&quot;, &quot;Marseille&quot;), 
+               &quot;to&quot;= c(&quot;Paris&quot;, &quot;Paris&quot;, &quot;Marseille&quot;, &quot;Toulouse&quot;),
+               &quot;width&quot; = 1:4)
+meta &lt;- data.frame(&quot;name&quot;=c(&quot;Lyon&quot;, &quot;Toulouse&quot;, &quot;Paris&quot;, &quot;Marseille&quot;), 
+                   &quot;lon&quot;=c(-4.850000, 1.444209, 2.352222, 5.36978),  
+                   &quot;lat&quot;=c(45.750000, 43.604652, 48.856614, 43.296482))
+
+g &lt;- graph.data.frame(df, directed=FALSE, vertices=meta)
+lo &lt;- layout.norm(as.matrix(meta[,2:3]))</code></pre>
+<p>Plot on a map, note tooltips available on locations and edges:</p>
+<pre class="r"><code>library(sp)
+gg &lt;- get.data.frame(g, &quot;both&quot;)
+vert &lt;- gg$vertices
+coordinates(vert) &lt;- ~ lon + lat
+
+edges &lt;- gg$edges
+
+edges &lt;- lapply(1:nrow(edges), function(i) {
+  as(rbind(vert[vert$name == edges[i, &quot;from&quot;], ],
+           vert[vert$name == edges[i, &quot;to&quot;], ]),
+     &quot;SpatialLines&quot;)
+})
+
+
+for (i in seq_along(edges)) {
+  edges[[i]] &lt;- spChFIDs(edges[[i]], as.character(i))
+}
+
+edges &lt;- do.call(rbind, edges)
+
+location_label &lt;- function(loc){
+  paste0(
+    &quot;City: &quot;,loc
+  )
+}
+
+edge_label &lt;- function(weight){
+  paste0(
+    &quot;Weighting: &quot;,weight
+  )
+}
+
+library(leaflet)
+leaflet(vert) %&gt;% addTiles() %&gt;% addMarkers(data = vert, popup = ~location_label(name)) %&gt;%
+  addPolylines(data = edges, weight = 5 * df$width, popup = edge_label(df$width))</code></pre>
+<div id="htmlwidget-d2541fb51ab197a22864" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d2541fb51ab197a22864">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"maxNativeZoom":null,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"continuousWorld":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[45.75,43.604652,48.856614,43.296482],[-4.85,1.444209,2.352222,5.36978],null,null,null,{"clickable":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["City: Lyon","City: Toulouse","City: Paris","City: Marseille"],null,null,null,null,null,null]},{"method":"addPolylines","args":[[[[{"lng":[-4.85,2.352222],"lat":[45.75,48.856614]}]],[[{"lng":[1.444209,2.352222],"lat":[43.604652,48.856614]}]],[[{"lng":[2.352222,5.36978],"lat":[48.856614,43.296482]}]],[[{"lng":[1.444209,5.36978],"lat":[43.604652,43.296482]}]]],null,null,{"lineCap":null,"lineJoin":null,"clickable":true,"pointerEvents":null,"className":"","stroke":true,"color":"#03F","weight":[5,10,15,20],"opacity":0.5,"fill":false,"fillColor":"#03F","fillOpacity":0.2,"dashArray":null,"smoothFactor":1,"noClip":false},["Weighting: 1","Weighting: 2","Weighting: 3","Weighting: 4"],null,null,null,null]}],"limits":{"lat":[43.296482,48.856614],"lng":[-4.85,5.36978]}},"evals":[],"jsHooks":[]}</script>
+</div>
+
+  </div> <!-- articleBandContent -->
+</div> <!-- pageContent -->
+
+<div id="rStudioFooter" class="band full">
+<div class="bandContent">
+  <h4><a href="http://idn.it.ox.ac.uk" target="_blank" style="color:#fff;font-weight:bold">University of Oxford Interactive Data Network</a></h4>
+  <div id="logos">
+    <!--<a href="https://twitter.com/rstudio" class="footerLogo twitter"></a>!-->
+    <a href="https://github.com/ox-it/OxfordIDN_charts" class="footerLogo gitHub"></a>
+    <!--<a href="https://www.linkedin.com/company/rstudio-inc" class="footerLogo linkedIn"></a>
+    <a href="https://www.facebook.com/pages/RStudio-Inc/267733656584415" Class="footerLogo facebook"></a>-->
+  </div>
+</div>
+</div>
+
+<!-- bizible -->
+<script type="text/javascript" src="//cdn.bizible.com/scripts/bizible.js" async=""></script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+
+</body>
+</html>

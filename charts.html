@@ -11,7 +11,7 @@
 
 
 
-<title>Formats</title>
+<title>Charts</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -267,21 +267,21 @@ div.tocify {
 <div id="rStudioHeader" class="alwaysShrunk">
   <div class="innards bandContent">
     <div>
-      IDN: Charts
+      <a class="menuItem" href="index.html">OxShelf: Charts</a>
     </div>
 
     <div id="menu">
       <div id="menuToggler"></div>
       <div id="menuItems">
         <a class="menuItem" href="tools.html">Tools</a>
-        <a class="menuItem" href="why-interactivity.html">Why interactivity?</a>
+        <a class="menuItem" href="why-visualise-data.html">Why visualise data?</a>
         <a class="menuItem" href="charts.html">Charts</a>
         <a class="menuItem" href="geoviz_maps.html">Geoviz (Maps)</a>
         <a class="menuItem" href="networks.html">Networks</a>
         <a class="menuItem" href="timeseries.html">Time Series</a>
         <a class="menuItem" href="other.html">Other Visualisations</a>
-        <a class="menuItem gitHub" href="https://github.com/fixmeyesplease"></a>
-        <a class="menuItem gitHubText" href="https://github.com/fixmeyesplease">Source on GitHub</a>
+        <a class="menuItem gitHub" href="https://github.com/ox-it/OxfordIDN_charts"></a>
+        <a class="menuItem gitHubText" href="https://github.com/ox-it/OxfordIDN_charts">Source on GitHub</a>
       </div>
     </div>
   </div>
@@ -315,7 +315,7 @@ $(".main-container").removeClass("main-container").removeClass("container-fluid"
 
 
 
-<h1 class="title toc-ignore">Formats</h1>
+<h1 class="title toc-ignore">Charts</h1>
 
 </div>
 
@@ -334,7 +334,8 @@ $(".main-container").removeClass("main-container").removeClass("container-fluid"
 
 <div class="row">
    <div class="col-md-6">
-   <span><a href="charts_barcharts.html">Barcharts</a> are very flexible visualisations that allow viewers to quickly compare the relative magnitude/ranking of multiple categories of data. By using grouped or stacked barcharts it is also possible to compare subcategories within each category.</span>
+   <span><a href="charts_barcharts.html">Barcharts [tutorial]</a> are very flexible visualisations that allow viewers to quickly compare the relative magnitude/ranking of multiple categories of data. By using grouped or stacked barcharts it is also possible to compare subcategories within each category.</span>
+   <a href="charts_barcharts.html">Tutorial available here</a>
    <br>
    <strong>Required Data:</strong>
    <ul>
@@ -342,16 +343,17 @@ $(".main-container").removeClass("main-container").removeClass("container-fluid"
    <li>Values: For instance, number of animals of each class</li>
    </ul>
    </div>
-   <div class="col-md-4">
-<div id="htmlwidget-3d048816448bf9276f72" style="width:200px;height:200px;" class="highchart html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3d048816448bf9276f72">{"x":{"hc_opts":{"title":{"text":null},"yAxis":{"title":{"text":"value"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"plotOptions":{"series":{"turboThreshold":0,"showInLegend":false,"marker":{"enabled":true}},"treemap":{"layoutAlgorithm":"squarified"},"bubble":{"minSize":5,"maxSize":25},"scatter":{"marker":{"symbol":"circle"}}},"annotationsOptions":{"enabledButtons":false},"tooltip":{"delayForDisplay":10},"series":[{"group":"group","data":[{"category":"Mammal","subcategory":"human","value":3,"y":3,"name":"Mammal"},{"category":"Mammal","subcategory":"non-human","value":4,"y":4,"name":"Mammal"},{"category":"Reptile","subcategory":"snake","value":6,"y":6,"name":"Reptile"},{"category":"Reptile","subcategory":"iguana","value":8,"y":8,"name":"Reptile"}],"type":"bar"}],"xAxis":{"type":"category","title":{"text":"category"},"categories":null}},"theme":{"chart":{"backgroundColor":"transparent"}},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+   <div class="col-md-4 vcenter">
+<div id="htmlwidget-170e2ddfc08177737b72" style="width:200px;height:200px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-170e2ddfc08177737b72">{"x":{"hc_opts":{"title":{"text":null},"yAxis":{"title":{"text":"value"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"plotOptions":{"series":{"turboThreshold":0,"showInLegend":false,"marker":{"enabled":true}},"treemap":{"layoutAlgorithm":"squarified"},"bubble":{"minSize":5,"maxSize":25},"scatter":{"marker":{"symbol":"circle"}}},"annotationsOptions":{"enabledButtons":false},"tooltip":{"delayForDisplay":10},"series":[{"group":"group","data":[{"category":"Mammal","subcategory":"human","value":3,"y":3,"name":"Mammal"},{"category":"Mammal","subcategory":"non-human","value":4,"y":4,"name":"Mammal"},{"category":"Reptile","subcategory":"snake","value":6,"y":6,"name":"Reptile"},{"category":"Reptile","subcategory":"iguana","value":8,"y":8,"name":"Reptile"}],"type":"bar"}],"xAxis":{"type":"category","title":{"text":"category"},"categories":null}},"theme":{"chart":{"backgroundColor":"transparent"}},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
    </div>
    </div>
+   <br>
 
 
 <div class="row">
    <div class="col-md-6">
-   <span><a href="charts_piecharts.html">Piecharts</a> are useful visualisations for breaking down observations into a number of categories, the totals of which sum to 100% of the data. Piecharts are fairly widely panned as poor options for data with many categorisations, it is always possible to replace a piechart with a barchart.</span>
+   <span><a href="charts_piecharts.html">Piecharts [tutorial]</a> are useful visualisations for breaking down observations into a number of categories, the totals of which sum to 100% of the data. Piecharts are fairly widely panned as poor options for data with many categorisations, it is always possible to replace a piechart with a barchart.</span>
    <br>
    <strong>Required Data:</strong>
    <ul>
@@ -359,9 +361,9 @@ $(".main-container").removeClass("main-container").removeClass("container-fluid"
    <li>Values: For instance, number of animals of each species</li>
    </ul>
    </div>
-   <div class="col-md-4">
-<div id="htmlwidget-1c77dd869cd4802cb3c4" style="width:200px;height:200px;" class="highchart html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1c77dd869cd4802cb3c4">{"x":{"hc_opts":{"title":{"text":null},"yAxis":{"title":{"text":"value"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"plotOptions":{"series":{"turboThreshold":0,"showInLegend":false,"marker":{"enabled":true}},"treemap":{"layoutAlgorithm":"squarified"},"bubble":{"minSize":5,"maxSize":25},"scatter":{"marker":{"symbol":"circle"}},"pie":{"dataLabels":{"enabled":false}}},"annotationsOptions":{"enabledButtons":false},"tooltip":{"delayForDisplay":10},"series":[{"group":"group","data":[{"category":"human","value":3,"y":3,"name":"human"},{"category":"non-human","value":4,"y":4,"name":"non-human"},{"category":"snake","value":6,"y":6,"name":"snake"},{"category":"iguana","value":8,"y":8,"name":"iguana"}],"type":"pie"}],"xAxis":{"type":"category","title":{"text":"category"},"categories":null}},"theme":{"chart":{"backgroundColor":"transparent"}},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+   <div class="col-md-4 vcenter">
+<div id="htmlwidget-0c761f44b602c33cd4d8" style="width:200px;height:200px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0c761f44b602c33cd4d8">{"x":{"hc_opts":{"title":{"text":null},"yAxis":{"title":{"text":"value"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"plotOptions":{"series":{"turboThreshold":0,"showInLegend":false,"marker":{"enabled":true}},"treemap":{"layoutAlgorithm":"squarified"},"bubble":{"minSize":5,"maxSize":25},"scatter":{"marker":{"symbol":"circle"}},"pie":{"dataLabels":{"enabled":false}}},"annotationsOptions":{"enabledButtons":false},"tooltip":{"delayForDisplay":10},"series":[{"group":"group","data":[{"category":"human","value":3,"y":3,"name":"human"},{"category":"non-human","value":4,"y":4,"name":"non-human"},{"category":"snake","value":6,"y":6,"name":"snake"},{"category":"iguana","value":8,"y":8,"name":"iguana"}],"type":"pie"}],"xAxis":{"type":"category","title":{"text":"category"},"categories":null}},"theme":{"chart":{"backgroundColor":"transparent"}},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
    </div>
    </div>
 
@@ -371,7 +373,7 @@ $(".main-container").removeClass("main-container").removeClass("container-fluid"
 
 <div class="row">
    <div class="col-md-6">
-   <span><a href="charts_scatterplots.html">Scatterplots</a> are very simple visualisations that allow viewers to compare the correlation between two variables, typically between multiple groups of data. Scatterplots may also include trendlines for comparison purposes, however the inclusion of error bars complicates the chart sufficiently to be counted as a separate type of chart.</span>
+   <span><a href="charts_scatterplots.html">Scatterplots [tutorial]</a> are very simple visualisations that allow viewers to compare the correlation between two variables, typically between multiple groups of data. Scatterplots may also include trendlines for comparison purposes, however the inclusion of error bars complicates the chart sufficiently to be counted as a separate type of chart.</span>
    <br>
    <strong>Required Data:</strong>
    <ul>
@@ -379,9 +381,9 @@ $(".main-container").removeClass("main-container").removeClass("container-fluid"
    <li>y: Dependent variable</li>
    </ul>
    </div>
-   <div class="col-md-4">
-<div id="htmlwidget-5991fbabb601678975f8" style="width:200px;height:200px;" class="highchart html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5991fbabb601678975f8">{"x":{"hc_opts":{"title":{"text":null},"yAxis":{"title":{"text":null}},"credits":{"enabled":false},"exporting":{"enabled":false},"plotOptions":{"series":{"turboThreshold":0},"treemap":{"layoutAlgorithm":"squarified"},"bubble":{"minSize":5,"maxSize":25}},"annotationsOptions":{"enabledButtons":false},"tooltip":{"delayForDisplay":10},"series":[{"name":"a","data":[{"x":-0.700153352038792,"y":1.49962394189462},{"x":0.0848674653870664,"y":0.640499990841986},{"x":-0.616923317096709,"y":-0.144496800291655},{"x":1.93617687243216,"y":0.519261373621751},{"x":-0.161998346245205,"y":0.0423173619455365},{"x":-1.22809699079167,"y":-0.540264553169972},{"x":1.10319470900487,"y":-2.85819930246768},{"x":0.283972495524301,"y":-0.507619643537011},{"x":0.00671453967193393,"y":0.39494468184108},{"x":0.524529392538797,"y":0.212200972332531},{"x":-0.383382649385099,"y":0.695312024320326},{"x":2.1005989507279,"y":-1.28572142723311},{"x":0.563540762375212,"y":0.770277270326011},{"x":-0.242707550560928,"y":-0.1553979877284},{"x":-0.103756728848788,"y":-0.42893248287536},{"x":0.18983982051494,"y":-0.684821996213772},{"x":-1.19920382483728,"y":1.18988141781002},{"x":-0.0720200502651549,"y":-0.525231817027805},{"x":0.0595273792926258,"y":0.538601672379152},{"x":1.26926241544262,"y":-0.0147253898297228}],"type":"scatter"},{"name":"b","data":[{"x":1.65738283468496,"y":2.4058012708731},{"x":-0.0953750111380953,"y":-0.395319173696506},{"x":1.77866770856684,"y":0.29114009451496},{"x":1.98614959187076,"y":3.33319816157253},{"x":1.61615377862773,"y":1.43729532560776},{"x":1.26690603742747,"y":0.422743978152838},{"x":1.15226453969244,"y":-0.546429803525253},{"x":0.0829137155840229,"y":1.8134963390999},{"x":1.63044104502606,"y":-0.618479792944963},{"x":1.5801295908293,"y":0.735502019656908},{"x":1.96430717466772,"y":2.02326421240781},{"x":0.9159186145103,"y":2.48058835648887},{"x":1.41187700702587,"y":1.44618042923516},{"x":0.614137979316076,"y":-0.115137040625348},{"x":2.05974777144508,"y":0.317431214053895},{"x":1.9074066029294,"y":0.983606275685163},{"x":3.17327170952333,"y":1.46923510506088},{"x":3.34837444918781,"y":0.279685616795348},{"x":-0.207522281532619,"y":2.52387743502481},{"x":1.12231929932132,"y":2.87074959310603}],"type":"scatter"}]},"theme":{"chart":{"backgroundColor":"transparent"}},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+   <div class="col-md-4 vcenter">
+<div id="htmlwidget-25f12021f226ee4a22c2" style="width:200px;height:200px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-25f12021f226ee4a22c2">{"x":{"hc_opts":{"title":{"text":null},"yAxis":{"title":{"text":null}},"credits":{"enabled":false},"exporting":{"enabled":false},"plotOptions":{"series":{"turboThreshold":0},"treemap":{"layoutAlgorithm":"squarified"},"bubble":{"minSize":5,"maxSize":25}},"annotationsOptions":{"enabledButtons":false},"tooltip":{"delayForDisplay":10},"series":[{"name":"a","data":[{"x":-1.32612134169764,"y":-0.334777144824856},{"x":-0.924538080617582,"y":-0.547935652078465},{"x":0.686737675294106,"y":1.13260971850754},{"x":-0.0813458433631874,"y":-0.443105912666655},{"x":-0.0446542213708454,"y":0.303602874997109},{"x":-1.66491035096988,"y":0.560898343157478},{"x":-1.15968733715335,"y":-0.250892897930618},{"x":0.562448754800382,"y":-0.770015479051078},{"x":0.713689083488366,"y":0.461019860118208},{"x":0.958924066101947,"y":-0.505278044886398},{"x":-1.05728533081275,"y":0.153439976772891},{"x":-1.14718977184421,"y":-0.805182972564734},{"x":1.62650177272391,"y":1.80865837875652},{"x":1.49124822877969,"y":-1.12851945074074},{"x":-1.10084149832785,"y":-0.85250895396317},{"x":0.794035538509504,"y":-0.261787300288741},{"x":0.386862023893829,"y":-1.07703757139239},{"x":0.826865663540458,"y":-1.21343819324626},{"x":1.27434086251882,"y":0.0719080682220689},{"x":1.30365505247958,"y":1.38420950039836}],"type":"scatter"},{"name":"b","data":[{"x":0.136195592220237,"y":1.35070365995351},{"x":1.84305940184095,"y":3.33081141482151},{"x":1.69411353894006,"y":2.68457428119988},{"x":3.32181178211606,"y":2.09172639852059},{"x":1.21016538080811,"y":3.37776552397484},{"x":1.80648271865601,"y":1.69284487085214},{"x":1.23374258781546,"y":1.46951219770424},{"x":0.627757762797377,"y":2.25983381476506},{"x":2.26949137193011,"y":1.91473852595166},{"x":1.93107134986503,"y":2.31676121383854},{"x":1.34777890266894,"y":1.57396732961703},{"x":0.427568050899017,"y":4.33827702137864},{"x":0.567200201543545,"y":1.71076804106701},{"x":0.835297284645467,"y":1.52959579694217},{"x":1.41907642346401,"y":1.87221482395667},{"x":1.17766087287451,"y":2.58330556650396},{"x":1.62416680518919,"y":1.9167601466281},{"x":-0.345170641119147,"y":1.15616803593358},{"x":1.88629581158705,"y":1.41942772478097},{"x":0.60380770748037,"y":0.985081327013017}],"type":"scatter"}]},"theme":{"chart":{"backgroundColor":"transparent"}},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
    </div>
    </div>
 
@@ -393,10 +395,10 @@ $(".main-container").removeClass("main-container").removeClass("container-fluid"
 
 <div id="rStudioFooter" class="band full">
 <div class="bandContent">
-  <!--<div id="copyright">© Copyright 2016 RStudio Inc.</div>-->
+  <h4><a href="http://idn.it.ox.ac.uk" target="_blank" style="color:#fff;font-weight:bold">University of Oxford Interactive Data Network</a></h4>
   <div id="logos">
-    <!--<a href="https://twitter.com/rstudio" class="footerLogo twitter"></a>--!>
-    <a href="https://github.com/rstudio" class="footerLogo gitHub"></a>
+    <!--<a href="https://twitter.com/rstudio" class="footerLogo twitter"></a>!-->
+    <a href="https://github.com/ox-it/OxfordIDN_charts" class="footerLogo gitHub"></a>
     <!--<a href="https://www.linkedin.com/company/rstudio-inc" class="footerLogo linkedIn"></a>
     <a href="https://www.facebook.com/pages/RStudio-Inc/267733656584415" Class="footerLogo facebook"></a>-->
   </div>
@@ -405,34 +407,6 @@ $(".main-container").removeClass("main-container").removeClass("container-fluid"
 
 <!-- bizible -->
 <script type="text/javascript" src="//cdn.bizible.com/scripts/bizible.js" async=""></script>
-
-
-<!-- disqus - ->
- <div id="disqus_thread" class="standardPadding"></div>
-    <script type="text/javascript">
-      $(document).ready(function() {
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'rmarkdown'; // required: replace example with your forum shortname
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-            // create disqus script tag
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-
-            // determine container
-            var container = document.getElementsByTagName('body')[0] || document.getElementsByTagName('head')[0];
-
-            // append script tag enclosed by google indexing suppression comment
-            container.appendChild(document.createComment('googleoff: all'));
-            container.appendChild(dsq);
-            container.appendChild(document.createComment('googleon: all'));
-        })();
-      });
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
--->
 
 
 </div>
