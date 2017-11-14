@@ -10,8 +10,7 @@ output:
 editor_options: 
   chunk_output_type: console
 ---
-
-## What is a barchart?
+# What is a barchart?
 
 Barcharts are very flexible visualisations that allow viewers to quickly compare the relative magnitude/ranking of multiple categories of data. By using grouped or stacked barcharts it is also possible to compare subcategories within each category.
 
@@ -25,7 +24,7 @@ Additional Data/Options:
 - Subcategories: For instance, species of animal within a class e.g. snake and iguana
 - Group/Stacking Type: Should sub-categories be grouped together or stacked?
 
-Minimal examples using `R` and the `highcharter` library:
+Below are three minimal examples using `R` and the `highcharter` library:
 
 <!--html_preserve-->
 <div class="row">
