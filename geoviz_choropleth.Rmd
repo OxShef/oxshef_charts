@@ -1,0 +1,45 @@
+---
+title: "Geoviz: Choropleth"
+output:
+  html_document:
+    toc: true
+    toc_float:
+      collapsed: false
+    includes:
+      before_body: [includes/include_header.html, includes/include_header_navpage.html]
+editor_options: 
+  chunk_output_type: console
+---
+# What is a choropleth?
+
+Choropleth are extremely useful visualisations to visually compare the differences between geographic regions, for either discrete and continuous variables. 
+
+Required Data:
+
+- Shapefiles: Enclosed regions, i.e. topologically closed polygons, sometimes called convex hulls. For instance, country borders.
+- Values: Values for each region, for instance the population of a country
+
+Below is a minimal example using `R` and the `leaflet` library:
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library("tidyverse")
+library("leaflet")
+library("sf")
+library("gapminder")
+
+geojson_worldmap <- st_read("https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json",
+                            quiet = TRUE)
+geojson_worldmap <- invisible(geojson_worldmap %>%
+  left_join(gapminder %>%
+               filter(year == max(year)) , by = c("name" = "country")) %>%
+  filter(name != "Antarctica"))
+palette_pop <- colorNumeric("YlOrBr" , geojson_worldmap$pop, na.color = "#c0c1c4")
+geojson_worldmap %>%
+  leaflet(width = "300px",
+          height = "200px") %>%
+  addPolygons(fillColor = ~palette_pop(pop),
+              fillOpacity = 0.8,
+              color = "#000",
+              weight = 1,
+              label = ~name)
+```
