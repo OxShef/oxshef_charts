@@ -1,11 +1,12 @@
 ---
-title: "Charts: BarCharts"
+title: "Charts: Barcharts"
 output:
   html_document:
-    code_folding: hide
     toc: true
     toc_float:
-      collapsed: true
+      collapsed: false
+    includes:
+      before_body: [includes/include_header.html, includes/include_header_navpage.html]
 editor_options: 
   chunk_output_type: console
 ---
