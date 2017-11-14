@@ -1,6 +1,5 @@
 ---
-title: "Charts
-"
+title: "Charts"
 output:
   html_document:
     toc: true
@@ -36,7 +35,8 @@ We've chosen to split our charts up using a similar hierarchy to the FT's Visual
 <!--html_preserve-->
 <div class="row">
    <div class="col-md-6">
-   <span><a href="charts_barcharts.html">Barcharts</a> are very flexible visualisations that allow viewers to quickly compare the relative magnitude/ranking of multiple categories of data. By using grouped or stacked barcharts it is also possible to compare subcategories within each category.</span>
+   <span><a href="charts_barcharts.html">Barcharts [tutorial]</a> are very flexible visualisations that allow viewers to quickly compare the relative magnitude/ranking of multiple categories of data. By using grouped or stacked barcharts it is also possible to compare subcategories within each category.</span>
+   <a href="charts_barcharts.html">Tutorial available here</a>
    <br>
    <strong>Required Data:</strong>
    <ul>
@@ -44,7 +44,7 @@ We've chosen to split our charts up using a similar hierarchy to the FT's Visual
    <li>Values: For instance, number of animals of each class</li>
    </ul>
    </div>
-   <div class="col-md-4">
+   <div class="col-md-4 vcenter">
 ```{r echo=FALSE}
 library("highcharter")
 library("tidyverse")
@@ -67,12 +67,13 @@ my_data %>%
 ```
    </div>
    </div>
+   <br>
 <!--/html_preserve-->
 
 <!--html_preserve-->
 <div class="row">
    <div class="col-md-6">
-   <span><a href="charts_piecharts.html">Piecharts</a> are useful visualisations for breaking down observations into a number of categories, the totals of which sum to 100% of the data. Piecharts are fairly widely panned as poor options for data with many categorisations, it is always possible to replace a piechart with a barchart.</span>
+   <span><a href="charts_piecharts.html">Piecharts [tutorial]</a> are useful visualisations for breaking down observations into a number of categories, the totals of which sum to 100% of the data. Piecharts are fairly widely panned as poor options for data with many categorisations, it is always possible to replace a piechart with a barchart.</span>
    <br>
    <strong>Required Data:</strong>
    <ul>
@@ -80,7 +81,7 @@ my_data %>%
    <li>Values: For instance, number of animals of each species</li>
    </ul>
    </div>
-   <div class="col-md-4">
+   <div class="col-md-4 vcenter">
 ```{r echo=FALSE}
 library("highcharter")
 library("tidyverse")
@@ -112,7 +113,7 @@ my_data %>%
 <!--html_preserve-->
 <div class="row">
    <div class="col-md-6">
-   <span><a href="charts_scatterplots.html">Scatterplots</a> are very simple visualisations that allow viewers to compare the correlation between two variables, typically between multiple groups of data. Scatterplots may also include trendlines for comparison purposes, however the inclusion of error bars complicates the chart sufficiently to be counted as a separate type of chart.</span>
+   <span><a href="charts_scatterplots.html">Scatterplots [tutorial]</a> are very simple visualisations that allow viewers to compare the correlation between two variables, typically between multiple groups of data. Scatterplots may also include trendlines for comparison purposes, however the inclusion of error bars complicates the chart sufficiently to be counted as a separate type of chart.</span>
    <br>
    <strong>Required Data:</strong>
    <ul>
@@ -120,7 +121,7 @@ my_data %>%
    <li>y: Dependent variable</li>
    </ul>
    </div>
-   <div class="col-md-4">
+   <div class="col-md-4 vcenter">
 ```{r echo=FALSE}
 library("highcharter")
 library("tidyverse")
