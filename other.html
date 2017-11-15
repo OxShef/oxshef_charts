@@ -11,17 +11,28 @@
 
 
 
-<title>Formats</title>
+<title>Other types of visualisation</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/jquery-2.2.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<script src="site_libs/htmlwidgets-0.9/htmlwidgets.js"></script>
+<link href="site_libs/handsontable-0.28.4/handsontable.full.min.css" rel="stylesheet" />
+<script src="site_libs/handsontable-0.28.4/handsontable.full.min.js"></script>
+<script src="site_libs/numbro.languages-1.9.2/languages.js"></script>
+<script src="site_libs/chroma-1.1.0/chroma.min.js"></script>
+<script src="site_libs/sparkline-2.1.2/jquery.sparkline.min.js"></script>
+<link href="site_libs/rhandsontable-0.3.4/rhandsontable.css" rel="stylesheet" />
+<script src="site_libs/rhandsontable-binding-0.3.4/rhandsontable.js"></script>
 
 <meta name="description" content="Turn your analyses into high quality documents, reports, presentations and dashboards with R Markdown. Use a productive notebook interface to weave together narrative text and code to produce elegantly formatted output. Use multiple languages including R, Python, and SQL. R Markdown supports a reproducible workflow for dozens of static and dynamic output formats including HTML, PDF, MS Word, Beamer, HTML5 slides, Tufte-style handouts, books, dashboards, shiny applications, scientific articles, websites, and more." />
 
@@ -126,26 +137,127 @@ $(document).ready(function () {
 
 
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
 
 
 <div id="rStudioHeader" class="alwaysShrunk">
   <div class="innards bandContent">
     <div>
-      IDN: Charts
+      <a class="menuItem" href="index.html">OxShef: Charts</a>
     </div>
 
     <div id="menu">
       <div id="menuToggler"></div>
       <div id="menuItems">
         <a class="menuItem" href="tools.html">Tools</a>
-        <a class="menuItem" href="why-interactivity.html">Why interactivity?</a>
+        <a class="menuItem" href="why-visualise-data.html">Why visualise data?</a>
         <a class="menuItem" href="charts.html">Charts</a>
         <a class="menuItem" href="geoviz_maps.html">Geoviz (Maps)</a>
         <a class="menuItem" href="networks.html">Networks</a>
         <a class="menuItem" href="timeseries.html">Time Series</a>
         <a class="menuItem" href="other.html">Other Visualisations</a>
-        <a class="menuItem gitHub" href="https://github.com/fixmeyesplease"></a>
-        <a class="menuItem gitHubText" href="https://github.com/fixmeyesplease">Source on GitHub</a>
+        <a class="menuItem gitHub" href="https://github.com/ox-it/OxfordIDN_charts"></a>
+        <a class="menuItem gitHubText" href="https://github.com/ox-it/OxfordIDN_charts">Source on GitHub</a>
       </div>
     </div>
   </div>
@@ -179,217 +291,46 @@ $(".main-container").removeClass("main-container").removeClass("container-fluid"
 
 
 
-<h1 class="title toc-ignore">Formats</h1>
+<h1 class="title toc-ignore">Other types of visualisation</h1>
 
 </div>
 
 
-
-
-<div class="band full">
-  <div class="bandContent pageTitle">RStudio Formats</div>
-  <div class="bandContent pageIntro">R Markdown formats from RStudio (see below for additional formats created by the R community)</div>
-  <div class="bandContent">
-
-  <div class="columns">
-    <div class="column2">
-
-    <div class="formatSection">
-      <div class="formatSectionTitle">Documents</div>
-      <div class="formatTable">
-        <a href="r_notebooks.html" class="formatTableRow">
-          <div class="formatName">Notebook</div>
-          <div class="formatDescription">Interactive R Notebooks</div>
-        </a>
-        <a href="html_document_format.html" class="formatTableRow">
-          <div class="formatName">HTML</div>
-          <div class="formatDescription">HTML document w/ Bootstrap CSS</div>
-        </a>
-        <a href="pdf_document_format.html" class="formatTableRow">
-          <div class="formatName">PDF</div>
-          <div class="formatDescription">PDF document (via LaTeX template)</div>
-        </a>
-        <a href="word_document_format.html" class="formatTableRow">
-          <div class="formatName">Word</div>
-          <div class="formatDescription">Microsoft Word document (docx)</div>
-        </a>
-        <a href="odt_document_format.html" class="formatTableRow">
-          <div class="formatName">ODT</div>
-          <div class="formatDescription">OpenDocument Text document</div>
-        </a>
-        <a href="rtf_document_format.html" class="formatTableRow">
-          <div class="formatName">RTF</div>
-          <div class="formatDescription">Rich Text Format document</div>
-        </a>
-        <a href="markdown_document_format.html" class="formatTableRow">
-          <div class="formatName">Markdown</div>
-          <div class="formatDescription">Markdown document (various flavors)</div>
-        </a>
-      </div>
-    </div>
-
-    <div class="formatSection">
-      <div class="formatSectionTitle">Presentations</div>
-      <div class="formatTable">
-        <a href="ioslides_presentation_format.html" class="formatTableRow">
-          <div class="formatName">ioslides</div>
-          <div class="formatDescription">HTML presentation with ioslides</div>
-        </a>
-        <a href="revealjs_presentation_format.html" class="formatTableRow">
-          <div class="formatName">reveal.js</div>
-          <div class="formatDescription">HTML presentation with reveal.js</div>
-        </a>
-        <a href="slidy_presentation_format.html" class="formatTableRow">
-          <div class="formatName">Slidy</div>
-          <div class="formatDescription">HTML presentation with W3C Slidy</div>
-        </a>
-        <a href="beamer_presentation_format.html" class="formatTableRow">
-          <div class="formatName">Beamer</div>
-          <div class="formatDescription">PDF presentation with LaTeX Beamer</div>
-        </a>
-      </div>
-    </div>
-
-    </div>
-
-    <div class="column2">
-    
-    <div class="formatSection">
-      <div class="formatSectionTitle">Journals</div>
-      <div class="formatTable">
-         <a href="https://github.com/rstudio/rticles" class="formatTableRow">
-          <div class="formatName">jss_article</div>
-          <div class="formatDescription">Journal of Statistical Software (JSS)</div>
-        </a>
-        <a href="https://github.com/rstudio/rticles" class="formatTableRow">
-          <div class="formatName">acm_article</div>
-          <div class="formatDescription">Association for Computing Machinery (ACM)</div>
-        </a>
-        <a href="https://github.com/rstudio/rticles" class="formatTableRow">
-          <div class="formatName">acs_article</div>
-          <div class="formatDescription">American Chemical Society (ACS) Journal</div>
-        </a>
-        <a href="https://github.com/rstudio/rticles" class="formatTableRow">
-          <div class="formatName">ctex</div>
-          <div class="formatDescription">Documents based on the LaTeX package ctex</div>
-        </a>
-        <a href="https://github.com/rstudio/rticles" class="formatTableRow">
-          <div class="formatName">elsevier_article</div>
-          <div class="formatDescription">Submissions to Elsevier journals</div>
-        </a>
-      </div>
-    </div>
-    
-    <div class="formatSection">
-      <div class="formatSectionTitle">More</div>
-      <div class="formatTable">
-        <a href="flexdashboard/index.html" class="formatTableRow">
-          <div class="formatName">flexdashboard</div>
-          <div class="formatDescription">Interactive dashboards</div>
-        </a>
-        <a href="https://bookdown.org" class="formatTableRow">
-          <div class="formatName">bookdown</div>
-          <div class="formatDescription">HTML, PDF, ePub, and Kindle books</div>
-        </a>
-        <a href="rmarkdown_websites.html" class="formatTableRow">
-          <div class="formatName">Websites</div>
-          <div class="formatDescription">Multi-page websites</div>
-        </a>
-        <a href="tufte_handout_format.html" class="formatTableRow">
-          <div class="formatName">Tufte Handout</div>
-          <div class="formatDescription">Handouts in the style of Edward Tufte</div>
-        </a>
-        <a href="package_vignette_format.html" class="formatTableRow">
-          <div class="formatName">Package Vignette</div>
-          <div class="formatDescription">R package vignette (HTML)</div>
-        </a>
-        <a href="github_document_format.html" class="formatTableRow">
-          <div class="formatName">Github Document</div>
-          <div class="formatDescription">GitHub Flavored Markdown document.</div>
-        </a>
-      </div>
-    </div>
-    
-    </div>
-    
-    
-  </div>
-  </div>
+<div id="other-types-of-visualisation" class="section level1">
+<h1>Other types of visualisation</h1>
+<p>There are many types of data visualisation that don’t neatly fit into the other categories but are arguably extremely important and sometimes the only valid way to present your data to others in an easily consumable fashion.</p>
 </div>
+<div id="interactive-tables" class="section level1">
+<h1>Interactive tables</h1>
 
+<div class="row">
+   <div class="col-md-6">
+   <span><a href="other_interactive-tables.html">Interactive tables [tutorial]</a> are extremely useful for presenting data directly to your audience for them to explore, much like an Excel document. Interactivity typically includes; ability to filter individual columns, reorder columns in ascending/descending order and a filter across the entire table.</span>
+   <br>
+   <strong>Required Data:</strong>
+   <ul>
+   <li>Table of data: This data could conceivable be of any type, and include columns of multiple data types including but not limited to text, numbers, images and more.</li>
+   </ul>
+   </div>
+   <div class="col-md-6">
 
-<div class="band full">
-  <div class="bandContent pageTitle">Community Formats</div>
-  <div class="bandContent pageIntro">R Markdown formats created by the R community</div>
-  <div class="bandContent">
+<div id="htmlwidget-28c6ba807c6ab744e226" style="width:100%;height:200px;" class="rhandsontable html-widget"></div>
+<script type="application/json" data-for="htmlwidget-28c6ba807c6ab744e226">{"x":{"data":[[1,-0.9291,-0.5635,0.6206,-0.3973,0.7362,0.0458,-0.4228,-0.3863,-0.5646],[-0.9291,1,0.5426,-0.9438,-0.6216,-0.7571,0.7713,-0.6908,0.1701,-0.0194],[-0.5635,-0.0251,1,-0.2443,-0.9775,-0.0498,-0.3201,0.3787,0.7403,-0.5433],[0.5426,0.7362,-0.3201,1,-0.0251,-0.5598,-0.8629,0.3954,-0.4801,0.9968],[0.6206,-0.7571,-0.8629,0.3954,1,0.6874,0.7412,0.0127,-0.3754,-0.829],[-0.9438,-0.0498,0.7412,0.0127,0.7403,1,-0.86,-0.2949,0.8209,-0.4747],[-0.2443,-0.5598,-0.86,-0.2949,-0.4801,0.4047,1,-0.527,-0.9394,0.9647],[-0.3973,0.6874,-0.4228,-0.527,-0.3754,-0.5646,0.9968,1,0.4047,0.7549],[-0.6216,0.0458,-0.6908,-0.3863,0.8209,-0.0194,-0.829,0.9647,1,-0.3723],[-0.9775,0.7713,0.3787,0.1701,-0.9394,-0.5433,-0.4747,0.7549,-0.3723,1]],"rClass":"matrix","rColClasses":"numeric","rColnames":["A","B","C","D","E","F","G","H","I","J"],"rColHeaders":["A","B","C","D","E","F","G","H","I","J"],"rRowHeaders":["A","B","C","D","E","F","G","H","I","J"],"rDataDim":[10,10],"selectCallback":false,"colHeaders":["A","B","C","D","E","F","G","H","I","J"],"rowHeaders":["A","B","C","D","E","F","G","H","I","J"],"columns":[{"type":"numeric","format":"0.00","readOnly":true,"renderer":"\n           function (instance, td, row, col, prop, value, cellProperties) {\n             Handsontable.renderers.NumericRenderer.apply(this, arguments);\n             if (row == col) {\n              td.style.background = 'lightgrey';\n             } else if (col > row) {\n              td.style.background = 'grey';\n              td.style.color = 'grey';\n             } else if (value < -0.75) {\n              td.style.background = 'pink';\n             } else if (value > 0.75) {\n              td.style.background = 'lightgreen';\n             }\n           }","default":null},{"type":"numeric","format":"0.00","readOnly":true,"renderer":"\n           function (instance, td, row, col, prop, value, cellProperties) {\n             Handsontable.renderers.NumericRenderer.apply(this, arguments);\n             if (row == col) {\n              td.style.background = 'lightgrey';\n             } else if (col > row) {\n              td.style.background = 'grey';\n              td.style.color = 'grey';\n             } else if (value < -0.75) {\n              td.style.background = 'pink';\n             } else if (value > 0.75) {\n              td.style.background = 'lightgreen';\n             }\n           }","default":null},{"type":"numeric","format":"0.00","readOnly":true,"renderer":"\n           function (instance, td, row, col, prop, value, cellProperties) {\n             Handsontable.renderers.NumericRenderer.apply(this, arguments);\n             if (row == col) {\n              td.style.background = 'lightgrey';\n             } else if (col > row) {\n              td.style.background = 'grey';\n              td.style.color = 'grey';\n             } else if (value < -0.75) {\n              td.style.background = 'pink';\n             } else if (value > 0.75) {\n              td.style.background = 'lightgreen';\n             }\n           }","default":null},{"type":"numeric","format":"0.00","readOnly":true,"renderer":"\n           function (instance, td, row, col, prop, value, cellProperties) {\n             Handsontable.renderers.NumericRenderer.apply(this, arguments);\n             if (row == col) {\n              td.style.background = 'lightgrey';\n             } else if (col > row) {\n              td.style.background = 'grey';\n              td.style.color = 'grey';\n             } else if (value < -0.75) {\n              td.style.background = 'pink';\n             } else if (value > 0.75) {\n              td.style.background = 'lightgreen';\n             }\n           }","default":null},{"type":"numeric","format":"0.00","readOnly":true,"renderer":"\n           function (instance, td, row, col, prop, value, cellProperties) {\n             Handsontable.renderers.NumericRenderer.apply(this, arguments);\n             if (row == col) {\n              td.style.background = 'lightgrey';\n             } else if (col > row) {\n              td.style.background = 'grey';\n              td.style.color = 'grey';\n             } else if (value < -0.75) {\n              td.style.background = 'pink';\n             } else if (value > 0.75) {\n              td.style.background = 'lightgreen';\n             }\n           }","default":null},{"type":"numeric","format":"0.00","readOnly":true,"renderer":"\n           function (instance, td, row, col, prop, value, cellProperties) {\n             Handsontable.renderers.NumericRenderer.apply(this, arguments);\n             if (row == col) {\n              td.style.background = 'lightgrey';\n             } else if (col > row) {\n              td.style.background = 'grey';\n              td.style.color = 'grey';\n             } else if (value < -0.75) {\n              td.style.background = 'pink';\n             } else if (value > 0.75) {\n              td.style.background = 'lightgreen';\n             }\n           }","default":null},{"type":"numeric","format":"0.00","readOnly":true,"renderer":"\n           function (instance, td, row, col, prop, value, cellProperties) {\n             Handsontable.renderers.NumericRenderer.apply(this, arguments);\n             if (row == col) {\n              td.style.background = 'lightgrey';\n             } else if (col > row) {\n              td.style.background = 'grey';\n              td.style.color = 'grey';\n             } else if (value < -0.75) {\n              td.style.background = 'pink';\n             } else if (value > 0.75) {\n              td.style.background = 'lightgreen';\n             }\n           }","default":null},{"type":"numeric","format":"0.00","readOnly":true,"renderer":"\n           function (instance, td, row, col, prop, value, cellProperties) {\n             Handsontable.renderers.NumericRenderer.apply(this, arguments);\n             if (row == col) {\n              td.style.background = 'lightgrey';\n             } else if (col > row) {\n              td.style.background = 'grey';\n              td.style.color = 'grey';\n             } else if (value < -0.75) {\n              td.style.background = 'pink';\n             } else if (value > 0.75) {\n              td.style.background = 'lightgreen';\n             }\n           }","default":null},{"type":"numeric","format":"0.00","readOnly":true,"renderer":"\n           function (instance, td, row, col, prop, value, cellProperties) {\n             Handsontable.renderers.NumericRenderer.apply(this, arguments);\n             if (row == col) {\n              td.style.background = 'lightgrey';\n             } else if (col > row) {\n              td.style.background = 'grey';\n              td.style.color = 'grey';\n             } else if (value < -0.75) {\n              td.style.background = 'pink';\n             } else if (value > 0.75) {\n              td.style.background = 'lightgreen';\n             }\n           }","default":null},{"type":"numeric","format":"0.00","readOnly":true,"renderer":"\n           function (instance, td, row, col, prop, value, cellProperties) {\n             Handsontable.renderers.NumericRenderer.apply(this, arguments);\n             if (row == col) {\n              td.style.background = 'lightgrey';\n             } else if (col > row) {\n              td.style.background = 'grey';\n              td.style.color = 'grey';\n             } else if (value < -0.75) {\n              td.style.background = 'pink';\n             } else if (value > 0.75) {\n              td.style.background = 'lightgreen';\n             }\n           }","default":null}],"width":"100%","height":"200px","debug":0,"stretchH":"none","comments":false,"contextMenu":{"items":{"row_above":[],"row_below":[],"remove_row":[],"hsep3":{"name":"---------"},"undo":[],"redo":[],"hsep4":{"name":"---------"},"alignment":[]}}},"evals":["columns.0.renderer","columns.1.renderer","columns.2.renderer","columns.3.renderer","columns.4.renderer","columns.5.renderer","columns.6.renderer","columns.7.renderer","columns.8.renderer","columns.9.renderer"],"jsHooks":[]}</script>
+   </div>
+   </div>
 
-  <div class="columns">
-    <div class="column2">
-
-    <div class="formatSection">
-      <div class="formatSectionTitle">HTML</div>
-      <div class="formatTable">
-        <a href="http://statr.me/2016/08/creating-pretty-documents-with-the-prettydoc-package/" class="formatTableRow">
-          <div class="formatName">html_pretty</div>
-          <div class="formatDescription">Small yet pretty HTML pages</div>
-        </a>
-        <a href="https://github.com/juba/rmdformats" class="formatTableRow">
-          <div class="formatName">readthedown</div>
-          <div class="formatDescription">Format adapted from the Read the docs Sphinx theme</div>
-        </a>
-        <a href="https://github.com/juba/rmdformats" class="formatTableRow">
-          <div class="formatName">html_docco</div>
-          <div class="formatDescription">Format adapted from the docco documentation generator</div>
-        </a>
-        <a href="https://github.com/juba/rmdformats" class="formatTableRow">
-          <div class="formatName">html_clean</div>
-          <div class="formatDescription">Clean and simple HTML format</div>
-        </a>
-      </div>
-    </div>
-
-    <div class="formatSection">
-      <div class="formatSectionTitle">Presentations</div>
-      <div class="formatTable">
-        <a href="https://github.com/mangothecat/rmdshower" class="formatTableRow">
-          <div class="formatName">shower_presentation</div>
-          <div class="formatDescription">Themeable presentations using the Shower framework</div>
-        </a>
-      </div>
-    </div>
-
-    </div>
-
-    <div class="column2">
-    
-    <!-- More formats can go here -->
-    
-    </div>
-    
-    
-  </div>
-  
-    <br/>
-    
-    Please send email to <a href="mailto:garrett@rstudio.com">garrett@rstudio.com</a> if you would like to add an R Markdown template you've developed to this listing.
-
-  
-  </div>
 
 </div>
-
-
-
 
   </div> <!-- articleBandContent -->
 </div> <!-- pageContent -->
 
 <div id="rStudioFooter" class="band full">
 <div class="bandContent">
-  <!--<div id="copyright">© Copyright 2016 RStudio Inc.</div>-->
+  <h4><a href="http://idn.it.ox.ac.uk" target="_blank" style="color:#fff;font-weight:bold">OxShef</a></h4>
   <div id="logos">
-    <!--<a href="https://twitter.com/rstudio" class="footerLogo twitter"></a>--!>
-    <a href="https://github.com/rstudio" class="footerLogo gitHub"></a>
+    <!--<a href="https://twitter.com/rstudio" class="footerLogo twitter"></a>!-->
+    <a href="https://github.com/ox-it/OxfordIDN_charts" class="footerLogo gitHub"></a>
     <!--<a href="https://www.linkedin.com/company/rstudio-inc" class="footerLogo linkedIn"></a>
     <a href="https://www.facebook.com/pages/RStudio-Inc/267733656584415" Class="footerLogo facebook"></a>-->
   </div>
@@ -400,34 +341,8 @@ $(".main-container").removeClass("main-container").removeClass("container-fluid"
 <script type="text/javascript" src="//cdn.bizible.com/scripts/bizible.js" async=""></script>
 
 
-<!-- disqus - ->
- <div id="disqus_thread" class="standardPadding"></div>
-    <script type="text/javascript">
-      $(document).ready(function() {
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'rmarkdown'; // required: replace example with your forum shortname
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-            // create disqus script tag
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-
-            // determine container
-            var container = document.getElementsByTagName('body')[0] || document.getElementsByTagName('head')[0];
-
-            // append script tag enclosed by google indexing suppression comment
-            container.appendChild(document.createComment('googleoff: all'));
-            container.appendChild(dsq);
-            container.appendChild(document.createComment('googleon: all'));
-        })();
-      });
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
--->
-
-
+</div>
+</div>
 
 </div>
 
