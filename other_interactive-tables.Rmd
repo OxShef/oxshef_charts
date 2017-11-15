@@ -1,0 +1,35 @@
+---
+title: "Other: Interactive tables"
+output:
+  html_document:
+    toc: true
+    toc_float:
+      collapsed: false
+    includes:
+      before_body: [includes/include_header.html, includes/include_header_navpage.html]
+editor_options: 
+  chunk_output_type: console
+---
+# Interactive tables
+
+Interactive tables are extremely useful for presenting data directly to your audience for them to explore, much like an Excel document. Interactivity typically includes; ability to filter individual columns, reorder columns in ascending/descending order and a filter across the entire table. Often conditional formatting is applied to tables to highlight/label data.
+
+Required Data:
+
+- Table of data: This data could conceivable be of any type, and include columns of multiple data types including but not limited to text, numbers, images and more
+
+Below is a minimal example of an interactive table using `R` and the `DT` library.
+
+```{r basic_barchart, echo=FALSE, message=FALSE, warning=FALSE}
+library("DT")
+library("tidyverse")
+library("gapminder")
+
+gapminder %>%
+  datatable(width = "100%",
+            height = "250px",
+            rownames = FALSE,
+            options = list(pageLength = 5))
+
+```
+
