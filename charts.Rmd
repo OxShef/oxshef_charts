@@ -36,7 +36,6 @@ We've chosen to split our charts up using a similar hierarchy to the FT's Visual
 <div class="row">
    <div class="col-md-6">
    <span><a href="charts_barcharts.html">Barcharts [tutorial]</a> are very flexible visualisations that allow viewers to quickly compare the relative magnitude/ranking of multiple categories of data. By using grouped or stacked barcharts it is also possible to compare subcategories within each category.</span>
-   <a href="charts_barcharts.html">Tutorial available here</a>
    <br>
    <strong>Required Data:</strong>
    <ul>
@@ -63,7 +62,7 @@ my_data %>%
       y = value
     )
   ) %>%
-  hc_size(width = "200px", height = "200px")
+  hc_size(width = "300px", height = "300px")
 ```
    </div>
    </div>
@@ -101,7 +100,7 @@ my_data %>%
     )
   ) %>%
   hc_plotOptions(pie = list(dataLabels = list(enabled = FALSE))) %>%
-  hc_size(width = "200px", height = "200px")
+  hc_size(width = "300px", height = "300px")
 ```
    </div>
    </div>
@@ -117,30 +116,26 @@ my_data %>%
    <br>
    <strong>Required Data:</strong>
    <ul>
-   <li>x: Independent variable</li>
-   <li>y: Dependent variable</li>
+   <li>x coordinates: traditionally this is the independent variable, for instance the year a measurement is taken</li>
+   <li>y coordinates: traditionally this is the dependent variable, for instance the value of a measurement in a specific year</li>
    </ul>
    </div>
    <div class="col-md-4 vcenter">
 ```{r echo=FALSE}
-library("highcharter")
 library("tidyverse")
-scatter_data <- tibble(
-  x = c(rnorm(20), rnorm(20, mean = 1.5)),
-  y = c(rnorm(20), rnorm(20, mean = 1.5)),
-  group = rep(c("a", "b"), each = 20)
-)
-highchart(width = "200px", height = "200px") %>%
-  hc_add_series(
-    data = scatter_data,
-    type = "scatter",
-    hcaes(
-      x = x,
-      y = y,
-      group = group
-    )
-  )
+library("gapminder")
+library("highcharter")
+gapminder %>%
+  group_by(continent, year) %>%
+  summarise(median.life.exp = median(lifeExp)) %>%
+  hchart(type = "scatter",
+         hcaes(x = year, y = median.life.exp, group = continent)) %>%
+  hc_size(width = "300px", height = "300px")
 ```
    </div>
    </div>
 <!--/html_preserve-->
+
+### Distribution
+
+We don't currently have any tutorials for creating these types of charts, please consider making a [pull request on GitHub](https://github.com/ox-it/OxfordIDN_charts).
