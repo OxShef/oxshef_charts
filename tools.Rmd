@@ -194,8 +194,13 @@ gapminder %>%
 
 ## Shiny {#tools-shiny}
 
-Shiny is great.
+Shiny is a technology allows users of R to create interactive web applications without *strictly* having to learn HTML, CSS, JavaScript or anything about web-hosting. There's a dedicated [IDN Shiny website](https://ox-it.github.io/OxfordIDN_shiny/){target='_blank'} that explains how Shiny works and what you need to know to be able to deploy your own Shiny applications to the web.
 
-## Tableau {#tools-tableau}
+The [IDN Showcase](http://idn.it.ox.ac.uk/visualisation-showcase){target='_blank'} includes a range of Shiny apps built by and for researchers at Oxford. One of the most popular Shiny apps developed by the IDN is the Online Labour Index, which is embedded below as an iframe:
+
+<!--html_preserve-->
+<iframe src='https://livedataoxford.shinyapps.io/OnlineLabourIndex/' width="100%" height="580px"></iframe>
+<!--/html_preserve-->
+
 
 We have a page dedicated to Tableau
