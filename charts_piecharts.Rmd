@@ -1,0 +1,156 @@
+---
+title: "Charts: Piecharts"
+output:
+  html_document:
+    toc: true
+    toc_float:
+      collapsed: false
+    includes:
+      before_body: [includes/include_header.html, includes/include_header_navpage.html]
+editor_options: 
+  chunk_output_type: console
+---
+# What is a piechart?
+
+Piecharts are useful visualisations for breaking down observations into a number of categories, the totals of which sum to 100% of the data. It is worth noting that it is often advisable to swap a barchart for a piechart, see 
+
+- Categories: For instance, species of animal e.g. human or iguana
+- Values: For instance, number of animals of each species
+
+Below is a comparison between a piechart and barchart build using `R` and the `highcharter` library.
+
+<!--html_preserve-->
+<div class="row">
+   <div class="col-md-6">
+
+```{r basic_piechart, echo=FALSE, message=FALSE, warning=FALSE}
+library("highcharter")
+library("tidyverse")
+my_data <- tribble(
+  ~category, ~value,
+  "human", 3,
+  "non-human", 4,
+  "snake", 6,
+  "iguana", 8
+)
+my_data %>%
+  hchart(
+    type = "pie",
+    hcaes(
+      x = category,
+      y = value
+    )
+  ) %>%
+  hc_plotOptions(pie = list(dataLabels = list(enabled = FALSE))) %>%
+  hc_size(width = "100%", height = "250px")
+```
+
+</div>
+
+<div class="col-md-6">
+
+```{r basic_barchart, echo=FALSE, message=FALSE, warning=FALSE}
+library("highcharter")
+library("tidyverse")
+library("forcats")
+my_data <- tribble(
+  ~category, ~value,
+  "human", 3,
+  "non-human", 4,
+  "snake", 6,
+  "iguana", 8
+)
+my_data %>%
+  arrange(desc(value)) %>%
+  mutate(category = fct_reorder(category, value)) %>%
+  hchart(
+    type = "bar",
+    hcaes(
+      x = fct_reorder(category, rev(value)),
+      y = value
+    )
+  ) %>%
+  hc_plotOptions(pie = list(dataLabels = list(enabled = FALSE))) %>%
+  hc_xAxis(title = list(text = "Category")) %>%
+  hc_size(width = "100%", height = "250px")
+```
+
+</div>
+
+</div>
+<!--/html_preserve-->
+
+# Limitations of piecharts
+
+Research in graphical perception - the visual decoding of information encoded in graphs - suggests that piecharts are often an inefficient option for visualising the differences between many categories; as it is difficult for the visual perception system to judge small differences in the sizes of sections in a piechart. It's also difficult to get exact measurements from piecharts, in the example above the barchart makes it clear that half as many observations are "non-human" as are categorised as "iguana".
+
+Often you will simply hear the advice "never use a piechart, instead use a barchart" based on the work of [Cleveland and McGill](http://doi.org/10.2307/2288400){target='_blank'} (amongst others). But blanket bans on piecharts are definitely overkill. There are many examples of where piecharts can be useful and a lot of variation possible in the design of piecharts, here are some useful resources and below there's a very simple comparison between a piechart and donut chart.
+
+- EagerEyes.org blogpost on [designing effective piecharts](https://eagereyes.org/techniques/pie-charts)
+- Study into [judging error in piechart visualisations](https://kosara.net/papers/2016/Kosara-EuroVis-2016.pdf)
+- Study into [differences between pie, area and sector charts](https://kosara.net/papers/2016/Skau-EuroVis-2016.pdf)
+
+<!--html_preserve-->
+<div class="row">
+   <div class="col-md-6">
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library("highcharter")
+library("tidyverse")
+my_data <- tribble(
+  ~category, ~value,
+  "human", 3,
+  "non-human", 4,
+  "snake", 6,
+  "iguana", 8
+)
+my_data %>%
+  hchart(
+    type = "pie",
+    hcaes(
+      x = category,
+      y = value
+    )
+  ) %>%
+  hc_plotOptions(pie = list(dataLabels = list(enabled = TRUE))) %>%
+  hc_size(width = "350px", height = "250px") %>%
+  hc_plotOptions(pie = list(
+            innerSize =  100,
+            depth =  45
+        ), series = list(animation = FALSE))
+```
+</div>
+   <div class="col-md-6">
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library("highcharter")
+library("tidyverse")
+my_data <- tribble(
+  ~category, ~value,
+  "human", 3,
+  "non-human", 4,
+  "snake", 6,
+  "iguana", 8
+)
+my_data %>%
+  hchart(
+    type = "pie",
+    hcaes(
+      x = category,
+      y = value
+    )
+  ) %>%
+  hc_plotOptions(pie = list(dataLabels = list(enabled = TRUE))) %>%
+  hc_size(width = "350px", height = "250px") %>%
+  hc_plotOptions(series = list(animation = FALSE))
+```
+
+</div>
+</div>
+
+<!--/html_preserve-->
+
+
+
+
+
+
