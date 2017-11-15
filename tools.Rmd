@@ -124,7 +124,73 @@ ggplot(df, aes(monthweek, weekdayf, fill = VIX.Close)) +
 
 ### Interactive charts with htmlwidgets
 
-Interactive Viz
+htmlwidgets is a technology that allows R developers to easily build bindings to JavaScript libraries - for the average R user this translates into the ability to create rich, interactive visualisations for the web directly with the R language. The [htmlwidgets overview](tools_htmlidgets-overview.html) page of this website provides a high-level overview of the most commonly used `htmlwidgets` libraries. For a more general introduction to htmlwidgets, including tutorials on creating your own `htmlwidget` libraries, refer to [htmlwidgets.org](htmlwidgets.org).
+
+University of Oxford researchers and staff are provided with access to Lynda.com, where there is a [course dedicated to building interactive charts with htmlwidgets](https://www.lynda.com/R-tutorials/R-Interactive-Visualizations-htmlwidgets/586671-2.html?org=ox.ac.uk). The two interactive charts below are made with the `leaflet` and `highcharter` libraries.
+
+
+<!--html_preserve-->
+
+<div class="row align-items-center">
+
+<div class="col-md-6 align-self-center">
+<center>
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library("tidyverse")
+library("leaflet")
+library("statesRcontiguous")
+library("RColorBrewer")
+contiguous_us <- shp_all_us_states %>%
+  filter(contiguous.united.states == TRUE)
+
+palette_region <- colorFactor("Set2", unique(contiguous_us$state.region))
+
+contiguous_us %>%
+  leaflet(width = "250px", height = "250px") %>%
+  addPolygons(fillColor = ~palette_region(state.region),
+              fillOpacity = 1,
+              label = paste0(state.name, " (Region: ", state.region,")"),
+              weight = 1,
+              color = "#000000")
+```
+</center>
+</div>
+
+<div class="col-md-6 align-self-center">
+<center>
+```{r, echo=FALSE}
+# library("tidyverse")
+library("highcharter")
+library("gapminder")
+library("forcats")
+
+gapminder %>%
+  filter(year == min(year)) %>%
+  group_by(continent) %>%
+  mutate(median.gddPerCap = median(gdpPercap)) %>%
+  select(continent, year, median.gddPerCap) %>%
+  unique() %>%
+  arrange(desc(median.gddPerCap)) %>%
+  mutate(continent = fct_reorder(continent, median.gddPerCap)) %>%
+  hchart(
+    type = "bar",
+    hcaes(
+      x = continent,
+      y = median.gddPerCap
+    )
+  ) %>%
+  hc_xAxis(title = list(text = "")) %>%
+  hc_yAxis(title = list(text = "")) %>%
+  hc_subtitle(text = "Gapminder: Median count pop. of each continent in 1952") %>%
+  hc_size(width = "250px", height = "250px")
+
+```
+</center>
+</div>
+
+</div>
+
+<!--/html_preserve-->
 
 ## Shiny {#tools-shiny}
 
