@@ -1,205 +1,253 @@
 ---
-title: "Formats"
+title: "Networks"
 output:
   html_document:
-    toc_float: false
+    toc: true
+    toc_float:
+      collapsed: false
     includes:
       before_body: [includes/include_header.html, includes/include_header_navpage.html]
+editor_options: 
+  chunk_output_type: console
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+# Networks
+
+Network diagrams, or graph, are extremely useful visualisations to communicate the connections between distinct elements in your data; for instance the collaborations between researchers in a particular field or the connections between transport hubs in a logistics network. All network diagrams require the same basic data: nodes, edges and a layout algorithm.
+
+### Nodes
+
+Nodes are the unique elements in your data (the individuals). They might well have a number of different properties which are important when visualising the data:
+
+- Node appearance: nodes are often styled to convey information about the thing the node represents, typical channels of communication include size, colour and shape
+- Intrinsic properties: nodes may have intrinsic properties that are important if one was constructing a journey (or path) through the network and might be displayed to the user when nodes are clicked or hovered over.
+
+It's extremely important to understand that **in general the absolute positions of nodes is unimportant**. Most [layout algorithms](networks.html#layout-algorithms) are non-deterministic, i.e. final node positions are computed by running a computer simulation. The three graph below display exactly the same data using a very general purpose layout algorithm but with slightly different random seeds (initial positions of the nodes for the simulation):
+
 <!--html_preserve-->
+<div class="row">
+   <div class="col-md-4">
 
-<div class="band full">
-  <div class="bandContent pageTitle">RStudio Formats</div>
-  <div class="bandContent pageIntro">R Markdown formats from RStudio (see below for additional formats created by the R community)</div>
-  <div class="bandContent">
+```{r}
+library("tidyverse")
+library("visNetwork")
 
-  <div class="columns">
-    <div class="column2">
+my_nodes <- tribble(
+  ~id, ~label, ~color, ~size,
+  1, "Character A", "purple", 10, 
+  2, "Character B", "purple", 13,
+  3, "Character C", "orange", 17, 
+  4, "Character D", "orange", 12,
+  5, "Character E", "purple", 17,
+  6, "Character Z", "green", 10
+)
 
-    <div class="formatSection">
-      <div class="formatSectionTitle">Documents</div>
-      <div class="formatTable">
-        <a href="r_notebooks.html" class="formatTableRow">
-          <div class="formatName">Notebook</div>
-          <div class="formatDescription">Interactive R Notebooks</div>
-        </a>
-        <a href="html_document_format.html" class="formatTableRow">
-          <div class="formatName">HTML</div>
-          <div class="formatDescription">HTML document w/ Bootstrap CSS</div>
-        </a>
-        <a href="pdf_document_format.html" class="formatTableRow">
-          <div class="formatName">PDF</div>
-          <div class="formatDescription">PDF document (via LaTeX template)</div>
-        </a>
-        <a href="word_document_format.html" class="formatTableRow">
-          <div class="formatName">Word</div>
-          <div class="formatDescription">Microsoft Word document (docx)</div>
-        </a>
-        <a href="odt_document_format.html" class="formatTableRow">
-          <div class="formatName">ODT</div>
-          <div class="formatDescription">OpenDocument Text document</div>
-        </a>
-        <a href="rtf_document_format.html" class="formatTableRow">
-          <div class="formatName">RTF</div>
-          <div class="formatDescription">Rich Text Format document</div>
-        </a>
-        <a href="markdown_document_format.html" class="formatTableRow">
-          <div class="formatName">Markdown</div>
-          <div class="formatDescription">Markdown document (various flavors)</div>
-        </a>
-      </div>
-    </div>
-
-    <div class="formatSection">
-      <div class="formatSectionTitle">Presentations</div>
-      <div class="formatTable">
-        <a href="ioslides_presentation_format.html" class="formatTableRow">
-          <div class="formatName">ioslides</div>
-          <div class="formatDescription">HTML presentation with ioslides</div>
-        </a>
-        <a href="revealjs_presentation_format.html" class="formatTableRow">
-          <div class="formatName">reveal.js</div>
-          <div class="formatDescription">HTML presentation with reveal.js</div>
-        </a>
-        <a href="slidy_presentation_format.html" class="formatTableRow">
-          <div class="formatName">Slidy</div>
-          <div class="formatDescription">HTML presentation with W3C Slidy</div>
-        </a>
-        <a href="beamer_presentation_format.html" class="formatTableRow">
-          <div class="formatName">Beamer</div>
-          <div class="formatDescription">PDF presentation with LaTeX Beamer</div>
-        </a>
-      </div>
-    </div>
-
-    </div>
-
-    <div class="column2">
-    
-    <div class="formatSection">
-      <div class="formatSectionTitle">Journals</div>
-      <div class="formatTable">
-         <a href="https://github.com/rstudio/rticles" class="formatTableRow">
-          <div class="formatName">jss_article</div>
-          <div class="formatDescription">Journal of Statistical Software (JSS)</div>
-        </a>
-        <a href="https://github.com/rstudio/rticles" class="formatTableRow">
-          <div class="formatName">acm_article</div>
-          <div class="formatDescription">Association for Computing Machinery (ACM)</div>
-        </a>
-        <a href="https://github.com/rstudio/rticles" class="formatTableRow">
-          <div class="formatName">acs_article</div>
-          <div class="formatDescription">American Chemical Society (ACS) Journal</div>
-        </a>
-        <a href="https://github.com/rstudio/rticles" class="formatTableRow">
-          <div class="formatName">ctex</div>
-          <div class="formatDescription">Documents based on the LaTeX package ctex</div>
-        </a>
-        <a href="https://github.com/rstudio/rticles" class="formatTableRow">
-          <div class="formatName">elsevier_article</div>
-          <div class="formatDescription">Submissions to Elsevier journals</div>
-        </a>
-      </div>
-    </div>
-    
-    <div class="formatSection">
-      <div class="formatSectionTitle">More</div>
-      <div class="formatTable">
-        <a href="flexdashboard/index.html" class="formatTableRow">
-          <div class="formatName">flexdashboard</div>
-          <div class="formatDescription">Interactive dashboards</div>
-        </a>
-        <a href="https://bookdown.org" class="formatTableRow">
-          <div class="formatName">bookdown</div>
-          <div class="formatDescription">HTML, PDF, ePub, and Kindle books</div>
-        </a>
-        <a href="rmarkdown_websites.html" class="formatTableRow">
-          <div class="formatName">Websites</div>
-          <div class="formatDescription">Multi-page websites</div>
-        </a>
-        <a href="tufte_handout_format.html" class="formatTableRow">
-          <div class="formatName">Tufte Handout</div>
-          <div class="formatDescription">Handouts in the style of Edward Tufte</div>
-        </a>
-        <a href="package_vignette_format.html" class="formatTableRow">
-          <div class="formatName">Package Vignette</div>
-          <div class="formatDescription">R package vignette (HTML)</div>
-        </a>
-        <a href="github_document_format.html" class="formatTableRow">
-          <div class="formatName">Github Document</div>
-          <div class="formatDescription">GitHub Flavored Markdown document.</div>
-        </a>
-      </div>
-    </div>
-    
-    </div>
-    
-    
-  </div>
-  </div>
-</div>
-
-
-<div class="band full">
-  <div class="bandContent pageTitle">Community Formats</div>
-  <div class="bandContent pageIntro">R Markdown formats created by the R community</div>
-  <div class="bandContent">
-
-  <div class="columns">
-    <div class="column2">
-
-    <div class="formatSection">
-      <div class="formatSectionTitle">HTML</div>
-      <div class="formatTable">
-        <a href="http://statr.me/2016/08/creating-pretty-documents-with-the-prettydoc-package/" class="formatTableRow">
-          <div class="formatName">html_pretty</div>
-          <div class="formatDescription">Small yet pretty HTML pages</div>
-        </a>
-        <a href="https://github.com/juba/rmdformats" class="formatTableRow">
-          <div class="formatName">readthedown</div>
-          <div class="formatDescription">Format adapted from the Read the docs Sphinx theme</div>
-        </a>
-        <a href="https://github.com/juba/rmdformats" class="formatTableRow">
-          <div class="formatName">html_docco</div>
-          <div class="formatDescription">Format adapted from the docco documentation generator</div>
-        </a>
-        <a href="https://github.com/juba/rmdformats" class="formatTableRow">
-          <div class="formatName">html_clean</div>
-          <div class="formatDescription">Clean and simple HTML format</div>
-        </a>
-      </div>
-    </div>
-
-    <div class="formatSection">
-      <div class="formatSectionTitle">Presentations</div>
-      <div class="formatTable">
-        <a href="https://github.com/mangothecat/rmdshower" class="formatTableRow">
-          <div class="formatName">shower_presentation</div>
-          <div class="formatDescription">Themeable presentations using the Shower framework</div>
-        </a>
-      </div>
-    </div>
-
-    </div>
-
-    <div class="column2">
-    
-    <!-- More formats can go here -->
-    
-    </div>
-    
-    
-  </div>
-  
-    <br/>
-    
-    Please send email to <a href="mailto:garrett@rstudio.com">garrett@rstudio.com</a> if you would like to add an R Markdown template you've developed to this listing.
-
-  
-  </div>
+my_edges <- tribble(
+  ~from, ~to,
+  1, 2,
+  3, 1,
+  4, 1,
+  4, 2,
+  5, 2,
+  5, 3,
+  5, 6
+)
+visNetwork(my_nodes,
+           my_edges,
+           width = "200px",
+           height = "200px") %>%
+  visIgraphLayout(randomSeed = 1) %>%
+  visInteraction(zoomView = FALSE)
+```
 
 </div>
 
+   <div class="col-md-4">
 
+```{r}
+visNetwork(my_nodes,
+           my_edges,
+           width = "200px",
+           height = "200px") %>%
+  visIgraphLayout(randomSeed = 15) %>%
+  visInteraction(zoomView = FALSE)
+```
+
+</div>
+
+   <div class="col-md-4">
+
+```{r}
+visNetwork(my_nodes,
+           my_edges,
+           width = "200px",
+           height = "200px") %>%
+  visIgraphLayout(randomSeed = 2002) %>%
+  visInteraction(zoomView = FALSE)
+```
+
+</div>
+</div>
 <!--/html_preserve-->
+
+### Edges
+
+Edges communicate how two nodes are connected to one another, they have the following properties:
+
+- Directed/Undirected: An undirected edge indicates there's no direction in the relationship between two nodes, whereas a directed node indicates information can only pass through the relation between these two nodes in the direction specified. Note that directed nodes might well be bi-directional.
+- Edge appearance: edges are often styled to convey information about the relationship between the nodes, typical channels of communication include width, dashed/dotted and colour.
+- Intrinsic properties: edges may have intrinsic properties that are important if one was constructing a journey (or path) through the network.
+
+The networks below are undirected and directed, respectively. Select a node to see it's first degree neighbours, note that in the second graph the direction of the edges affects which nodes are highlighted.
+
+<!--html_preserve-->
+<div class="row">
+   <div class="col-md-6">
+<center>
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
+library("tidyverse")
+library("visNetwork")
+library("igraph")
+
+my_nodes <- tribble(
+  ~id, ~label, ~color, ~size,
+  1, "Character A", "purple", 10,
+  2, "Character B", "purple", 13,
+  3, "Character C", "orange", 17,
+  4, "Character D", "orange", 12,
+  5, "Character E", "purple", 17,
+  6, "Character Z", "green", 10
+)
+
+my_edges <- tribble(
+  ~from, ~to, ~width,
+  1, 2, 5,
+  # 2, 1, 5,
+  3, 1, 1,
+  # 1, 3, 1,
+  4, 1, 6,
+  # 1, 4, 6,
+  4, 2, 3,
+  # 2, 4, 3,
+  5, 2, 2,
+  # 2, 5, 2,
+  5, 3, 5,
+  # 3, 5, 5,
+  5, 6, 5
+  # 6, 5, 5
+)
+
+visNetwork(my_nodes,
+           my_edges,
+           width = "200px",
+           height = "200px") %>%
+  visOptions(highlightNearest = list(enabled = TRUE, degree = 1)) %>%
+  visInteraction(zoomView = FALSE)
+```
+</center>
+</div>
+
+<div class="col-md-6">
+<center>
+```{r}
+library("tidyverse")
+library("visNetwork")
+
+my_nodes <- tribble(
+  ~id, ~label, ~color, ~size,
+  1, "Character A", "purple", 10, 
+  2, "Character B", "purple", 13,
+  3, "Character C", "orange", 17, 
+  4, "Character D", "orange", 12,
+  5, "Character E", "purple", 17,
+  6, "Character Z", "green", 10
+)
+
+my_edges <- tribble(
+  ~from, ~to, ~width,
+  1, 2, 5,
+  3, 1, 1,
+  4, 1, 6,
+  4, 2, 3,
+  5, 2, 2,
+  5, 3, 5,
+  5, 6, 5
+)
+visNetwork(my_nodes,
+           my_edges,
+           width = "200px",
+           height = "200px") %>%
+  visIgraphLayout(randomSeed = 1) %>%
+  visEdges(arrows = list(to = list(enabled = TRUE, scaleFactor = 1))) %>%
+  visOptions(highlightNearest = list(enabled = TRUE, algorithm =  "hierarchical", degree = list(from = 0, to = 1))) %>%
+  visInteraction(zoomView = FALSE)
+```
+</center>
+</div>
+</div>
+<!--/html_preserve-->
+
+### Layout algorithms {#layout-algorithms}
+
+As mentioned above, **in general the absolute positions of nodes is unimportant**. Most [layout algorithms](networks.html#layout-algorithms) are non-deterministic, i.e. final node positions are computed by running a computer simulation. Deciding on which layout algorithm (or graph embedding) to use for your visualisations is somewhat of an art as opposed to a science. The three graph below display the exact same dataset using three very different layout algorithms from the excellent [igraph library](http://igraph.org/r/doc/layout_.html){target='_blank'}. In the future this website will include a page dedicated to choosing layout algorithms.
+
+<!--html_preserve-->
+<div class="row">
+   <div class="col-md-4">
+<center>
+
+```{r}
+library("igraph")
+my_random_igraph <- erdos.renyi.game(100, 1/39)
+my_random_igraph_components <- decompose(my_random_igraph)
+component_vcounts <- sapply(my_random_igraph_components, function(x) vcount(x))
+largest_component <- my_random_igraph_components[[which(component_vcounts == max(component_vcounts))]]
+
+random_visN <- toVisNetworkData(largest_component)
+
+visNetwork(random_visN$nodes,
+           random_visN$edges,
+           width = "200px",
+           height = "200px",
+           main = "layout_in_circle") %>%
+  visIgraphLayout(layout = "layout_in_circle")
+```
+</center>
+</div>
+   <div class="col-md-4">
+<center>
+```{r}
+visNetwork(random_visN$nodes,
+           random_visN$edges,
+           width = "200px",
+           height = "200px",
+           main = "layout_nicely") %>%
+  visIgraphLayout(layout = "layout_nicely")
+```
+
+</center>
+</div>
+   <div class="col-md-4">
+<center>
+```{r}
+visNetwork(random_visN$nodes,
+           random_visN$edges,
+           width = "200px",
+           height = "200px",
+           main = "layout.grid") %>%
+  visIgraphLayout(layout = "layout_nicely")
+```
+
+</center>
+</div>
+</div>
+<!--/html_preserve-->
+
