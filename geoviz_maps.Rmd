@@ -7,47 +7,126 @@ output:
       collapsed: false
     includes:
       before_body: [includes/include_header.html, includes/include_header_navpage.html]
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
-	echo = TRUE,
+	echo = FALSE,
 	message = FALSE,
 	warning = FALSE
 )
 ```
 
-# Geovisualisations (Maps)
+# Geoviz (Maps)
 
-Maps are great
+Working with geographic data, often referred to as GIS, requires highly specialised visualisation tools designed specifically for converting information about the surface of our spherical (approximately) planet into flat maps. Typically, GIS visualisations seek to communicate one of four things:
 
-### Comparison / Ranking / Magnitude
+- Points/Locations on a map: this includes individual buildings, cities, as well as the path taken between locations (as these are simply streams of connected points on a map)
+- Regions on a map: this includes city limits, country borders and continent outlines.
+- Physical properties of Earth: this includes the height profile of a mountain, depth of ocean trenches and other topographical information
+- Meteorological data: this data often requires extremely specialised visualisations.
+
+We've split our visualisations into these four categories
+
+### Points/Locations on a map
+
+We don't currently have any tutorials for creating these types of map, please consider making a [pull request on GitHub](https://github.com/ox-it/OxfordIDN_charts).
+
+### Regions on a map
 
 <!--html_preserve-->
 <div class="row">
    <div class="col-md-6">
-   <span><a href="geoviz_choropleth.html">Choropleth</a> useful for colouring regions.</span>
+   <span><a href="geoviz_choropleth.html">Choropleth [tutorial]</a> are useful for shading/colouring specific geographic regions according to either a discrete or continuous variable. Choropleth require correctly formatted "shapefiles" for specific visualisation tools.</span>
    <br>
    <strong>Required Data:</strong>
    <ul>
-   <li>Categories: For instance, school subjects</li>
-   <li>Values: For instance, number of students in subject</li>
+   <li>Shapefiles: Enclosed regions, i.e. topologically closed polygons, sometimes called convex hulls. For instance, country borders.</li>
+   <li>Values: Discrete or categorical values for each enclosed region, for instance the population of a country or membership of the UN</li>
    </ul>
    </div>
-   <div class="col-md-4">
-```{r echo=FALSE}
-library("leaflet")
+   <div class="col-md-6">
+```{r, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 library("tidyverse")
+library("leaflet")
+library("sf")
+library("gapminder")
+
+geojson_worldmap <- st_read("https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json",
+                            quiet = TRUE)
+geojson_worldmap <- invisible(geojson_worldmap %>%
+  left_join(gapminder %>%
+               filter(year == max(year)) , by = c("name" = "country")) %>%
+  filter(name != "Antarctica"))
+palette_pop <- colorNumeric("YlOrBr" , geojson_worldmap$pop, na.color = "#c0c1c4")
+geojson_worldmap %>%
+  leaflet(width = "300px",
+          height = "200px") %>%
+  addPolygons(fillColor = ~palette_pop(pop),
+              fillOpacity = 0.8,
+              color = "#000",
+              weight = 1,
+              label = ~name)
+```
+   </div>
+   </div>
+<br>
+<br>
+<div class="row">
+   <div class="col-md-6">
+   <span><a href="geoviz_hexagonal-choropleth.html">Hexagonal Choropleth [tutorial]</a> are choropleth where regions are converted into equally sized hexagons and each is coloured according to either a discrete or continuous variable. The process of converting shapefiles to hexagons that are correctly positioned with one another is beyond the scope of these tutorials - a collection of such shapefiles is available here http://rpubs.com/bhaskarvk/tilegramsR.</span>
+   <br>
+   <strong>Required Data:</strong>
+   <ul>
+   <li>Hexagonal Regions: Enclosed hexagonal regions, i.e. topologically closed polygons, sometimes called convex hulls. For instance the subregions within a country, i.e. the states of the USA</li>
+   <li>Values: Discrete or categorical values for each enclosed region, for instance the population of each state or the division to which the state belongs</li>
+   </ul>
+   </div>
+   <div class="col-md-6">
+```{r, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library("tilegramsR")
+library("leaflet")
+library("sf")
 library("statesRcontiguous")
-library("RColorBrewer")
-us_contiguous <- shp_all_us_states %>%
-  filter(contiguous.united.states == TRUE)
-us_palette <- colorFactor(brewer.pal(length(unique(us_contiguous$state.region)), "Dark2"), unique(us_contiguous$state.region))
-us_contiguous %>%
-  leaflet(width = "200px", height = "200px") %>%
-  addPolygons(fillColor = ~us_palette(state.region), fillOpacity = 1)
+library("tidyverse")
+
+states_info <- shp_all_us_states
+st_geometry(states_info) <- NULL
+
+
+NPR1to1 <- st_as_sf(NPR1to1) %>%
+  left_join(states_info, by = c("state" = "state.short.name"))
+
+palette_state_division <- colorFactor("Paired", unique(NPR1to1$state.division))
+
+leaflet(
+  NPR1to1,
+  options=leafletOptions(
+    crs = leafletCRS("L.CRS.Simple"),
+    minZoom = -3, maxZoom = -3,
+    dragging = FALSE, zoomControl = FALSE,
+    attributionControl = FALSE),
+  width = "300px",
+          height = "200px"
+  ) %>%
+  addPolygons(
+    weight=2,
+    color='#000000', group = 'states',
+    fillOpacity = 0.6, opacity = 1, fillColor= ~palette_state_division(state.division),
+    highlightOptions = highlightOptions(weight = 4),
+    label = ~paste0(state, " (", state.division, ")")
+    ) 
 ```
    </div>
    </div>
 <!--/html_preserve-->
 
+### Physical properties of Earth
+
+We don't currently have any tutorials for creating these types of map, please consider making a [pull request on GitHub](https://github.com/ox-it/OxfordIDN_charts).
+
+### Meteorological data
+
+We don't currently have any tutorials for creating these types of map, please consider making a [pull request on GitHub](https://github.com/ox-it/OxfordIDN_charts).
