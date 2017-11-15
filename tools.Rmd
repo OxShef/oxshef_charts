@@ -202,5 +202,18 @@ The [IDN Showcase](http://idn.it.ox.ac.uk/visualisation-showcase){target='_blank
 <iframe src='https://livedataoxford.shinyapps.io/OnlineLabourIndex/' width="100%" height="580px"></iframe>
 <!--/html_preserve-->
 
+## Tableau Public {#tools-tableau}
 
-We have a page dedicated to Tableau
+Tableau is an extremely popular point-and-click tool for building data visualisations and building interactive data stories. There are a number of different "Tableau applications" available, which are briefly broken down as follows:
+
+- Tableau Desktop: This allows users to create (and save) content on their local machine, a license is required for University of Oxford researchers that want to use this software.
+- Tableau Reader: This allows users to open the documents/visualisations that other's have built using the Tableau Desktop software.
+- Tableau Public: This allows users to freely create Tableau visualisations that are published publicly to the web, and hosted on the Tableau Public service.
+
+Tableau Public provides a suitable (and free) tool for researchers to use for creating and hosting interactive visualisations. However, it's very important to note that the data you upload to the service is **not** subject to a data license that requires others to cite your research. For this reason, the IDN will support University of Oxford researchers but will not develop Tableau Public documents on behalf of researchers.
+
+
+<!--html_preserve-->
+<iframe src="https://public.tableau.com/views/TwitterAnalysisofMRTDelaysSingapore/MRTDelay?:embed=y&:embed_code_version=3&:loadOrderID=0&:display_count=yes" width="100%" height="1000px"></iframe>
+<!--/html_preserve-->
+
