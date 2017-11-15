@@ -17,7 +17,7 @@ Choropleth are extremely useful visualisations to visually compare the differenc
 Required Data:
 
 - Shapefiles: Enclosed regions, i.e. topologically closed polygons, sometimes called convex hulls. For instance, country borders.
-- Values: Values for each region, for instance the population of a country
+- Values: Discrete or categorical values for each enclosed region, for instance the population of a country or membership of the UN
 
 Below is a minimal example using `R` and the `leaflet` library:
 
