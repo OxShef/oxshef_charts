@@ -18,8 +18,6 @@ current_packages <- .packages()
 base_r_packages <- c("stats", "graphics", "grDevices", "utils", "datasets", "methods", "base")
 invisible(lapply(setdiff(current_packages, base_r_packages), function(x) detach_package(x, character.only = TRUE)))
 
-(.packages())
-
 ## You MUST ensure to restart R before generating the site!
 rm(list = ls())
 rmarkdown::clean_site()
