@@ -1,88 +1,62 @@
 ---
-title: "Geoviz: Hexagonal Choropleth"
+title: "Charts: Hexagonal Choropleth"
 output:
   html_document:
     toc: true
     toc_float:
-      collapsed: true
+      collapsed: false
+    includes:
+      before_body: [includes/include_header.html, includes/include_header_navpage.html]
+editor_options: 
+  chunk_output_type: console
 ---
 
-Note that these examples currently (December 2016) rely on the development version of leaflet `devtools::install_github("rstudio/leaflet")` and are taken from http://rpubs.com/bhaskarvk/tilegramsR
+## What is a hexagonal choropleth?
 
-# Basic example
+Hexagonal Choropleth [tutorial]</a> are choropleth where regions are converted into equally sized hexagons and each is coloured according to either a discrete or continuous variable. The process of converting shapefiles to hexagons that are positioned in such a way to still retain the shape of the original geographic regions is complicated, and typically requires manual hand tuning.
 
-```{r}
-library(tilegramsR)
-## NPR1to1 A 'SpatialPolygonsDataFrame' where each polygon represents a state
-states <- NPR1to1@data$state
-library(colormap)
-factpal <- colorFactor(colormap::colormap(
-  nshades = length(states)), states)
-```
+Required Data:
+
+- Hexagonal Regions: Enclosed hexagonal regions, i.e. topologically closed polygons, sometimes called convex hulls. For instance the subregions within a country, i.e. the states of the USA.
+- Values: Discrete or categorical values for each enclosed region, for instance the population of each state or the division to which the state belongs.
+
+Below is a minimal example of a hexagonal choropleth built using `R` and the `leaflet` library, inspired by this [tutorial on `tilegramsR`](http://rpubs.com/bhaskarvk/tilegramsR)
 
 
-## NPR
 
-This version is more representative than geographic:
+```{r, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library("tilegramsR")
+library("leaflet")
+library("sf")
+library("statesRcontiguous")
+library("tidyverse")
 
-```{r}
-library(leaflet) # devtools::install_github("rstudio/leaflet")
+states_info <- shp_all_us_states
+st_geometry(states_info) <- NULL
+
+
+NPR1to1 <- st_as_sf(NPR1to1) %>%
+  left_join(states_info, by = c("state" = "state.short.name"))
+
+palette_state_division <- colorFactor("Paired", unique(NPR1to1$state.division))
+
 leaflet(
   NPR1to1,
   options=leafletOptions(
     crs = leafletCRS("L.CRS.Simple"),
-    minZoom = -1.5, maxZoom = -1.5,
+    minZoom = -3, maxZoom = -3,
     dragging = FALSE, zoomControl = FALSE,
-    attributionControl = FALSE)
+    attributionControl = FALSE),
+  width = "250px", height = "250px"
   ) %>%
   addPolygons(
-    weight=2,color='#000000', group = 'states',
-    fillOpacity = 0.6, opacity = 1, fillColor= ~factpal(state),
-    highlightOptions = highlightOptions(weight = 4)
-    ) %>%
-  addLabelOnlyMarkers(
-    data=NPR1to1.centers,
-    label = ~as.character(state),
-    labelOptions = labelOptions(
-    noHide = 'T', textOnly = T,
-    offset=c(-4,-10), textsize = '12px')
-    )
-```
-
-## 538.com
-
-```{r}
-states <- FiveThirtyEightElectoralCollege.states@data$state
-factpal <- colorFactor(colormap::colormap(
-  nshades = length(states)), states)
-```
-
-```{r}
-leaflet(
-  options=leafletOptions(
-    crs = leafletCRS("L.CRS.Simple"),
-    minZoom = -1.5, maxZoom = -1.5,
-    dragging = FALSE, zoomControl = FALSE,
-    attributionControl = FALSE)) %>%
-  addPolygons(
-    data=FiveThirtyEightElectoralCollege,
-    weight=1,color='#000000', fillOpacity = 0.5, opacity=0.2,
-    fillColor= ~factpal(state)) %>%
-  addPolygons(
-    data=FiveThirtyEightElectoralCollege.states, group = 'states',
-    weight=2,color='#000000',
-    fill = T, opacity = 1, fillOpacity = 0,
-    highlightOptions = highlightOptions(weight = 4)) %>%
-  addLabelOnlyMarkers(
-    data=FiveThirtyEightElectoralCollege.centers,
-    label = ~as.character(state),
-    labelOptions = labelOptions(
-      noHide = 'T', textOnly = T,
-      offset=c(-8,-20), textsize = '15px'))
+    weight=2,
+    color='#000000', group = 'states',
+    fillOpacity = 0.6, opacity = 1, fillColor= ~palette_state_division(state.division),
+    highlightOptions = highlightOptions(weight = 4),
+    label = ~paste0(state, " (", state.division, ")")
+    ) 
 ```
 
 
 
-# Other examples
-
-http://rpubs.com/bhaskarvk/tilegramsR
