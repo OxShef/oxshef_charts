@@ -1,205 +1,66 @@
 ---
-title: "Formats"
+title: "Other types of visualisation"
 output:
   html_document:
-    toc_float: false
+    toc: true
+    toc_float:
+      collapsed: false
     includes:
       before_body: [includes/include_header.html, includes/include_header_navpage.html]
+editor_options: 
+  chunk_output_type: console
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+# Other types of visualisation
+
+There are many types of data visualisation that don't neatly fit into the other categories but are arguably extremely important and sometimes the only valid way to present your data to others in an easily consumable fashion.
+
+# Interactive tables
+
 <!--html_preserve-->
+<div class="row">
+   <div class="col-md-6">
+   <span><a href="other_interactive-tables.html">Interactive tables [tutorial]</a> are extremely useful for presenting data directly to your audience for them to explore, much like an Excel document. Interactivity typically includes; ability to filter individual columns, reorder columns in ascending/descending order and a filter across the entire table.</span>
+   <br>
+   <strong>Required Data:</strong>
+   <ul>
+   <li>Table of data: This data could conceivable be of any type, and include columns of multiple data types including but not limited to text, numbers, images and more.</li>
+   </ul>
+   </div>
+   <div class="col-md-6">
 
-<div class="band full">
-  <div class="bandContent pageTitle">RStudio Formats</div>
-  <div class="bandContent pageIntro">R Markdown formats from RStudio (see below for additional formats created by the R community)</div>
-  <div class="bandContent">
+```{r, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library("rhandsontable")
 
-  <div class="columns">
-    <div class="column2">
-
-    <div class="formatSection">
-      <div class="formatSectionTitle">Documents</div>
-      <div class="formatTable">
-        <a href="r_notebooks.html" class="formatTableRow">
-          <div class="formatName">Notebook</div>
-          <div class="formatDescription">Interactive R Notebooks</div>
-        </a>
-        <a href="html_document_format.html" class="formatTableRow">
-          <div class="formatName">HTML</div>
-          <div class="formatDescription">HTML document w/ Bootstrap CSS</div>
-        </a>
-        <a href="pdf_document_format.html" class="formatTableRow">
-          <div class="formatName">PDF</div>
-          <div class="formatDescription">PDF document (via LaTeX template)</div>
-        </a>
-        <a href="word_document_format.html" class="formatTableRow">
-          <div class="formatName">Word</div>
-          <div class="formatDescription">Microsoft Word document (docx)</div>
-        </a>
-        <a href="odt_document_format.html" class="formatTableRow">
-          <div class="formatName">ODT</div>
-          <div class="formatDescription">OpenDocument Text document</div>
-        </a>
-        <a href="rtf_document_format.html" class="formatTableRow">
-          <div class="formatName">RTF</div>
-          <div class="formatDescription">Rich Text Format document</div>
-        </a>
-        <a href="markdown_document_format.html" class="formatTableRow">
-          <div class="formatName">Markdown</div>
-          <div class="formatDescription">Markdown document (various flavors)</div>
-        </a>
-      </div>
-    </div>
-
-    <div class="formatSection">
-      <div class="formatSectionTitle">Presentations</div>
-      <div class="formatTable">
-        <a href="ioslides_presentation_format.html" class="formatTableRow">
-          <div class="formatName">ioslides</div>
-          <div class="formatDescription">HTML presentation with ioslides</div>
-        </a>
-        <a href="revealjs_presentation_format.html" class="formatTableRow">
-          <div class="formatName">reveal.js</div>
-          <div class="formatDescription">HTML presentation with reveal.js</div>
-        </a>
-        <a href="slidy_presentation_format.html" class="formatTableRow">
-          <div class="formatName">Slidy</div>
-          <div class="formatDescription">HTML presentation with W3C Slidy</div>
-        </a>
-        <a href="beamer_presentation_format.html" class="formatTableRow">
-          <div class="formatName">Beamer</div>
-          <div class="formatDescription">PDF presentation with LaTeX Beamer</div>
-        </a>
-      </div>
-    </div>
-
-    </div>
-
-    <div class="column2">
-    
-    <div class="formatSection">
-      <div class="formatSectionTitle">Journals</div>
-      <div class="formatTable">
-         <a href="https://github.com/rstudio/rticles" class="formatTableRow">
-          <div class="formatName">jss_article</div>
-          <div class="formatDescription">Journal of Statistical Software (JSS)</div>
-        </a>
-        <a href="https://github.com/rstudio/rticles" class="formatTableRow">
-          <div class="formatName">acm_article</div>
-          <div class="formatDescription">Association for Computing Machinery (ACM)</div>
-        </a>
-        <a href="https://github.com/rstudio/rticles" class="formatTableRow">
-          <div class="formatName">acs_article</div>
-          <div class="formatDescription">American Chemical Society (ACS) Journal</div>
-        </a>
-        <a href="https://github.com/rstudio/rticles" class="formatTableRow">
-          <div class="formatName">ctex</div>
-          <div class="formatDescription">Documents based on the LaTeX package ctex</div>
-        </a>
-        <a href="https://github.com/rstudio/rticles" class="formatTableRow">
-          <div class="formatName">elsevier_article</div>
-          <div class="formatDescription">Submissions to Elsevier journals</div>
-        </a>
-      </div>
-    </div>
-    
-    <div class="formatSection">
-      <div class="formatSectionTitle">More</div>
-      <div class="formatTable">
-        <a href="flexdashboard/index.html" class="formatTableRow">
-          <div class="formatName">flexdashboard</div>
-          <div class="formatDescription">Interactive dashboards</div>
-        </a>
-        <a href="https://bookdown.org" class="formatTableRow">
-          <div class="formatName">bookdown</div>
-          <div class="formatDescription">HTML, PDF, ePub, and Kindle books</div>
-        </a>
-        <a href="rmarkdown_websites.html" class="formatTableRow">
-          <div class="formatName">Websites</div>
-          <div class="formatDescription">Multi-page websites</div>
-        </a>
-        <a href="tufte_handout_format.html" class="formatTableRow">
-          <div class="formatName">Tufte Handout</div>
-          <div class="formatDescription">Handouts in the style of Edward Tufte</div>
-        </a>
-        <a href="package_vignette_format.html" class="formatTableRow">
-          <div class="formatName">Package Vignette</div>
-          <div class="formatDescription">R package vignette (HTML)</div>
-        </a>
-        <a href="github_document_format.html" class="formatTableRow">
-          <div class="formatName">Github Document</div>
-          <div class="formatDescription">GitHub Flavored Markdown document.</div>
-        </a>
-      </div>
-    </div>
-    
-    </div>
-    
-    
-  </div>
-  </div>
-</div>
-
-
-<div class="band full">
-  <div class="bandContent pageTitle">Community Formats</div>
-  <div class="bandContent pageIntro">R Markdown formats created by the R community</div>
-  <div class="bandContent">
-
-  <div class="columns">
-    <div class="column2">
-
-    <div class="formatSection">
-      <div class="formatSectionTitle">HTML</div>
-      <div class="formatTable">
-        <a href="http://statr.me/2016/08/creating-pretty-documents-with-the-prettydoc-package/" class="formatTableRow">
-          <div class="formatName">html_pretty</div>
-          <div class="formatDescription">Small yet pretty HTML pages</div>
-        </a>
-        <a href="https://github.com/juba/rmdformats" class="formatTableRow">
-          <div class="formatName">readthedown</div>
-          <div class="formatDescription">Format adapted from the Read the docs Sphinx theme</div>
-        </a>
-        <a href="https://github.com/juba/rmdformats" class="formatTableRow">
-          <div class="formatName">html_docco</div>
-          <div class="formatDescription">Format adapted from the docco documentation generator</div>
-        </a>
-        <a href="https://github.com/juba/rmdformats" class="formatTableRow">
-          <div class="formatName">html_clean</div>
-          <div class="formatDescription">Clean and simple HTML format</div>
-        </a>
-      </div>
-    </div>
-
-    <div class="formatSection">
-      <div class="formatSectionTitle">Presentations</div>
-      <div class="formatTable">
-        <a href="https://github.com/mangothecat/rmdshower" class="formatTableRow">
-          <div class="formatName">shower_presentation</div>
-          <div class="formatDescription">Themeable presentations using the Shower framework</div>
-        </a>
-      </div>
-    </div>
-
-    </div>
-
-    <div class="column2">
-    
-    <!-- More formats can go here -->
-    
-    </div>
-    
-    
-  </div>
-  
-    <br/>
-    
-    Please send email to <a href="mailto:garrett@rstudio.com">garrett@rstudio.com</a> if you would like to add an R Markdown template you've developed to this listing.
-
-  
-  </div>
-
-</div>
-
+MAT = matrix(runif(100, -1, 1), nrow = 10,
+             dimnames = list(LETTERS[1:10], LETTERS[1:10]))
+diag(MAT) = 1
+MAT[upper.tri(MAT)] = MAT[lower.tri(MAT)]
+rhandsontable(MAT, readOnly = TRUE, width = "100%", height = "200px") %>%
+  hot_cols(renderer = "
+           function (instance, td, row, col, prop, value, cellProperties) {
+             Handsontable.renderers.NumericRenderer.apply(this, arguments);
+             if (row == col) {
+              td.style.background = 'lightgrey';
+             } else if (col > row) {
+              td.style.background = 'grey';
+              td.style.color = 'grey';
+             } else if (value < -0.75) {
+              td.style.background = 'pink';
+             } else if (value > 0.75) {
+              td.style.background = 'lightgreen';
+             }
+           }")
+```
+   </div>
+   </div>
 
 <!--/html_preserve-->
