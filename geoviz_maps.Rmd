@@ -76,7 +76,7 @@ geojson_worldmap %>%
 <br>
 <div class="row">
    <div class="col-md-6">
-   <span><a href="geoviz_hexagonal-choropleth.html">Hexagonal Choropleth [tutorial]</a> are choropleth where regions are converted into equally sized hexagons and each is coloured according to either a discrete or continuous variable. The process of converting shapefiles to hexagons that are correctly positioned with one another is beyond the scope of these tutorials - a collection of such shapefiles is available here http://rpubs.com/bhaskarvk/tilegramsR.</span>
+   <span><a href="geoviz_hexagonal-choropleth.html">Hexagonal Choropleth (tilegrams) [tutorial]</a> are choropleth where regions are converted into equally sized hexagons and each is coloured according to either a discrete or continuous variable. More generally these visualisations are called <strong>tilegrams</strong>, where the regions can be any <em>regular polygon</em> but hexagons are amongst one of the most flexible shapes for these maps. The process of converting shapefiles to regular polygons that are correctly positioned with respect toone another is beyond the scope of these tutorials - a collection of such shapefiles is available here http://rpubs.com/bhaskarvk/tilegramsR.</span>
    <br>
    <strong>Required Data:</strong>
    <ul>

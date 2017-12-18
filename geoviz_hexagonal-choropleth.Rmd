@@ -11,9 +11,9 @@ editor_options:
   chunk_output_type: console
 ---
 
-## What is a hexagonal choropleth?
+## What is a hexagonal choropleth (or a tilegram)?
 
-Hexagonal Choropleth [tutorial]</a> are choropleth where regions are converted into equally sized hexagons and each is coloured according to either a discrete or continuous variable. The process of converting shapefiles to hexagons that are positioned in such a way to still retain the shape of the original geographic regions is complicated, and typically requires manual hand tuning.
+Hexagonal Choropleth are choropleth where regions are converted into equally sized hexagons and each is coloured according to either a discrete or continuous variable. More generally these visualisations are called <strong>tilegrams</strong>, where the regions can be any <em>regular polygon</em> but hexagons are amongst one of the most flexible shapes for these maps. The process of converting shapefiles to regular polygons that are positioned in such a way to still retain the shape of the original geographic regions is complicated, and typically requires manual hand tuning.
 
 Required Data:
 
