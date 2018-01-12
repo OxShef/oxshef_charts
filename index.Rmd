@@ -1,10 +1,16 @@
 ---
-title: "OxShef: Charts"
 output:
   html_document:
     toc_float: false
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+```
 
 <!-- ```{js} -->
 <!-- $("#rStudioHeader").removeClass("alwaysShrunk"); -->
@@ -12,29 +18,17 @@ output:
 <!-- ``` -->
 
 
-<!--html_preserve-->
+<h2>**OxShef: Charts** provides advice on how to select the most appropriate charts for your data and how to avoid common mistakes when visualising data.</h2>
+
+<hr>
 
 <div class="row align-items-center">
 
-<div class="col-md-5 align-self-center">
-<center>
-<img style="max-width:340px" src="images/idn_logo.png"/>
-<center>
-</div>
+<div class="col-sm-4 align-self-center">
 
-<div class="col-md-7 align-self-center">
-        <span style="font-size:35px">Interactive Data Network: Charts</span>
-        <br>
-        <span>This website provides support to researchers in choosing and developing interactive data visualisations for increased outreach and impact. For more information about the IDN please consult the service website at <a href="http://idn.it.ox.ac.uk" title="http://idn.it.ox.ac.uk" target="_blank">idn.it.ox.ac.uk</a></span>
-        <br>
-        <span>In this site you'll find an overview of the visualisation <b>tools</b>, <b>types of chart</b> and <b>types of interactivity</b> that the IDN is able to support you in using.</span>
-        <br>
-        <span>Most example visualisations in this site (including those below) are built using a combination of <b>R</b> and <b>Shiny</b>, which you can read about <a href="tools.html#tools-R">here</a>.</span>
+[Charts](charts.html) are the most general purpose type of visualisation and include barcharts, linecharts, scatter plots, histograms...
 
-<div class="row">
-   <div class=".col-xs-6">
-
-```{r basic_barchart, echo=FALSE, message=FALSE, warning=FALSE}
+```{r}
 library("highcharter")
 library("tidyverse")
 my_data <- tribble(
@@ -52,77 +46,88 @@ my_data %>%
       y = value
     )
   ) %>%
-  hc_size(width = "200px", height = "200px") %>%
-  hc_title(text = "Normal barchart",
-           style = list(fontSize = 12))
+  hc_size(width = "300px", height = "200px")
 ```
+
 
 </div>
 
-<div class=".col-xs-6">
+<div class="col-sm-4 align-self-center">
 
-```{r stacked_barchart, echo=FALSE, message=FALSE, warning=FALSE}
-library("highcharter")
+[Maps and geographic visualisations](geoviz-maps.html) require specially formatted data and include scatter geo plots, choropleth, weather maps...
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 library("tidyverse")
-my_data <- tribble(
-  ~category, ~subcategory, ~value,
-  "Mammal", "human", 3,
-  "Mammal", "non-human", 4,
-  "Reptile", "snake", 6,
-  "Reptile", "iguana", 8
-)
-my_data %>%
-  hchart(
-    type = "bar",
-    hcaes(
-      x = category,
-      y = value,
-      group = subcategory
-    )
-  ) %>%
-  hc_size(width = "200px", height = "200px") %>%
-  hc_plotOptions(series = list(stacking = "percent")) %>%
-  hc_title(text = "Stacked percentage barchart",
-           style = list(fontSize = 12))
+library("leaflet")
+library("sf")
+library("gapminder")
+
+geojson_worldmap <- st_read("https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json",
+                            quiet = TRUE)
+geojson_worldmap <- invisible(geojson_worldmap %>%
+  left_join(gapminder %>%
+               filter(year == max(year)) , by = c("name" = "country")) %>%
+  filter(name != "Antarctica"))
+palette_pop <- colorNumeric("YlOrBr" , geojson_worldmap$pop, na.color = "#c0c1c4")
+geojson_worldmap %>%
+  leaflet(width = "300px",
+          height = "200px") %>%
+  addPolygons(fillColor = ~palette_pop(pop),
+              fillOpacity = 0.8,
+              color = "#000",
+              weight = 1,
+              label = ~name)
 ```
 
 </div>
+
+<div class="col-sm-4 align-self-center">
+
+[Network visualisations](networks.html) or graph are amongst the less general purpose visualisations, alongside [time series](timeseries.html) and [others](other.html)...
+
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
+library("tidyverse")
+library("visNetwork")
+library("igraph")
+
+my_nodes <- tribble(
+  ~id, ~label, ~color, ~size,
+  1, "Character A", "purple", 10,
+  2, "Character B", "purple", 13,
+  3, "Character C", "orange", 17,
+  4, "Character D", "orange", 12,
+  5, "Character E", "purple", 17,
+  6, "Character Z", "green", 10
+)
+
+my_edges <- tribble(
+  ~from, ~to, ~width,
+  1, 2, 5,
+  # 2, 1, 5,
+  3, 1, 1,
+  # 1, 3, 1,
+  4, 1, 6,
+  # 1, 4, 6,
+  4, 2, 3,
+  # 2, 4, 3,
+  5, 2, 2,
+  # 2, 5, 2,
+  5, 3, 5,
+  # 3, 5, 5,
+  5, 6, 5
+  # 6, 5, 5
+)
+
+visNetwork(my_nodes,
+           my_edges,
+           width = "200px",
+           height = "200px") %>%
+  visOptions(highlightNearest = list(enabled = TRUE, degree = 1)) %>%
+  visInteraction(zoomView = FALSE)
+```
+
 </div>
-        
-        </div>
+
 </div>
 
-
-<br>
-<br>
-
-<!---- Tools ----->
-
-<div class="row align-items-center">
-
-<div class="col-md-5 align-self-center">
-<center>
-<img style="max-width:340px" src="images/tools-logos.png"/>
-<center>
-</div>
-
-<div class="col-md-7 align-self-center">
-        <span style="font-size:35px">What Tools?</span>
-        <br>
-        <span>There are hundreds of visualisation tools and packages used by researchers at University of Oxford and beyond, the IDN cannot hope to be a reference or a recommendation engine for all of these solutions. For a birds eye view of what tools are available see <a href="http://www.visualisingdata.com/resources/" title="http://www.visualisingdata.com/resources/" target="_blank">http://www.visualisingdata.com/resources/</a>.</span>
-        <br>
-        <br>
-        <span>We specifically advise on tools which allow researchers to achieve the following:</span>
-        <ul>
-        <li>Embed interactive visualisations in personal/research group/publication websites</li>
-        <li>Allow viewers to directly access the data powering the visualisation</li>
-        </ul>
-        <span>
-        Our <a href="tools.html">Tools</a> page provides advice on how to choose a tool and our tools of choice, which are; <b>Plotly</b>, <b>Shiny</b>, or <b>Tableau Public</b>.
-        </span>
-        </div>
-</div>
-
-<!--/html_preserve-->
-
-
+<hr>
