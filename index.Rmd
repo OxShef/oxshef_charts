@@ -54,7 +54,7 @@ my_data %>%
 
 <div class="col-sm-4 align-self-center">
 
-[Maps and geographic visualisations](geoviz-maps.html) require specially formatted data and include scatter geo plots, choropleth, weather maps...
+[Maps and geographic visualisations](geoviz_maps.html) require specially formatted data and include scatter geo plots, choropleth, weather maps...
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 library("tidyverse")
