@@ -17,28 +17,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Why Visualise Research Data?
-
-Visualising research data using charts, maps and graphs makes research outputs much more easily digestible and understandable to a broader audience than traditional research publications. The Interactive Data Network (IDN) particularly promotes the benefit of using interactive data visualisations as these provide an exploratory view to research datasets rather than a fixed narrative of your research findings. Interactivity can allow your audience to pose their own questions to your data and gain a more intuitive understanding of your research.
-
-You might have heard of the so-called "data gap" - the difficulty in bridging together research publications, data deposits and researchers themselves. The cartoon below describes the problem; their are unique DOI for publications and deposits, and ORCIDs are supposed to make authorship of these outputs easy to track - but it's often difficult to obviously identify where the data behind a publication lives.
-
-<center>
-<img style="max-width:340px" src="images/data-gap_border-wall.png"/>
-</center>
-
-The IDN promotes the use of interactive data visualisations to bridge this gap; static visualisations hold no promise of there being actual data underlying them. Whereras if a reader encounters interactivity, and the ability to select individual data within a visualisation, then it implies that the data must be available somewhere to power the visualisation. We encourage researchers to embed these visualisations everywhere they can; personal and research group websites, within publications and in press coverage. Within these visualisations we encourage researchers to include DOI for the associated publications and datasets, as well as their own ORCID - the visualisation then becomes a central gateway for all of the research outputs.
-
-<center>
-<img style="max-width:340px" src="images/data-gap_visualisations.png"/>
-</center>
-
-The IDN has a webpage dedicated to [showcase visualisations](idn.it.ox.ac.uk/visualisation-showcase){target="_blank"} that demonstrate how you can bridge the gap between publication and deposited data. 
-
-## What technology supports this?
-
-The [visualisation tools page](tools.html) page discusses the various technologies that the IDN supports University of Oxford reseachers in using. However, note that [Shiny](tools.html#tools-shiny) is the only tool that currently allows data to be pulled in from external data repositories directly into your visualisations.
-
 ## Choosing visualisations
 
 This website contains pages dedicated to five different categories of visualisation, where we attempt to provide some advice to help you choose appropriate visualisations for your data.
