@@ -1,0 +1,220 @@
+---
+title: "Tools"
+output:
+  html_document:
+    toc: false
+    toc_float:
+      collapsed: false
+    includes:
+      before_body: [includes/include_header.html, includes/include_header_navpage.html]
+editor_options: 
+  chunk_output_type: console
+---
+
+# Old
+
+**OxShef: charts** offers advice, templates and training in building interactive data visualisations that meet the following conditions:
+
+- Visualisations are hosted online.
+- Visualisation may be embedded in personal, research group or publisher websites (via `<iframe></iframe>`)
+- The data behind the visualisations is made available for download and subject to an [**appropriate data license**](http://www.dcc.ac.uk/resources/how-guides/license-research-data). 
+
+Researchers and academics at [**OxShef: charts** partner institutions](https://oxshef.github.io/oxshef/partners.html) have access to local support for developing and potentially even hosting visulisations with many of the services detailed below.
+
+
+## Plotly {#tools-plotly}
+
+[Plot.ly](plot.ly) is a website that allows users to create interactive data visualisations in the web browser with a very easy to use point and click interface. With a free account it is only possible to create public visualisations with the underlying data also made publicly available.
+
+
+
+
+The actual visualisation magic behind the plot.ly website comes from the underlying JavaScript library, plotly. There is a high-level binding to the plotly library available in both `R` and `python`, which is described in detail [here](https://plot.ly/api/). You'll find many examples of visualisations built using the `plotly` `htmlwidget` library using `R` in this website, particularly in the [charts section](charts.html)
+
+While [Plot.ly](plot.ly) does allow users to create interactive data visualisations they can embed in other sites and link to the underlying datasets, it is not a service that the IDN endorses for academic outputs. It is not possible to link a visualisation to a canonical version of a research dataset (i.e. one with a DOI), and the long-term reproducibility of visualisations produced with this tool is questionable.
+
+<!--html_preserve-->
+<center>
+<iframe width="400" height="400" frameborder="0" scrolling="no" src="https://plot.ly/~martinjhnhadley/243.embed?link=false"></iframe>
+</center>
+<!--/html_preserve-->
+
+
+
+<hr>
+
+## R {#tools-r .tabset}
+
+R is an extremely widely used scripting language at University of Oxford, the main reason for the popularity of R is the huge catalogue of freely available (and Open Source) packages available from CRAN. There are packages available for all sorts of things, including:
+
+- Statistical analysis (ANOVA, Bayesian modelling, multivariate analysis)
+- Time Series analysis
+- Machine learning
+- Static visualisation
+- Interactive visualisation
+
+It's the combination of tools for data wrangling, analysis, visualisation and communication that makes R so popular and versatile. Many users of dedicated software packages like **SPSS** and **STATA/SAS** are moving to R because of the flexibility that R provides. There are three tools for creating visualisations with R that are particularly worth highlighting, click through the tabs for examples and for links to training materials available to Oxford researchers.
+
+<hr>
+
+### Base R Plotting Functions
+
+Base R is the name given to the collection of packages downloaded on to your machine when R is installed from CRAN, it includes `graphics` and `grid` that allow a wide range of static visualisations to be developed.
+
+Base R `graphics` is widely celebrated for the ease of creating charts with one line, having explicit functions for creating barplot, boxplot, mosaicplot and more. While there isn't a consistent language/approach to adding complexity to these charts, is possible to build beautiful charts like the one below from [http://motioninsocial.com/tufte/](http://motioninsocial.com/tufte/). Unfortunately, the IDN is not able to recommend an authoritative tutorial to base R `graphics` though this is a [useful essay](https://flowingdata.com/2016/03/22/comparing-ggplot2-and-r-base-graphics/).
+
+
+```{r}
+## Code from http://motioninsocial.com/tufte/
+x <- quakes$mag
+y <- quakes$stations
+boxplot(y ~ x, main = "", axes = FALSE, xlab=" ", ylab=" ",
+pars = list(boxcol = "transparent", medlty = "blank", medpch=16, whisklty = c(1, 1),
+medcex = 0.7,  outcex = 0, staplelty = "blank"))
+axis(1, at=1:length(unique(x)), label=sort(unique(x)), tick=F, family="serif")
+axis(2, las=2, tick=F, family="serif")
+text(min(x)/3, max(y)/1.1, pos = 4, family="serif",
+"Number of stations \nreporting Richter Magnitude\nof Fiji earthquakes (n=1000)")
+```
+
+<hr>
+
+### Static charts with ggplot2
+
+`ggplot2` provides a complete and consistent "grammar of graphics" for designing static charts with R. It has a fairly complex learning curve as it prioritises consistency over simplicity. The following are excellent resources for learning how to use `ggplot2`:
+
+- Free online course at [datacamp.com on ggplot2](https://www.datacamp.com/courses/data-visualization-with-ggplot2-1)
+- [R Graphics Cookbook: Practical Recipes for Visualizing Data](https://www.amazon.com/dp/1449316956/ref=cm_sw_su_dp?tag=ggplot2-20)
+
+The chart below is fairly advanced application of `ggplot2` that shows what is possible, the original code is from [here](http://margintale.blogspot.in/2012/04/ggplot2-time-series-heatmaps.html).
+
+```{r}
+# http://margintale.blogspot.in/2012/04/ggplot2-time-series-heatmaps.html
+library(ggplot2)
+library(plyr)
+library(scales)
+library(zoo)
+df <- read.csv("https://raw.githubusercontent.com/selva86/datasets/master/yahoo.csv")
+df$date <- as.Date(df$date)  # format date
+df <- df[df$year >= 2012, ]  # filter reqd years
+# Create Month Week
+df$yearmonth <- as.yearmon(df$date)
+df$yearmonthf <- factor(df$yearmonth)
+df <- ddply(df,.(yearmonthf), transform, monthweek=1+week-min(week))  # compute week number of month
+df <- df[, c("year", "yearmonthf", "monthf", "week", "monthweek", "weekdayf", "VIX.Close")]
+
+# Plot
+ggplot(df, aes(monthweek, weekdayf, fill = VIX.Close)) + 
+  geom_tile(colour = "white") + 
+  facet_grid(year~monthf) + 
+  scale_fill_gradient(low="red", high="green") +
+  labs(x="Week of Month",
+       y="",
+       title = "Time-Series Calendar Heatmap", 
+       subtitle="Yahoo Closing Price", 
+       fill="Close")
+
+```
+
+<hr>
+
+### Interactive charts with htmlwidgets
+
+htmlwidgets is a technology that allows R developers to easily build bindings to JavaScript libraries - for the average R user this translates into the ability to create rich, interactive visualisations for the web directly with the R language. The [htmlwidgets overview](tools_htmlidgets-overview.html) page of this website provides a high-level overview of the most commonly used `htmlwidgets` libraries. For a more general introduction to htmlwidgets, including tutorials on creating your own `htmlwidget` libraries, refer to [htmlwidgets.org](htmlwidgets.org).
+
+University of Oxford researchers and staff are provided with access to Lynda.com, where there is a [course dedicated to building interactive charts with htmlwidgets](https://www.lynda.com/R-tutorials/R-Interactive-Visualizations-htmlwidgets/586671-2.html?org=ox.ac.uk). The two interactive charts below are made with the `leaflet` and `highcharter` libraries.
+
+
+<!--html_preserve-->
+
+<div class="row align-items-center">
+
+<div class="col-md-6 align-self-center">
+<center>
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library("tidyverse")
+library("leaflet")
+library("statesRcontiguous")
+library("RColorBrewer")
+contiguous_us <- shp_all_us_states %>%
+  filter(contiguous.united.states == TRUE)
+
+palette_region <- colorFactor("Set2", unique(contiguous_us$state.region))
+
+contiguous_us %>%
+  leaflet(width = "250px", height = "250px") %>%
+  addPolygons(fillColor = ~palette_region(state.region),
+              fillOpacity = 1,
+              label = paste0(state.name, " (Region: ", state.region,")"),
+              weight = 1,
+              color = "#000000")
+```
+</center>
+</div>
+
+<div class="col-md-6 align-self-center">
+<center>
+```{r, echo=FALSE}
+# library("tidyverse")
+library("highcharter")
+library("gapminder")
+library("forcats")
+
+gapminder %>%
+  filter(year == min(year)) %>%
+  group_by(continent) %>%
+  mutate(median.gddPerCap = median(gdpPercap)) %>%
+  select(continent, year, median.gddPerCap) %>%
+  unique() %>%
+  arrange(desc(median.gddPerCap)) %>%
+  ungroup() %>%
+  mutate(continent = fct_reorder(continent, median.gddPerCap)) %>%
+  hchart(
+    type = "bar",
+    hcaes(
+      x = continent,
+      y = median.gddPerCap
+    )
+  ) %>%
+  hc_xAxis(title = list(text = "")) %>%
+  hc_yAxis(title = list(text = "")) %>%
+  hc_subtitle(text = "Gapminder: Median count pop. of each continent in 1952") %>%
+  hc_size(width = "250px", height = "250px")
+
+```
+</center>
+</div>
+
+</div>
+
+<!--/html_preserve-->
+
+<hr>
+
+## Shiny {#tools-shiny}
+
+Shiny is a technology that allows users of R to create interactive web applications without *strictly* having to learn HTML, CSS, JavaScript or anything about web-hosting. There's a dedicated [IDN Shiny website](https://ox-it.github.io/OxfordIDN_shiny/){target='_blank'} that explains how Shiny works and what you need to know to be able to deploy your own Shiny applications to the web.
+
+The [IDN Showcase](http://idn.it.ox.ac.uk/visualisation-showcase){target='_blank'} includes a range of Shiny apps built by and for researchers at Oxford. One of the most popular Shiny apps developed by the IDN is the Online Labour Index, which is embedded below as an iframe:
+
+<!--html_preserve-->
+<iframe src='https://livedataoxford.shinyapps.io/OnlineLabourIndex/' width="100%" height="580px"></iframe>
+<!--/html_preserve-->
+
+<hr>
+
+## Tableau Public {#tools-tableau}
+
+Tableau is an extremely popular point-and-click tool for building data visualisations and building interactive data stories. There are a number of different "Tableau applications" available, which are briefly broken down as follows:
+
+- Tableau Desktop: This allows users to create (and save) content on their local machine, a license is required for University of Oxford researchers that want to use this software.
+- Tableau Reader: This allows users to open the documents/visualisations that other's have built using the Tableau Desktop software.
+- Tableau Public: This allows users to freely create Tableau visualisations that are published publicly to the web, and hosted on the Tableau Public service.
+
+Tableau Public provides a suitable (and free) tool for researchers to use for creating and hosting interactive visualisations. However, it's very important to note that the data you upload to the service is **not** subject to a data license that requires others to cite your research. For this reason, the IDN will support University of Oxford researchers but will not develop Tableau Public documents on behalf of researchers.
+
+
+<!--html_preserve-->
+<iframe src="https://public.tableau.com/views/TwitterAnalysisofMRTDelaysSingapore/MRTDelay?:embed=y&:embed_code_version=3&:loadOrderID=0&:display_count=yes" width="100%" height="1000px"></iframe>
+<!--/html_preserve-->
+
