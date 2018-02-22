@@ -11,7 +11,7 @@
 
 
 
-<title>Training, Tutorials and Templates</title>
+<title>Tools</title>
 
 <script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,6 +27,9 @@
 <link href="site_libs/dt-core-1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="site_libs/dt-core-1.10.12/css/jquery.dataTables.extra.css" rel="stylesheet" />
 <script src="site_libs/dt-core-1.10.12/js/jquery.dataTables.min.js"></script>
+<script src="site_libs/blazy-1.8.2/blazy.min.js"></script>
+<script src="site_libs/pymjs-1.3.2/pym.v1.js"></script>
+<script src="site_libs/widgetframe-binding-0.3.0/widgetframe.js"></script>
 
 <meta name="description" content="Learn how to choose the most effective data visualisation options for your research data from the OxShef Charts webste. OxShef is a collaboration between University of Oxford and University of Sheffield." />
 
@@ -176,63 +179,29 @@ $(".main-container").removeClass("main-container").removeClass("container-fluid"
 
 
 
-<h1 class="title toc-ignore">Training, Tutorials and Templates</h1>
+<h1 class="title toc-ignore">Tools</h1>
 
 </div>
 
 
 <p><link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet"></p>
-<p><strong>OxShef: Charts</strong> provides general advice on choosing the most appropriate visualisation for your data and to avoid making common mistakes or pitfalls in data viz. However, we do not provide interactive tools for matching your data to charts (or vice versa).</p>
-<div class="row">
-<div class="col-sm-7">
-<p>There are many tools (Excel, Google Sheets, Plotly, Tableau) which automatically suggest charts based on the properties of your dataset. This is possible thanks to excellent research into visual perception theory and machine vision from back in the <a href="http://doi.org/10.2307/2288400">1980s</a> through to today.</p>
-<p>In fact, some tools like <a href="https://doi.org/10.1145/2047196.2047247">ReVision</a> are even capable of taking existing charts and re-designing them to be more accessible and easy to read by humans. The example here shows a number of badly designed pie charts that have been converted into much easier to understand barcharts.</p>
-</div>
-<div class="col-sm-5">
-<p><img src='images/revision-pie.png'></img></p>
-</div>
-</div>
-<p><strong>OxShef: Charts</strong> maintains a collection on tools to assist you in developing and designing effective visualisations, split into the following three categories:</p>
-<!-- There are many excellent tools which can help  -->
-<!-- **OxShef: Charts** is designed to help you select the most appropriate visualisations for your data, primarily by using the [Financial Times' Visual Vocabulary](http://ft-interactive.github.io/visual-vocabulary/) and roughly dividing dataviz into the following categories; Charts, Geoviz (Maps), Networks and Time Series. Unfortunately, this is not sufficient advice for us to guarantee you select the best (and effectively designed) dataviz. There are a number of third-party resources and tutorials that we split into the following three categories: -->
-<div class="row">
-<div class="col-sm-4">
-<center>
-<h5>
-Choosing a dataviz
-</h5>
-</center>
-<center>
-<i class='fas fa-search fa-2x'></i></i>
-</center>
-<p>These resources help choose the most effective data visualisation for the type, shape or amount of data that you have. In general, these resources can be readily used with any of the data viz tools listed by <strong>OxShef: tools</strong>.</p>
-<p>Graphical perception theory in the 1980’s</p>
-</div>
-<div class="col-sm-4">
-<center>
-<h5>
-Designing good dataviz
-</h5>
-</center>
-<center>
-<i class='fas fa-eye fa-2x'></i></i>
-</center>
-<p>Rules from experience</p>
-</div>
-<div class="col-sm-4">
-<center>
-<h5>
-Adding interactivity
-</h5>
-</center>
-<center>
-<i class='fas fa-magic fa-2x'></i></i>
-</center>
-<p>Lorem ipsum</p>
+<div id="visualisation-tools" class="section level1 tabset">
+<h1>Visualisation Tools</h1>
+<p>Visit</p>
+<div id="htmlwidget-ca9abc293b121fa02ae1" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ca9abc293b121fa02ae1">{"x":{"filter":"none","data":[["<a href='https://plot.ly/products/dash/' target='_blank'>Dash<\/a>","<a href='http://jupyter.org/' target='_blank'>Jupyter<\/a>","<a href='http://plot.ly' target='_blank'>Plotly<\/a>","<a href='http://cran.r-project.org' target='_blank'>R<\/a>","<a href='http://shiny.rstudio.com' target='_blank'>Shiny<\/a>","<a href='https://vega.github.io/vega-lite/' target='_blank'>Vega-Lite<\/a>"],["dash-logo.svg","jupyter-logo.png","plotly-logo.png","r-logo.png","shiny-logo.png","vega-lite-logo.png"],["Dash allows Python users to build rich interactive web applications and visualisations through a combination of different technologies, including React and Flask. OxShef are currently investigating the reproducability of a Dash-driven dataviz visualisation workflow, which may lead to a dedicated site about this tool in the future.","Jupyter (the spiritual successor to iPython notebooks) is a powerful tool for creating rich documents incorporating code, data and visualisation outputs. Jupyter notebooks allow code written in Python, R and more to be combined together easily. Oxshef are currently developing a site dedicated to using this tool in a reproducible dataviz workflow.","Plotly provides a free tool for creating interactive visualisations from dataset uploaded to the Plotly service. It's a great tool for creating \"one off\" visualisations but does not fit into a fully reproducible workflow as data must be siloed in the plot.ly website.","R is a very popular scripting language that includes a wide range of popular visualisation tools, including ggplot2 and htmlwidgets for interactive visualisation. It is possible to build fully functioning web applications with R by using Shiny. We thoroughly recommend that R users browse <a href='http://oxshef-shiny.netlify.com' target='_blank' style='font-weight:bold'>OxShef: Shiny<\/a> to see what's possible.","Shiny is a technology that allows users of R to create interactive web applications without *strictly* having to learn HTML, CSS, JavaScript or anything about web-hosting. There is a dedicated <a href='http://oxshef-shiny.netlify.com' target='_blank' style='font-weight:bold'>OxShef: Shiny<\/a> website with tutorials and templates for creating your own data visualisations with Shiny.\r\n<br>\r\n<a href='http://oxshef-shiny.netlify.com' target='_blank' style='font-weight:bold'>[Read more...]<\/a>","Vega-Lite provides a high-level grammar of interactive graphics, allowing users to specify \"charts as data\" in well designed JSON format. OxShef are currently investigating the reproducability of a Vega-Lite driven dataviz workflow, which may lead to a dedicated site about this tool in the future."],["<i class='far fa-circle'><\/i>","<i class='fas fa-circle'><\/i>","<i class='far fa-circle'><\/i>","<i class='far fa-circle'><\/i>","<i class='fas fa-circle'><\/i>","<i class='fas fa-circle'><\/i>"],["<i class='fa fa-hand-pointer fa-2x'><\/i>","<i class='fa fa-file-code fa-2x'><\/i>","<i class='fa fa-hand-pointer fa-2x'><\/i>","<i class='fa fa-file-code fa-2x'><\/i>","<i class='fa fa-file-code fa-2x'><\/i>","<i class='fa fa-file-code fa-2x'><\/i>"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Visualisation Tool<\/th>\n      <th>Brief Description<\/th>\n      <th>Allows external data to be accessed?<\/th>\n      <th>Type of tool<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"autoWidth":true,"columnDefs":[{"width":"100px","targets":[0,2]},{"className":"dt-center","targets":[0,2,3]},{"orderable":false,"targets":0}],"dom":"t","order":[],"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row"}},"evals":[],"jsHooks":[]}</script>
+<div id="which-chart-should-i-use-flowchart" class="section level2">
+<h2>Which chart should I use flowchart</h2>
+<style>
+#mermaidChart0 { 
+    min-height: 900px;
+    min-width: 800px;
+}
+</style>
+<div id="htmlwidget-1d9e46bc49261618fd6e" style="width:100%;height:900px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1d9e46bc49261618fd6e">{"x":{"url":"tools_files/figure-html//widgets/widget_tool-selection-flowchart.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-<div id="htmlwidget-c85993b44133cd4561e9" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c85993b44133cd4561e9">{"x":{"filter":"none","data":[["<a href='https://doi.org/10.1109/VL.1996.545307' target='_blank'><h5>Ben Shneiderman's mantra<\/h5><\/a>","<a href='http://chartmaker.visualisingdata.com/' target='_blank'><h5>Chart Maker (Visualising Data)<\/h5><img src='images/table-of-viz-tutorials-etc/chartmaker-logo.jpg' style='max-height:150px'><\/img><\/a>","<a href='https://eagereyes.org' target='_blank'><h5>Eagle Eyes<\/h5><img src='images/table-of-viz-tutorials-etc/eager-eyes-logo.png' style='max-height:150px'><\/img><\/a>","<a href='https://github.com/ft-interactive/chart-doctor/blob/master/visual-vocabulary/Visual-vocabulary.pdf' target='_blank'><h5>Financial Times Visual Vocabulary<\/h5><img src='images/table-of-viz-tutorials-etc/ft-vocabulary-logo.png' style='max-height:150px'><\/img><\/a>","<a href='NA' target='_blank'><h5>NA<\/h5><\/a>"],["<a href='https://doi.org/10.1109/VL.1996.545307' target='_blank'>Ben Shneiderman's mantra<\/a> is one of the few general purpose pieces of advice for adding interactivity to dataviz:\r\n<br>\r\n<blockquote>Overview first, zoom and filter, then details-on-demand<\/blockquote>","\"Overview first, zoom and filter, then details-on-demand\"","\"Overview first, zoom and filter, then details-on-demand\"","\"Overview first, zoom and filter, then details-on-demand\"","]"],["Research paper","Interactive tool for comparing different charts","Robert Kosara’s website and blog dedicated to long-form articles on data viz.","Poster presenting the Financial Times' taxonomy of dataviz types.",null],["<i class='fa fa-magic fa-2x'><\/i>","<i class='fa fa-search fa-2x'><\/i>","<i class='fa fa-eye fa-2x'><\/i>","<i class='fa fa-search fa-2x'><\/i>",null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Resources<\/th>\n      <th>Description<\/th>\n      <th>Resource description<\/th>\n      <th>Type of Advice<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"autoWidth":true,"columnDefs":[{"width":"150px","targets":0},{"width":"550px","targets":1},{"width":"100px","targets":3},{"className":"dt-center","targets":[0,3]}],"dom":"t","order":[],"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row"}},"evals":[],"jsHooks":[]}</script>
 
   </div> <!-- articleBandContent -->
 </div> <!-- pageContent -->

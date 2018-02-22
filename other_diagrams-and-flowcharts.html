@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Other: Diagrams and Flowcharts</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-0.9/htmlwidgets.js"></script>
+<script src="site_libs/d3-3.3.8/d3.min.js"></script>
+<script src="site_libs/dagre-0.4.0/dagre-d3.min.js"></script>
+<link href="site_libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet" />
+<script src="site_libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script>
+<link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="site_libs/chromatography-0.1/chromatography.js"></script>
+<script src="site_libs/DiagrammeR-binding-0.9.2/DiagrammeR.js"></script>
+
+<meta name="description" content="Learn how to choose the most effective data visualisation options for your research data from the OxShef Charts webste. OxShef is a collaboration between University of Oxford and University of Sheffield." />
+
+<link rel="icon" type="image/png" href="images/favicon.png" />
+
+<script type="text/javascript" src="js/rmarkdown.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="css/rmarkdown.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div id="rStudioHeader" class="alwaysShrunk">
+  <div class="innards bandContent">
+    <div>
+      <a class="menuItem" href="index.html">OxShef: Charts</a>
+    </div>
+
+    <div id="menu">
+      <div id="menuToggler"></div>
+      <div id="menuItems">
+        <a class="menuItem" href="tools.html">Tools</a>
+        <a class="menuItem" href="training-tutorials-and-templates.html">Training, Tutorials and Templates</a>
+        <a class="menuItem" href="charts.html">Charts</a>
+        <a class="menuItem" href="geoviz_maps.html">Geoviz (Maps)</a>
+        <a class="menuItem" href="networks.html">Networks</a>
+        <a class="menuItem" href="timeseries.html">Time Series</a>
+        <a class="menuItem" href="other.html">Other Visualisations</a>
+        <a class="menuItem gitHub" href="https://github.com/ox-it/OxfordIDN_charts"></a>
+        <a class="menuItem gitHubText" href="https://github.com/ox-it/OxfordIDN_charts">Source on GitHub</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style type="text/css">
+#TOC {
+  margin-left: 35px;
+  margin-top: 90px;
+}
+</style>
+
+<script type="text/javascript">
+$(".main-container").removeClass("main-container").removeClass("container-fluid").addClass("footerPushDown");
+</script>
+
+
+<div id="pageContent" class="standardPadding">
+  <div class="articleBandContent">
+
+<style type="text/css">
+.title {
+  display: none;
+}
+#disqus_thread {
+  display: none;
+}
+</style>
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Other: Diagrams and Flowcharts</h1>
+
+</div>
+
+
+<div id="diagrams-and-flowcharts" class="section level1">
+<h1>Diagrams and Flowcharts</h1>
+<p>Diagrams and flowcharts cover a wide range of so-called “technical drawings” and project management visualisations. These visualisations are often useful for explaining how a process works or to display the relationships between assets in a project. Interactivity may include the ability to select a specific path in the chart or to exclude a node. It’s important to remember that designing useful diagrams/flowcharts is often a very time intensive process.</p>
+<p>Required Data:</p>
+<ul>
+<li>Nodes of the diagram: Similarly to graph networks, diagrams consist of nodes that represent unique objects (or potentially outcomes) in the diagram</li>
+<li>Edges of the diagram: Similarly to graph networks, diagrams consist of edges that represent the connection (or flow) between nodes.</li>
+</ul>
+<p>Here’s an example flowchart that <strong>Oxshef: dataviz</strong> uses to advise which visualisation tool to choose:</p>
+<style>
+#mermaidChart0 { 
+    min-height: 900px;
+    min-width: 800px;
+}
+</style>
+<div>
+<div id="htmlwidget-9c7c731dbdec649734f8" style="width:100%;height:900px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9c7c731dbdec649734f8">{"x":{"diagram":"graph TB;\n           A{Is your data public?} -- yes -->doiQuestion;\n           A -- no -->B[<center><b>Oxshef: dataviz<\/b> exclusively supports researchers in <br> the visualisation and promotion of <br> public datasets.<\/center>];\n           doiQuestion{<center>Is your dataset published<br> to a DOI-issuing data repository?<\/center>};\n           doiNotIssued[<center>Please ensure to deposit your data<br> in a DOI-issuing repository<\/center>]\n           doiQuestion -- yes --> externalDataQuestion;\n           doiQuestion -- no --> doiNotIssued;\n           externalDataQuestion{<center>Does your visualisation tool <br> allow data to be pulled from <br> your data repository?<\/center>};\n           externalDataSupported[<center>Excellent!<br> Our resources are designed for you!<\/center>];\n           externalDataUnsupported[<center>We recommend <b>not<\/b> using these tools<\/center>];\n           externalDataUnknown[<center>Refer to our <br>http://oxshef-charts.netlify.com/tools.html page<\/center>];\n           externalDataQuestion -- yes -->externalDataSupported;\n           externalDataQuestion -- no -->externalDataUnsupported;\n           externalDataQuestion -- I don't know -->externalDataUnknown"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+
+  </div> <!-- articleBandContent -->
+</div> <!-- pageContent -->
+
+<div id="rStudioFooter" class="band full">
+<div class="bandContent">
+  <h4><a href="http://idn.it.ox.ac.uk" target="_blank" style="color:#fff;font-weight:bold">OxShef</a></h4>
+  <div id="logos">
+    <!--<a href="https://twitter.com/rstudio" class="footerLogo twitter"></a>!-->
+    <a href="https://github.com/ox-it/OxfordIDN_charts" class="footerLogo gitHub"></a>
+    <!--<a href="https://www.linkedin.com/company/rstudio-inc" class="footerLogo linkedIn"></a>
+    <a href="https://www.facebook.com/pages/RStudio-Inc/267733656584415" Class="footerLogo facebook"></a>-->
+  </div>
+</div>
+</div>
+
+<!-- bizible -->
+<script type="text/javascript" src="//cdn.bizible.com/scripts/bizible.js" async=""></script>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+
+</body>
+</html>
