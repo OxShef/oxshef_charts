@@ -41,7 +41,7 @@ In fact, some tools like [ReVision](https://doi.org/10.1145/2047196.2047247) are
 
 </div>
 
-**OxShef: Charts** maintains a collection on tools to assist you in developing and designing effective visualisations, split into the following three categories:
+**OxShef: Charts** maintains a collection of tools and resources to assist you in developing and designing effective visualisations, split into the following three categories:
 
 <!-- There are many excellent tools which can help  -->
 
@@ -53,10 +53,7 @@ In fact, some tools like [ReVision](https://doi.org/10.1145/2047196.2047247) are
 
 <center><h5>Choosing a dataviz</h5></center>
 <center><i class='fas fa-search fa-2x'></i></i></center>
-These resources help choose the most effective data visualisation for the type, shape or amount of data that you have. In general, these resources can be readily used with any of the data viz tools listed by **OxShef: tools**.
-
-
-Graphical perception theory in the 1980's
+Some charts are more suitable for specific purposes than others. In some cases these resources can automate the chart selection process, or at least help exclude some chart options.
 
 </div>
 
@@ -64,14 +61,14 @@ Graphical perception theory in the 1980's
 
 <center><h5>Designing good dataviz</h5></center>
 <center><i class='fas fa-eye fa-2x'></i></i></center>
-Rules from experience
+There are many best practices for dataviz which radically improve the legibility of a chart, for instance: horizontal barcharts with bars arranged from longest to shortest are significantly easier to interpet than unordered vertical barcharts.
 
 </div>
 
 <div class='col-sm-4'>
 <center><h5>Adding interactivity</h5></center>
 <center><i class='fas fa-magic fa-2x'></i></i></center>
-Lorem ipsum
+Sadly, there's little general advice for effectively adding interactivity to charts. However, two extremely useful rules of thumb are ["Make the least interactive thing that works"](https://twitter.com/brianboyer/status/784874560009150464) ([\@BrianBoyer](https://twitter.com/brianboyer)) and Ben Shneiderman's mantra [Overview first, zoom and filter, then details-on-demand](https://doi.org/10.1109/VL.1996.545307).
 
 </div>
 
