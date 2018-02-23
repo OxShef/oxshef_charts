@@ -74,70 +74,70 @@ Sadly, there's little general advice for effectively adding interactivity to cha
 
 </div>
 
-```{r viz-tools-DT, echo = FALSE}
-library("tidyverse")
-library("DT")
-library("readxl")
+<!-- ```{r viz-tools-DT, echo = FALSE} -->
+<!-- library("tidyverse") -->
+<!-- library("DT") -->
+<!-- library("readxl") -->
 
-fa_scripting <- "<i class='fa fa-file-code fa-2x'></i>"
-fa_pointAndClick <- "<i class='fa fa-hand-pointer fa-2x'></i>"
+<!-- fa_scripting <- "<i class='fa fa-file-code fa-2x'></i>" -->
+<!-- fa_pointAndClick <- "<i class='fa fa-hand-pointer fa-2x'></i>" -->
 
-fa_icons <- tribble(
-  ~advice.type, ~type,
-  "Choosing a dataviz", "<i class='fa fa-search fa-2x'></i>",
-  "Designing good dataviz", "<i class='fa fa-eye fa-2x'></i>",
-  "Adding interactivity", "<i class='fa fa-magic fa-2x'></i>"
-)
+<!-- fa_icons <- tribble( -->
+<!--   ~advice.type, ~type, -->
+<!--   "Choosing a dataviz", "<i class='fa fa-search fa-2x'></i>", -->
+<!--   "Designing good dataviz", "<i class='fa fa-eye fa-2x'></i>", -->
+<!--   "Adding interactivity", "<i class='fa fa-magic fa-2x'></i>" -->
+<!-- ) -->
 
-oxshef_viz_resources <- read_xlsx("oxshef-viz-tutorials-etc.xlsx")
-
-
-oxshef_viz_resources %>%
-  arrange(name) %>%
-  mutate(logo = ifelse(is.na(image.path), {
-    paste0(
-      "<a href='", url, "' target='_blank'>",
-      "<h5>", name, "</h5>",
-      "</a>"
-    )
-  }, {
-    paste0(
-      "<a href='", url, "' target='_blank'>",
-      "<h5>", name, "</h5>",
-      "<img src='images/table-of-viz-tutorials-etc/", image.path, "' style='max-height:150px'></img>",
-      "</a>"
-    )
-  })) %>%
-  left_join(fa_icons) %>%
-  select(-url, -advice.type, -image.path, -name) %>%
-  # mutate(external.data.support = ifelse(external.data.support,
-  #   "<i class='fas fa-circle'></i>",
-  #   "<i class='far fa-circle'></i>"
-  # )) %>%
-  select(logo, decription, resource.description, type) %>%
-  datatable(
-    escape = FALSE,
-    rownames = FALSE,
-    colnames = c(
-      "Resources",
-      "Description",
-      "Resource description",
-      "Type of Advice"
-    ),
-    options = list(
-      scrollX = TRUE,
-      autoWidth = TRUE,
-      columnDefs = list(
-        list(width = "150px", targets = c(0)),
-        list(width = "550px", targets = c(1)),
-        list(width = "100px", targets = c(3)),
-        list(className = "dt-center", targets = c(0, 3))
-      ),
-      dom = "t"
-    ),
-    width = "100%"
-  )
+<!-- oxshef_viz_resources <- read_xlsx("oxshef-viz-tutorials-etc.xlsx") -->
 
 
-```
+<!-- oxshef_viz_resources %>% -->
+<!--   arrange(name) %>% -->
+<!--   mutate(logo = ifelse(is.na(image.path), { -->
+<!--     paste0( -->
+<!--       "<a href='", url, "' target='_blank'>", -->
+<!--       "<h5>", name, "</h5>", -->
+<!--       "</a>" -->
+<!--     ) -->
+<!--   }, { -->
+<!--     paste0( -->
+<!--       "<a href='", url, "' target='_blank'>", -->
+<!--       "<h5>", name, "</h5>", -->
+<!--       "<img src='images/table-of-viz-tutorials-etc/", image.path, "' style='max-height:150px'></img>", -->
+<!--       "</a>" -->
+<!--     ) -->
+<!--   })) %>% -->
+<!--   left_join(fa_icons) %>% -->
+<!--   select(-url, -advice.type, -image.path, -name) %>% -->
+<!--   # mutate(external.data.support = ifelse(external.data.support, -->
+<!--   #   "<i class='fas fa-circle'></i>", -->
+<!--   #   "<i class='far fa-circle'></i>" -->
+<!--   # )) %>% -->
+<!--   select(logo, decription, resource.description, type) %>% -->
+<!--   datatable( -->
+<!--     escape = FALSE, -->
+<!--     rownames = FALSE, -->
+<!--     colnames = c( -->
+<!--       "Resources", -->
+<!--       "Description", -->
+<!--       "Resource description", -->
+<!--       "Type of Advice" -->
+<!--     ), -->
+<!--     options = list( -->
+<!--       scrollX = TRUE, -->
+<!--       autoWidth = TRUE, -->
+<!--       columnDefs = list( -->
+<!--         list(width = "150px", targets = c(0)), -->
+<!--         list(width = "550px", targets = c(1)), -->
+<!--         list(width = "100px", targets = c(3)), -->
+<!--         list(className = "dt-center", targets = c(0, 3)) -->
+<!--       ), -->
+<!--       dom = "t" -->
+<!--     ), -->
+<!--     width = "100%" -->
+<!--   ) -->
+
+
+<!-- ``` -->
 
