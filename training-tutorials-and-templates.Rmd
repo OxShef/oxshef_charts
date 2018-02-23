@@ -92,51 +92,47 @@ fa_icons <- tribble(
 oxshef_viz_resources <- read_xlsx("oxshef-viz-tutorials-etc.xlsx")
 
 
-# oxshef_viz_resources %>%
-#   arrange(name) %>%
-#   mutate(logo = ifelse(is.na(image.path), {
-#     paste0(
-#       "<a href='", url, "' target='_blank'>",
-#       "<h5>", name, "</h5>",
-#       "</a>"
-#     )
-#   }, {
-#     paste0(
-#       "<a href='", url, "' target='_blank'>",
-#       "<h5>", name, "</h5>",
-#       "<img src='images/table-of-viz-tutorials-etc/", image.path, "' style='max-height:150px'></img>",
-#       "</a>"
-#     )
-#   })) %>%
-#   left_join(fa_icons) %>%
-#   select(-url, -advice.type, -image.path, -name) %>%
-#   # mutate(external.data.support = ifelse(external.data.support,
-#   #   "<i class='fas fa-circle'></i>",
-#   #   "<i class='far fa-circle'></i>"
-#   # )) %>%
-#   select(logo, decription, resource.description, type) %>%
-#   datatable(
-#     escape = FALSE,
-#     rownames = FALSE,
-#     colnames = c(
-#       "Resources",
-#       "Description",
-#       "Resource description",
-#       "Type of Advice"
-#     ),
-#     options = list(
-#       scrollX = TRUE,
-#       autoWidth = TRUE,
-#       columnDefs = list(
-#         list(width = "150px", targets = c(0)),
-#         list(width = "550px", targets = c(1)),
-#         list(width = "100px", targets = c(3)),
-#         list(className = "dt-center", targets = c(0, 3))
-#       ),
-#       dom = "t"
-#     ),
-#     width = "100%"
-#   )
+oxshef_viz_resources %>%
+  arrange(name) %>%
+  mutate(logo = ifelse(is.na(image.path), {
+    paste0(
+      "<a href='", url, "' target='_blank'>",
+      "<h5>", name, "</h5>",
+      "</a>"
+    )
+  }, {
+    paste0(
+      "<a href='", url, "' target='_blank'>",
+      "<h5>", name, "</h5>",
+      "<img src='images/table-of-viz-tutorials-etc/", image.path, "' style='max-height:150px'></img>",
+      "</a>"
+    )
+  })) %>%
+  left_join(fa_icons) %>%
+  select(-url, -advice.type, -image.path, -name) %>%
+  select(logo, decription, resource.description, type) %>%
+  datatable(
+    escape = FALSE,
+    rownames = FALSE,
+    colnames = c(
+      "Resources",
+      "Description",
+      "Resource description",
+      "Type of Advice"
+    ),
+    options = list(
+      scrollX = TRUE,
+      autoWidth = TRUE,
+      columnDefs = list(
+        list(width = "150px", targets = c(0)),
+        list(width = "550px", targets = c(1)),
+        list(width = "100px", targets = c(3)),
+        list(className = "dt-center", targets = c(0, 3))
+      ),
+      dom = "t"
+    ),
+    width = "100%"
+  )
 
 
 ```
