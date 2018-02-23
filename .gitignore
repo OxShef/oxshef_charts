@@ -17,10 +17,6 @@
 # PDFs
 *.pdf
 
-# Ignore all xlsx files
-*.xlsx
-*.xls
-
 # Google Analytics Code
 google-analytics.js
 
@@ -29,3 +25,5 @@ MeetingNotes.Rmd
 
 # Specific File
 !lat-long-points.csv
+
+~$*.xlsx
