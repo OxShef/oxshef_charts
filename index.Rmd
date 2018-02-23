@@ -133,7 +133,7 @@ visNetwork(my_nodes,
 
 <hr>
 
-<h2>**OxShef: Charts** provides an overview of several [visualisation tools](tools.html) widely used in academia. The flowchart below is designed to guide you whether our resources can help you visualise your dataset:</h2> 
+<h2>**OxShef: Tools** provides an overview of several [visualisation tools](http://oxshef-tools.netlify.com) widely used in academia. The flowchart below is designed to guide you whether our resources can help you visualise your dataset:</h2> 
 
 ```{r tool-selection-css, results="asis", echo=FALSE}
 cat("
