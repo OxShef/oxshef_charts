@@ -19,7 +19,7 @@ editor_options:
 - Visualisation may be embedded in personal, research group or publisher websites (via `<iframe></iframe>`)
 - The data behind the visualisations is made available for download and subject to an [**appropriate data license**](http://www.dcc.ac.uk/resources/how-guides/license-research-data). 
 
-Researchers and academics at [**OxShef: charts** partner institutions](https://oxshef.github.io/oxshef/partners.html) have access to local support for developing and potentially even hosting visulisations with many of the services detailed below.
+Researchers and academics at [**OxShef: charts** partner institutions](https://oxshef.io/partners) have access to local support for developing and potentially even hosting visulisations with many of the services detailed below.
 
 
 ## Plotly {#tools-plotly}
@@ -193,7 +193,7 @@ gapminder %>%
 
 ## Shiny {#tools-shiny}
 
-Shiny is a technology that allows users of R to create interactive web applications without *strictly* having to learn HTML, CSS, JavaScript or anything about web-hosting. There's a dedicated [IDN Shiny website](https://ox-it.github.io/OxfordIDN_shiny/){target='_blank'} that explains how Shiny works and what you need to know to be able to deploy your own Shiny applications to the web.
+Shiny is a technology that allows users of R to create interactive web applications without *strictly* having to learn HTML, CSS, JavaScript or anything about web-hosting. There's a dedicated [IDN Shiny website](https://shiny.oxshef.io){target='_blank'} that explains how Shiny works and what you need to know to be able to deploy your own Shiny applications to the web.
 
 The [IDN Showcase](http://idn.it.ox.ac.uk/visualisation-showcase){target='_blank'} includes a range of Shiny apps built by and for researchers at Oxford. One of the most popular Shiny apps developed by the IDN is the Online Labour Index, which is embedded below as an iframe:
 

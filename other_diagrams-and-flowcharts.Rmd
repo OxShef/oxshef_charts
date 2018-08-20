@@ -45,7 +45,7 @@ oxshef_flowchart <- DiagrammeR("graph TB;
            externalDataQuestion{<center>Does your visualisation tool <br> allow data to be pulled from <br> your data repository?</center>};
            externalDataSupported[<center>Excellent!<br> Our resources are designed for you!</center>];
            externalDataUnsupported[<center>We recommend <b>not</b> using these tools</center>];
-           externalDataUnknown[<center>Refer to our <br>http://oxshef-charts.netlify.com/tools.html page</center>];
+           externalDataUnknown[<center>Refer to our <br>https://tools.oxshef.io page</center>];
            externalDataQuestion -- yes -->externalDataSupported;
            externalDataQuestion -- no -->externalDataUnsupported;
            externalDataQuestion -- I don't know -->externalDataUnknown",
