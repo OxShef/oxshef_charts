@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Charts: Hexagonal Choropleth</title>
+
+<script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="site_libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="site_libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="site_libs/leaflet-binding-2.0.1/leaflet.js"></script>
+
+<meta name="description" content="Learn how to choose the most effective data visualisation options for your research data from the OxShef Charts webste. OxShef is a collaboration between University of Oxford and University of Sheffield." />
+
+<link rel="icon" type="image/png" href="images/favicon.png" />
+
+<script type="text/javascript" src="js/rmarkdown.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="css/rmarkdown.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div id="rStudioHeader" class="alwaysShrunk">
+  <div class="innards bandContent">
+    <div>
+      <a class="menuItem" href="index.html">OxShef: Charts</a>
+    </div>
+
+    <div id="menu">
+      <div id="menuToggler"></div>
+      <div id="menuItems">
+        <a class="menuItem" href="training-tutorials-and-templates.html">Training, Tutorials and Templates</a>
+        <a class="menuItem" href="charts.html">Charts</a>
+        <a class="menuItem" href="geoviz_maps.html">Geoviz (Maps)</a>
+        <a class="menuItem" href="networks.html">Networks</a>
+        <a class="menuItem" href="timeseries.html">Time Series</a>
+        <a class="menuItem" href="other.html">Other Visualisations</a>
+        <a class="menuItem gitHub" href="https://github.com/ox-it/OxfordIDN_charts"></a>
+        <a class="menuItem gitHubText" href="https://github.com/ox-it/OxfordIDN_charts">Source on GitHub</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style type="text/css">
+#TOC {
+  margin-left: 35px;
+  margin-top: 90px;
+}
+</style>
+
+<script type="text/javascript">
+$(".main-container").removeClass("main-container").removeClass("container-fluid").addClass("footerPushDown");
+</script>
+
+
+<div id="pageContent" class="standardPadding">
+  <div class="articleBandContent">
+
+<style type="text/css">
+.title {
+  display: none;
+}
+#disqus_thread {
+  display: none;
+}
+</style>
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Charts: Hexagonal Choropleth</h1>
+
+</div>
+
+
+<div id="what-is-a-hexagonal-choropleth-or-a-tilegram" class="section level2">
+<h2>What is a hexagonal choropleth (or a tilegram)?</h2>
+<p>Hexagonal Choropleth are choropleth where regions are converted into equally sized hexagons and each is coloured according to either a discrete or continuous variable. More generally these visualisations are called <strong>tilegrams</strong>, where the regions can be any <em>regular polygon</em> but hexagons are amongst one of the most flexible shapes for these maps. The process of converting shapefiles to regular polygons that are positioned in such a way to still retain the shape of the original geographic regions is complicated, and typically requires manual hand tuning.</p>
+<p>Required Data:</p>
+<ul>
+<li>Hexagonal Regions: Enclosed hexagonal regions, i.e. topologically closed polygons, sometimes called convex hulls. For instance the subregions within a country, i.e. the states of the USA.</li>
+<li>Values: Discrete or categorical values for each enclosed region, for instance the population of each state or the division to which the state belongs.</li>
+</ul>
+<p>Below is a minimal example of a hexagonal choropleth built using <code>R</code> and the <code>leaflet</code> library, inspired by this <a href="http://rpubs.com/bhaskarvk/tilegramsR">tutorial on <code>tilegramsR</code></a></p>
+<div id="htmlwidget-b24e06ef5854f1d815e2" style="width:250px;height:250px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b24e06ef5854f1d815e2">{"x":{"options":{"minZoom":-3,"maxZoom":-3,"crs":{"crsClass":"L.CRS.Simple","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"dragging":false,"zoomControl":false,"attributionControl":false},"calls":[{"method":"addPolygons","args":[[[[{"lng":[685.122319438356,685.122319438356,753.634551382191,822.146783326027,822.146783326027,753.634551382191,685.122319438356],"lat":[79.1111111111111,158.222222222222,197.777777777778,158.222222222222,79.1111111111111,39.5555555555556,79.1111111111111]}]],[[{"lng":[753.634551382191,753.634551382191,822.146783326027,890.659015269863,890.659015269863,822.146783326027,753.634551382191],"lat":[909.777777777778,988.888888888889,1028.44444444444,988.888888888889,909.777777777778,870.222222222222,909.777777777778]}]],[[{"lng":[890.659015269863,890.659015269863,959.171247213698,1027.68347915753,1027.68347915753,959.171247213698,890.659015269863],"lat":[672.444444444444,751.555555555556,791.111111111111,751.555555555556,672.444444444444,632.888888888889,672.444444444444]}]],[[{"lng":[959.171247213698,959.171247213698,1027.68347915753,1096.19571110137,1096.19571110137,1027.68347915753,959.171247213698],"lat":[553.777777777778,632.888888888889,672.444444444444,632.888888888889,553.777777777778,514.222222222222,553.777777777778]}]],[[{"lng":[890.659015269863,890.659015269863,959.171247213698,1027.68347915753,1027.68347915753,959.171247213698,890.659015269863],"lat":[435.111111111111,514.222222222222,553.777777777778,514.222222222222,435.111111111111,395.555555555556,435.111111111111]}]],[[{"lng":[959.171247213698,959.171247213698,1027.68347915753,1096.19571110137,1096.19571110137,1027.68347915753,959.171247213698],"lat":[316.444444444444,395.555555555556,435.111111111111,395.555555555556,316.444444444444,276.888888888889,316.444444444444]}]],[[{"lng":[1027.68347915753,1027.68347915753,1096.19571110137,1164.7079430452,1164.7079430452,1096.19571110137,1027.68347915753],"lat":[672.444444444444,751.555555555556,791.111111111111,751.555555555556,672.444444444444,632.888888888889,672.444444444444]}]],[[{"lng":[1096.19571110137,1096.19571110137,1164.7079430452,1233.22017498904,1233.22017498904,1164.7079430452,1096.19571110137],"lat":[553.777777777778,632.888888888889,672.444444444444,632.888888888889,553.777777777778,514.222222222222,553.777777777778]}]],[[{"lng":[1027.68347915753,1027.68347915753,1096.19571110137,1164.7079430452,1164.7079430452,1096.19571110137,1027.68347915753],"lat":[435.111111111111,514.222222222222,553.777777777778,514.222222222222,435.111111111111,395.555555555556,435.111111111111]}]],[[{"lng":[1096.19571110137,1096.19571110137,1164.7079430452,1233.22017498904,1233.22017498904,1164.7079430452,1096.19571110137],"lat":[316.444444444444,395.555555555556,435.111111111111,395.555555555556,316.444444444444,276.888888888889,316.444444444444]}]],[[{"lng":[1164.7079430452,1164.7079430452,1233.22017498904,1301.73240693288,1301.73240693288,1233.22017498904,1164.7079430452],"lat":[672.444444444444,751.555555555556,791.111111111111,751.555555555556,672.444444444444,632.888888888889,672.444444444444]}]],[[{"lng":[1233.22017498904,1233.22017498904,1301.73240693288,1370.24463887671,1370.24463887671,1301.73240693288,1233.22017498904],"lat":[553.777777777778,632.888888888889,672.444444444444,632.888888888889,553.777777777778,514.222222222222,553.777777777778]}]],[[{"lng":[1164.7079430452,1164.7079430452,1233.22017498904,1301.73240693288,1301.73240693288,1233.22017498904,1164.7079430452],"lat":[435.111111111111,514.222222222222,553.777777777778,514.222222222222,435.111111111111,395.555555555556,435.111111111111]}]],[[{"lng":[1233.22017498904,1233.22017498904,1301.73240693288,1370.24463887671,1370.24463887671,1301.73240693288,1233.22017498904],"lat":[316.444444444444,395.555555555556,435.111111111111,395.555555555556,316.444444444444,276.888888888889,316.444444444444]}]],[[{"lng":[1164.7079430452,1164.7079430452,1233.22017498904,1301.73240693288,1301.73240693288,1233.22017498904,1164.7079430452],"lat":[197.777777777778,276.888888888889,316.444444444444,276.888888888889,197.777777777778,158.222222222222,197.777777777778]}]],[[{"lng":[1301.73240693288,1301.73240693288,1370.24463887671,1438.75687082055,1438.75687082055,1370.24463887671,1301.73240693288],"lat":[672.444444444444,751.555555555556,791.111111111111,751.555555555556,672.444444444444,632.888888888889,672.444444444444]}]],[[{"lng":[1370.24463887671,1370.24463887671,1438.75687082055,1507.26910276438,1507.26910276438,1438.75687082055,1370.24463887671],"lat":[553.777777777778,632.888888888889,672.444444444444,632.888888888889,553.777777777778,514.222222222222,553.777777777778]}]],[[{"lng":[1301.73240693288,1301.73240693288,1370.24463887671,1438.75687082055,1438.75687082055,1370.24463887671,1301.73240693288],"lat":[435.111111111111,514.222222222222,553.777777777778,514.222222222222,435.111111111111,395.555555555556,435.111111111111]}]],[[{"lng":[1370.24463887671,1370.24463887671,1438.75687082055,1507.26910276438,1507.26910276438,1438.75687082055,1370.24463887671],"lat":[316.444444444444,395.555555555556,435.111111111111,395.555555555556,316.444444444444,276.888888888889,316.444444444444]}]],[[{"lng":[1301.73240693288,1301.73240693288,1370.24463887671,1438.75687082055,1438.75687082055,1370.24463887671,1301.73240693288],"lat":[197.777777777778,276.888888888889,316.444444444444,276.888888888889,197.777777777778,158.222222222222,197.777777777778]}]],[[{"lng":[1370.24463887671,1370.24463887671,1438.75687082055,1507.26910276438,1507.26910276438,1438.75687082055,1370.24463887671],"lat":[79.1111111111111,158.222222222222,197.777777777778,158.222222222222,79.1111111111111,39.5555555555556,79.1111111111111]}]],[[{"lng":[1438.75687082055,1438.75687082055,1507.26910276438,1575.78133470822,1575.78133470822,1507.26910276438,1438.75687082055],"lat":[672.444444444444,751.555555555556,791.111111111111,751.555555555556,672.444444444444,632.888888888889,672.444444444444]}]],[[{"lng":[1507.26910276438,1507.26910276438,1575.78133470822,1644.29356665205,1644.29356665205,1575.78133470822,1507.26910276438],"lat":[553.777777777778,632.888888888889,672.444444444444,632.888888888889,553.777777777778,514.222222222222,553.777777777778]}]],[[{"lng":[1438.75687082055,1438.75687082055,1507.26910276438,1575.78133470822,1575.78133470822,1507.26910276438,1438.75687082055],"lat":[435.111111111111,514.222222222222,553.777777777778,514.222222222222,435.111111111111,395.555555555556,435.111111111111]}]],[[{"lng":[1507.26910276438,1507.26910276438,1575.78133470822,1644.29356665205,1644.29356665205,1575.78133470822,1507.26910276438],"lat":[316.444444444444,395.555555555556,435.111111111111,395.555555555556,316.444444444444,276.888888888889,316.444444444444]}]],[[{"lng":[1438.75687082055,1438.75687082055,1507.26910276438,1575.78133470822,1575.78133470822,1507.26910276438,1438.75687082055],"lat":[197.777777777778,276.888888888889,316.444444444444,276.888888888889,197.777777777778,158.222222222222,197.777777777778]}]],[[{"lng":[1644.29356665205,1644.29356665205,1712.80579859589,1781.31803053973,1781.31803053973,1712.80579859589,1644.29356665205],"lat":[553.777777777778,632.888888888889,672.444444444444,632.888888888889,553.777777777778,514.222222222222,553.777777777778]}]],[[{"lng":[1575.78133470822,1575.78133470822,1644.29356665205,1712.80579859589,1712.80579859589,1644.29356665205,1575.78133470822],"lat":[435.111111111111,514.222222222222,553.777777777778,514.222222222222,435.111111111111,395.555555555556,435.111111111111]}]],[[{"lng":[1644.29356665205,1644.29356665205,1712.80579859589,1781.31803053973,1781.31803053973,1712.80579859589,1644.29356665205],"lat":[316.444444444444,395.555555555556,435.111111111111,395.555555555556,316.444444444444,276.888888888889,316.444444444444]}]],[[{"lng":[1575.78133470822,1575.78133470822,1644.29356665205,1712.80579859589,1712.80579859589,1644.29356665205,1575.78133470822],"lat":[197.777777777778,276.888888888889,316.444444444444,276.888888888889,197.777777777778,158.222222222222,197.777777777778]}]],[[{"lng":[1712.80579859589,1712.80579859589,1781.31803053973,1849.83026248356,1849.83026248356,1781.31803053973,1712.80579859589],"lat":[672.444444444444,751.555555555556,791.111111111111,751.555555555556,672.444444444444,632.888888888889,672.444444444444]}]],[[{"lng":[1781.31803053973,1781.31803053973,1849.83026248356,1918.3424944274,1918.3424944274,1849.83026248356,1781.31803053973],"lat":[553.777777777778,632.888888888889,672.444444444444,632.888888888889,553.777777777778,514.222222222222,553.777777777778]}]],[[{"lng":[1712.80579859589,1712.80579859589,1781.31803053973,1849.83026248356,1849.83026248356,1781.31803053973,1712.80579859589],"lat":[435.111111111111,514.222222222222,553.777777777778,514.222222222222,435.111111111111,395.555555555556,435.111111111111]}]],[[{"lng":[1781.31803053973,1781.31803053973,1849.83026248356,1918.3424944274,1918.3424944274,1849.83026248356,1781.31803053973],"lat":[316.444444444444,395.555555555556,435.111111111111,395.555555555556,316.444444444444,276.888888888889,316.444444444444]}]],[[{"lng":[1712.80579859589,1712.80579859589,1781.31803053973,1849.83026248356,1849.83026248356,1781.31803053973,1712.80579859589],"lat":[197.777777777778,276.888888888889,316.444444444444,276.888888888889,197.777777777778,158.222222222222,197.777777777778]}]],[[{"lng":[1781.31803053973,1781.31803053973,1849.83026248356,1918.3424944274,1918.3424944274,1849.83026248356,1781.31803053973],"lat":[79.1111111111111,158.222222222222,197.777777777778,158.222222222222,79.1111111111111,39.5555555555556,79.1111111111111]}]],[[{"lng":[1918.3424944274,1918.3424944274,1986.85472637123,2055.36695831507,2055.36695831507,1986.85472637123,1918.3424944274],"lat":[553.777777777778,632.888888888889,672.444444444444,632.888888888889,553.777777777778,514.222222222222,553.777777777778]}]],[[{"lng":[1849.83026248356,1849.83026248356,1918.3424944274,1986.85472637123,1986.85472637123,1918.3424944274,1849.83026248356],"lat":[435.111111111111,514.222222222222,553.777777777778,514.222222222222,435.111111111111,395.555555555556,435.111111111111]}]],[[{"lng":[1918.3424944274,1918.3424944274,1986.85472637123,2055.36695831507,2055.36695831507,1986.85472637123,1918.3424944274],"lat":[316.444444444444,395.555555555556,435.111111111111,395.555555555556,316.444444444444,276.888888888889,316.444444444444]}]],[[{"lng":[1849.83026248356,1849.83026248356,1918.3424944274,1986.85472637123,1986.85472637123,1918.3424944274,1849.83026248356],"lat":[197.777777777778,276.888888888889,316.444444444444,276.888888888889,197.777777777778,158.222222222222,197.777777777778]}]],[[{"lng":[2055.36695831507,2055.36695831507,2123.8791902589,2192.39142220274,2192.39142220274,2123.8791902589,2055.36695831507],"lat":[791.111111111111,870.222222222222,909.777777777778,870.222222222222,791.111111111111,751.555555555556,791.111111111111]}]],[[{"lng":[1986.85472637123,1986.85472637123,2055.36695831507,2123.8791902589,2123.8791902589,2055.36695831507,1986.85472637123],"lat":[672.444444444444,751.555555555556,791.111111111111,751.555555555556,672.444444444444,632.888888888889,672.444444444444]}]],[[{"lng":[2055.36695831507,2055.36695831507,2123.8791902589,2192.39142220274,2192.39142220274,2123.8791902589,2055.36695831507],"lat":[553.777777777778,632.888888888889,672.444444444444,632.888888888889,553.777777777778,514.222222222222,553.777777777778]}]],[[{"lng":[1986.85472637123,1986.85472637123,2055.36695831507,2123.8791902589,2123.8791902589,2055.36695831507,1986.85472637123],"lat":[435.111111111111,514.222222222222,553.777777777778,514.222222222222,435.111111111111,395.555555555556,435.111111111111]}]],[[{"lng":[2055.36695831507,2055.36695831507,2123.8791902589,2192.39142220274,2192.39142220274,2123.8791902589,2055.36695831507],"lat":[316.444444444444,395.555555555556,435.111111111111,395.555555555556,316.444444444444,276.888888888889,316.444444444444]}]],[[{"lng":[2192.39142220274,2192.39142220274,2260.90365414657,2329.41588609041,2329.41588609041,2260.90365414657,2192.39142220274],"lat":[791.111111111111,870.222222222222,909.777777777778,870.222222222222,791.111111111111,751.555555555556,791.111111111111]}]],[[{"lng":[2123.8791902589,2123.8791902589,2192.39142220274,2260.90365414657,2260.90365414657,2192.39142220274,2123.8791902589],"lat":[672.444444444444,751.555555555556,791.111111111111,751.555555555556,672.444444444444,632.888888888889,672.444444444444]}]],[[{"lng":[2192.39142220274,2192.39142220274,2260.90365414657,2329.41588609041,2329.41588609041,2260.90365414657,2192.39142220274],"lat":[553.777777777778,632.888888888889,672.444444444444,632.888888888889,553.777777777778,514.222222222222,553.777777777778]}]],[[{"lng":[2123.8791902589,2123.8791902589,2192.39142220274,2260.90365414657,2260.90365414657,2192.39142220274,2123.8791902589],"lat":[435.111111111111,514.222222222222,553.777777777778,514.222222222222,435.111111111111,395.555555555556,435.111111111111]}]],[[{"lng":[2260.90365414657,2260.90365414657,2329.41588609041,2397.92811803425,2397.92811803425,2329.41588609041,2260.90365414657],"lat":[909.777777777778,988.888888888889,1028.44444444444,988.888888888889,909.777777777778,870.222222222222,909.777777777778]}]],[[{"lng":[2260.90365414657,2260.90365414657,2329.41588609041,2397.92811803425,2397.92811803425,2329.41588609041,2260.90365414657],"lat":[672.444444444444,751.555555555556,791.111111111111,751.555555555556,672.444444444444,632.888888888889,672.444444444444]}]]],null,"states",{"interactive":true,"className":"","stroke":true,"color":"#000000","weight":2,"opacity":1,"fill":true,"fillColor":["#E31A1C","#E31A1C","#E31A1C","#33A02C","#E31A1C","#E31A1C","#33A02C","#33A02C","#33A02C","#33A02C","#FF7F00","#FF7F00","#33A02C","#33A02C","#33A02C","#FF7F00","#FF7F00","#FF7F00","#FF7F00","#CAB2D6","#CAB2D6","#A6CEE3","#A6CEE3","#FF7F00","#CAB2D6","#CAB2D6","#A6CEE3","#1F78B4","#1F78B4","#1F78B4","#A6CEE3","#A6CEE3","#FDBF6F","#FDBF6F","#1F78B4","#FDBF6F","#B2DF8A","#FDBF6F","#FDBF6F","#FDBF6F","#FB9A99","#B2DF8A","#B2DF8A","#FDBF6F","#FDBF6F","#FB9A99","#FB9A99","#FB9A99","#FDBF6F","#FB9A99","#FB9A99"],"fillOpacity":0.6,"smoothFactor":1,"noClip":false},null,null,["HI (Pacific)","AK (Pacific)","WA (Pacific)","ID (Mountain)","OR (Pacific)","CA (Pacific)","MT (Mountain)","WY (Mountain)","NV (Mountain)","UT (Mountain)","ND (West North Central)","SD (West North Central)","CO (Mountain)","NM (Mountain)","AZ (Mountain)","MN (West North Central)","IA (West North Central)","NE (West North Central)","KS (West North Central)","OK (West South Central)","TX (West South Central)","WI (East North Central)","IL (East North Central)","MO (West North Central)","AR (West South Central)","LA (West South Central)","IN (East North Central)","KY (East South Central)","TN (East South Central)","MS (East South Central)","MI (East North Central)","OH (East North Central)","WV (South Atlantic)","NC (South Atlantic)","AL (East South Central)","FL (South Atlantic)","PA (Middle Atlantic)","VA (South Atlantic)","SC (South Atlantic)","GA (South Atlantic)","VT (New England)","NY (Middle Atlantic)","NJ (Middle Atlantic)","MD (South Atlantic)","DC (South Atlantic)","NH (New England)","MA (New England)","CT (New England)","DE (South Atlantic)","ME (New England)","RI (New England)"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},{"weight":4}]}],"limits":{"lat":[39.5555555555556,1028.44444444444],"lng":[685.122319438356,2397.92811803425]}},"evals":[],"jsHooks":[]}</script>
+</div>
+
+  </div> <!-- articleBandContent -->
+</div> <!-- pageContent -->
+
+<div id="rStudioFooter" class="band full">
+<div class="bandContent">
+  <h4><a href="http://idn.it.ox.ac.uk" target="_blank" style="color:#fff;font-weight:bold">OxShef</a></h4>
+  <div id="logos">
+    <!--<a href="https://twitter.com/rstudio" class="footerLogo twitter"></a>!-->
+    <a href="https://github.com/ox-it/OxfordIDN_charts" class="footerLogo gitHub"></a>
+    <!--<a href="https://www.linkedin.com/company/rstudio-inc" class="footerLogo linkedIn"></a>
+    <a href="https://www.facebook.com/pages/RStudio-Inc/267733656584415" Class="footerLogo facebook"></a>-->
+  </div>
+</div>
+</div>
+
+<!-- bizible -->
+<script type="text/javascript" src="//cdn.bizible.com/scripts/bizible.js" async=""></script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+
+</body>
+</html>
