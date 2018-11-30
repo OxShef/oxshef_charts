@@ -22,7 +22,7 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<script src="site_libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<script src="site_libs/htmlwidgets-1.3/htmlwidgets.js"></script>
 <script src="site_libs/d3-3.3.8/d3.min.js"></script>
 <script src="site_libs/dagre-0.4.0/dagre-d3.min.js"></script>
 <link href="site_libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet" />
@@ -83,6 +83,7 @@ h6 {
 </style>
 
 <link rel="stylesheet" href="css/rmarkdown.css" type="text/css" />
+<link rel="stylesheet" href="css/title-0px.css" type="text/css" />
 
 </head>
 
@@ -202,8 +203,8 @@ $(".main-container").removeClass("main-container").removeClass("container-fluid"
 }
 </style>
 <div>
-<div id="htmlwidget-ecd7be9e3a1b33d3d8b7" style="width:100%;height:900px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ecd7be9e3a1b33d3d8b7">{"x":{"diagram":"graph TB;\n           A{Is your data public?} -- yes -->doiQuestion;\n           A -- no -->B[<center><b>Oxshef: dataviz<\/b> exclusively supports researchers in <br> the visualisation and promotion of <br> public datasets.<\/center>];\n           doiQuestion{<center>Is your dataset published<br> to a DOI-issuing data repository?<\/center>};\n           doiNotIssued[<center>Please ensure to deposit your data<br> in a DOI-issuing repository<\/center>]\n           doiQuestion -- yes --> externalDataQuestion;\n           doiQuestion -- no --> doiNotIssued;\n           externalDataQuestion{<center>Does your visualisation tool <br> allow data to be pulled from <br> your data repository?<\/center>};\n           externalDataSupported[<center>Excellent!<br> Our resources are designed for you!<\/center>];\n           externalDataUnsupported[<center>We recommend <b>not<\/b> using these tools<\/center>];\n           externalDataUnknown[<center>Refer to our <br>https://tools.oxshef.io page<\/center>];\n           externalDataQuestion -- yes -->externalDataSupported;\n           externalDataQuestion -- no -->externalDataUnsupported;\n           externalDataQuestion -- I don't know -->externalDataUnknown"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-9753c204911247015555" style="width:100%;height:900px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9753c204911247015555">{"x":{"diagram":"graph TB;\n           A{Is your data public?} -- yes -->doiQuestion;\n           A -- no -->B[<center><b>Oxshef: dataviz<\/b> exclusively supports researchers in <br> the visualisation and promotion of <br> public datasets.<\/center>];\n           doiQuestion{<center>Is your dataset published<br> to a DOI-issuing data repository?<\/center>};\n           doiNotIssued[<center>Please ensure to deposit your data<br> in a DOI-issuing repository<\/center>]\n           doiQuestion -- yes --> externalDataQuestion;\n           doiQuestion -- no --> doiNotIssued;\n           externalDataQuestion{<center>Does your visualisation tool <br> allow data to be pulled from <br> your data repository?<\/center>};\n           externalDataSupported[<center>Excellent!<br> Our resources are designed for you!<\/center>];\n           externalDataUnsupported[<center>We recommend <b>not<\/b> using these tools<\/center>];\n           externalDataUnknown[<center>Refer to our <br>https://tools.oxshef.io page<\/center>];\n           externalDataQuestion -- yes -->externalDataSupported;\n           externalDataQuestion -- no -->externalDataUnsupported;\n           externalDataQuestion -- I don't know -->externalDataUnknown"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 

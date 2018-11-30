@@ -11,7 +11,7 @@ output:
       in_header: includes/include_head.html
       before_body: includes/include_header.html
       after_body: includes/include_footer.html
-    css: css/rmarkdown.css
+    css: [css/rmarkdown.css, css/title-0px.css]
 
 
 

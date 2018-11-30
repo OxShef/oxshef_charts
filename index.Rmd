@@ -1,4 +1,5 @@
 ---
+title: "OxShef: Charts"
 output:
   html_document:
     toc_float: false
@@ -20,13 +21,15 @@ knitr::opts_chunk$set(
 
 <h2>**OxShef: Charts** provides advice on how to select the most appropriate charts for your data and how to avoid common mistakes when visualising data.</h2>
 
-<hr>
+charts.oxshef.io is exclusively dedicated to providing you advice on which chart to use based on your data. Visit [tools.oxshef.io](http://oxshef.io) for advice on which software/programming languages can be used for creating specific dataviz. In general, we redirect you to what experts have already written about dataviz selection and design but intend to structure this information for folks who don't have a background in dataviz.
+
+To help you get started we've split charts into five basic types; charts, maps, networks (graph), time series and *other*.
 
 <div class="row align-items-center">
 
-<div class="col-sm-4 align-self-center">
+<div class="col-sm-6 align-self-center">
 
-[Charts](charts.html) are the most general purpose type of visualisation and include barcharts, linecharts, scatter plots, histograms...
+<h4>[Charts](charts.html) are the most general purpose type of visualisation and include barcharts, linecharts, scatter plots, histograms...</h4>
 
 <center>
 ```{r}
@@ -53,9 +56,9 @@ my_data %>%
 
 </div>
 
-<div class="col-sm-4 align-self-center">
+<div class="col-sm-6 align-self-center">
 
-[Maps and geographic visualisations](geoviz_maps.html) require specially formatted data and include scatter geo plots, choropleth, weather maps...
+<h4>[Maps and geographic visualisations](geoviz_maps.html) require specially formatted data and include scatter geo plots, choropleth, weather maps...</h4>
 <center>
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 library("tidyverse")
@@ -82,9 +85,13 @@ geojson_worldmap %>%
 </center>
 </div>
 
-<div class="col-sm-4 align-self-center">
+</div>
 
-[Network visualisations](networks.html) or graph are amongst the less general purpose visualisations, alongside [time series](timeseries.html) and [others](other.html)...
+<div class="row align-items-center">
+
+<div class="col-sm-6 align-self-center">
+
+<h4>[Network visualisations](networks.html) (or graph) are used where your data describes the connectiveness of something, for instance; a social network, a computer network or shared characteristics between individuals.</h4>
 
 <center>
 ```{r message=FALSE, warning=FALSE, paged.print=FALSE}
@@ -129,92 +136,28 @@ visNetwork(my_nodes,
 </center>
 </div>
 
+<div class="col-sm-6 align-self-center">
+
+<h4>[Time series](timeseries.html) are specialised charts for displaying data that varies over time, for instance; stock price fluctuations, population changes, or resource allocation charts like Gantt diagrams.</h4>
+
+<center>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library("quantmod")
+
+usdjpy <- getSymbols("USD/JPY", src = "oanda", auto.assign = FALSE)
+eurjpy <- getSymbols("EUR/JPY", src = "oanda", auto.assign = FALSE)
+
+highchart(type = "stock") %>%
+  hc_add_series(usdjpy, id = "usdjpy") %>%
+  hc_add_series(eurjpy, id = "eurjpy") %>%
+  hc_size(width = "350px", height = "200px") %>%
+  hc_rangeSelector(enabled = FALSE)
+```
+
+</center>
+</div>
+
 </div>
 
 <hr>
-
-<h2>**OxShef: Tools** provides an overview of several [visualisation tools](https://tools.oxshef.io) widely used in academia. The flowchart below is designed to guide you whether our resources can help you visualise your dataset:</h2> 
-
-```{r tool-selection-css, results="asis", echo=FALSE}
-cat("
-<style>
-#mermaidChart0 { 
-    min-height: 900px;
-    min-width: 800px;
-}
-</style>
-")
-```
-
-```{r tool-selection-flowchart, echo = FALSE, fig.height=6}
-# library("DiagrammeR")
-# 
-# oxshef_flowchart <- DiagrammeR("graph TB;
-#            A{Is your data public?} -- yes -->doiQuestion;
-#            A -- no -->B[<center><b>Oxshef: dataviz</b> exclusively supports researchers in <br> the visualisation and promotion of <br> public datasets.</center>];
-#            doiQuestion{<center>Is your dataset published<br> to a DOI-issuing data repository?</center>};
-#            doiNotIssued[<center>Please ensure to deposit your data<br> in a DOI-issuing repository</center>]
-#            doiQuestion -- yes --> externalDataQuestion;
-#            doiQuestion -- no --> doiNotIssued;
-#            externalDataQuestion{<center>Does your visualisation tool <br> allow data to be pulled from <br> your data repository?</center>};
-#            externalDataSupported[<center>Excellent!<br> Our resources are designed for you!</center>];
-#            externalDataUnsupported[<center>We recommend <b>not</b> using these tools</center>];
-#            externalDataUnknown[<center>Refer to our <br>http://oxshef-charts.netlify.com/tools.html page</center>];
-#            externalDataQuestion -- yes -->externalDataSupported;
-#            externalDataQuestion -- no -->externalDataUnsupported;
-#            externalDataQuestion -- I don't know -->externalDataUnknown",
-#            width = "100%",
-#            height = "900px")
-# library("htmltools")
-# 
-# div(oxshef_flowchart)
-library("tidyverse")
-library("visNetwork")
-library("emo")
-
-nodes <- tribble(
-  ~id, ~label, ~title, ~shape, ~size, ~color,
-  1, "Is your data public?", NA, "diamond", 25, "#97C2FC",
-  2, ji("white_check_mark"), NA, "dot", 5, "green",
-  3, ji("x"), NA, "dot", 5, "red",
-  4, "Reproducible dataviz require Open Data. \nLearn more at oxshef.io", "<a href='https://oxshef.io' target='_blank'>oxshef.io</a>", "square", 25, "#97C2FC",
-  5, "Does your dataset \nhave a DOI?", NA, "diamond", 25, "#97C2FC",
-  6, ji("x"), NA, "dot", 5, "red",
-  7, ji("white_check_mark"), NA, "dot", 5, "green",
-  8, "Visit repositories.oxshef.io \nto learn about DOI", "<a href='https://repositories.oxshef.io' target='_blank'>repositories.oxshef.io</a>", "square", 25, "red",
-  9, "Does your dataviz\n pull data from a data repository?", NA, "diamond", 25, "#97C2FC",
-  10, ji("white_check_mark"), NA, "dot", 5, "green",
-  11, ji("x"), NA, "dot", 5, "red",
-  12, "You have a reproducible \ndataviz workflow!", NA, "dot", 25, "green",
-  13, "Visit tools.oxshef.io \nto learn more", "<a href='https://tools.oxshef.io' target='_blank'>tools.oxshef.io</a>", "dot", 25, "red"
-)
-
-edges <- tribble(
-  ~from, ~to,
-  1, 2,
-  1, 3,
-  3, 4,
-  2, 5,
-  5, 7,
-  5, 6,
-  6, 8,
-  7, 9,
-  9, 10,
-  9, 11,
-  10, 12,
-  11, 13
-)
-
-visNetwork(nodes, edges, width = "100%", height = "500px") %>% 
-  visEdges(color = "#97C2FC") %>%
-  visNodes(font = list(size = 16)) %>%
-  visInteraction(dragNodes = FALSE, dragView = FALSE, selectable = FALSE) %>%
-  visHierarchicalLayout(direction = "LR", 
-                        levelSeparation = 180, 
-                        sortMethod = "directed",
-                        blockShifting = FALSE,
-                        edgeMinimization = FALSE)
-
-```
-
-

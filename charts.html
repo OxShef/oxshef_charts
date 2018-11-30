@@ -19,48 +19,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<script src="site_libs/htmlwidgets-1.2/htmlwidgets.js"></script>
-<script src="site_libs/proj4js-2.3.15/proj4.js"></script>
-<link href="site_libs/highcharts-6.0.3/css/motion.css" rel="stylesheet" />
-<script src="site_libs/highcharts-6.0.3/highcharts.js"></script>
-<script src="site_libs/highcharts-6.0.3/highcharts-3d.js"></script>
-<script src="site_libs/highcharts-6.0.3/highcharts-more.js"></script>
-<script src="site_libs/highcharts-6.0.3/modules/stock.js"></script>
-<script src="site_libs/highcharts-6.0.3/modules/heatmap.js"></script>
-<script src="site_libs/highcharts-6.0.3/modules/treemap.js"></script>
-<script src="site_libs/highcharts-6.0.3/modules/annotations.js"></script>
-<script src="site_libs/highcharts-6.0.3/modules/boost.js"></script>
-<script src="site_libs/highcharts-6.0.3/modules/data.js"></script>
-<script src="site_libs/highcharts-6.0.3/modules/drag-panes.js"></script>
-<script src="site_libs/highcharts-6.0.3/modules/drilldown.js"></script>
-<script src="site_libs/highcharts-6.0.3/modules/funnel.js"></script>
-<script src="site_libs/highcharts-6.0.3/modules/item-series.js"></script>
-<script src="site_libs/highcharts-6.0.3/modules/offline-exporting.js"></script>
-<script src="site_libs/highcharts-6.0.3/modules/overlapping-datalabels.js"></script>
-<script src="site_libs/highcharts-6.0.3/modules/parallel-coordinates.js"></script>
-<script src="site_libs/highcharts-6.0.3/modules/sankey.js"></script>
-<script src="site_libs/highcharts-6.0.3/modules/solid-gauge.js"></script>
-<script src="site_libs/highcharts-6.0.3/modules/streamgraph.js"></script>
-<script src="site_libs/highcharts-6.0.3/modules/sunburst.js"></script>
-<script src="site_libs/highcharts-6.0.3/modules/vector.js"></script>
-<script src="site_libs/highcharts-6.0.3/modules/wordcloud.js"></script>
-<script src="site_libs/highcharts-6.0.3/modules/xrange.js"></script>
-<script src="site_libs/highcharts-6.0.3/modules/exporting.js"></script>
-<script src="site_libs/highcharts-6.0.3/modules/export-data.js"></script>
-<script src="site_libs/highcharts-6.0.3/maps/modules/map.js"></script>
-<script src="site_libs/highcharts-6.0.3/plugins/grouped-categories.js"></script>
-<script src="site_libs/highcharts-6.0.3/plugins/motion.js"></script>
-<script src="site_libs/highcharts-6.0.3/plugins/multicolor_series.js"></script>
-<script src="site_libs/highcharts-6.0.3/custom/reset.js"></script>
-<script src="site_libs/highcharts-6.0.3/custom/symbols-extra.js"></script>
-<script src="site_libs/highcharts-6.0.3/custom/text-symbols.js"></script>
-<script src="site_libs/highchart-binding-0.6.0/highchart.js"></script>
 
 <meta name="description" content="Learn how to choose the most effective data visualisation options for your research data from the OxShef Charts webste. OxShef is a collaboration between University of Oxford and University of Sheffield." />
 
@@ -114,6 +75,7 @@ h6 {
 </style>
 
 <link rel="stylesheet" href="css/rmarkdown.css" type="text/css" />
+<link rel="stylesheet" href="css/title-0px.css" type="text/css" />
 
 </head>
 
@@ -158,107 +120,6 @@ $(document).ready(function () {
 <!-- code folding -->
 
 
-
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
-
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-.tocify-subheader {
-  display: inline;
-}
-.tocify-subheader .tocify-item {
-  font-size: 0.95em;
-}
-
-</style>
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -318,76 +179,232 @@ $(".main-container").removeClass("main-container").removeClass("container-fluid"
 </div>
 
 
-<div id="charts-and-plots" class="section level1">
+<div id="charts-and-plots" class="section level1 tabset">
 <h1>Charts and Plots</h1>
-<p>Charts and plots are typically used for comparing datasets, plotting raw data or for visualising mathematical expressions. There are many, many different types of charts/plot that serve wildly different purposes.</p>
-<p>For help choosing which chart to use you might consider using these resources:</p>
+<p>Charts are the most common type of data visualisation, and certainly the most varied. However, it’s important to note that many readers will be confused by chart types that they have not seen before. Charts should be as easy to consume as possible. In general, a <strong>chart is used to present/compare data</strong> and a <strong>plot is used in the analysis of variables</strong>.</p>
+<p>These are the most widely used easy to create and read charts; column charts, barcharts, piecharts, scatter plots and histograms.</p>
+<center>
+<img src='images/gg_age_col.png' width='15%'></img> <img src='images/gg_continents_bar.png' width='14%'></img> <img src='images/gg_age_pie.png' width='15%'></img> <img src='images/gg_iris_scatter.png' width='15%'></img> <img src='images/gg_diamonds_histogram.png' width='15%'></img>
+</center>
+<div id="chart-purpose" class="section level2">
+<h2>Chart Purpose</h2>
+<p>When designing a data visualisation you must think carefully about <strong>the story the dataviz tells</strong> your reader, or <strong>what questions does this dataviz answer?</strong> For simplicity, let’s use the excellent <a href="http://ft-interactive.github.io/visual-vocabulary/">Financial Time’s Visual Vocabulary</a> to create four types of story we can tell:</p>
+<div class="row">
+<div class="col-sm-6">
 <ul>
-<li><a href="http://ft-interactive.github.io/visual-vocabulary/">Financial Times’ Visual Vocabulary</a></li>
-<li><a href="http://chartmaker.visualisingdata.com/">Visualising Data: Chart Directory</a></li>
+<li>Comparison/Ranking/Magnitude Stories:
+<ul>
+<li>How much data is there?</li>
+<li>How many cateogires are there in a dataset?</li>
+<li>What percentage of the data belongs to each category?</li>
+<li>Which category has the <em>most</em> items in it?</li>
+</ul></li>
 </ul>
-<p>We’ve chosen to split our charts up using a similar hierarchy to the FT’s Visual Vocabulary.</p>
-<div id="comparison-ranking-magnitude" class="section level3">
-<h3>Comparison / Ranking / Magnitude</h3>
-
-<div class="row">
-   <div class="col-md-6">
-   <span><a href="charts_barcharts.html">Barcharts [tutorial]</a> are very flexible visualisations that allow viewers to quickly compare the relative magnitude/ranking of multiple categories of data. By using grouped or stacked barcharts it is also possible to compare subcategories within each category.</span>
-   <br>
-   <strong>Required Data:</strong>
-   <ul>
-   <li>Categories: For instance, class of animal e.g. mammal or reptile</li>
-   <li>Values: For instance, number of animals of each class</li>
-   </ul>
-   </div>
-   <div class="col-md-4 vcenter">
-<div id="htmlwidget-e6c6cdcf7a7f7e785e77" style="width:300px;height:300px;" class="highchart html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e6c6cdcf7a7f7e785e77">{"x":{"hc_opts":{"title":{"text":null},"yAxis":{"title":{"text":"value"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":false},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}}},"series":[{"group":"group","data":[{"category":"Mammal","subcategory":"human","value":3,"y":3,"name":"Mammal"},{"category":"Mammal","subcategory":"non-human","value":4,"y":4,"name":"Mammal"},{"category":"Reptile","subcategory":"snake","value":6,"y":6,"name":"Reptile"},{"category":"Reptile","subcategory":"iguana","value":8,"y":8,"name":"Reptile"}],"type":"bar"}],"xAxis":{"type":"category","title":{"text":"category"},"categories":null}},"theme":{"chart":{"backgroundColor":"transparent"}},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
-   </div>
-   </div>
-   <br>
-
-
-<div class="row">
-   <div class="col-md-6">
-   <span><a href="charts_piecharts.html">Piecharts [tutorial]</a> are useful visualisations for breaking down observations into a number of categories, the totals of which sum to 100% of the data. Piecharts are fairly widely panned as poor options for data with many categorisations, it is always possible to replace a piechart with a barchart.</span>
-   <br>
-   <strong>Required Data:</strong>
-   <ul>
-   <li>Categories: For instance, species of animal e.g. human or iguana</li>
-   <li>Values: For instance, number of animals of each species</li>
-   </ul>
-   </div>
-   <div class="col-md-4 vcenter">
-<div id="htmlwidget-034af529ae5fad886612" style="width:300px;height:300px;" class="highchart html-widget"></div>
-<script type="application/json" data-for="htmlwidget-034af529ae5fad886612">{"x":{"hc_opts":{"title":{"text":null},"yAxis":{"title":{"text":"value"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":false},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}},"pie":{"dataLabels":{"enabled":false}}},"series":[{"group":"group","data":[{"category":"human","value":3,"y":3,"name":"human"},{"category":"non-human","value":4,"y":4,"name":"non-human"},{"category":"snake","value":6,"y":6,"name":"snake"},{"category":"iguana","value":8,"y":8,"name":"iguana"}],"type":"pie"}],"xAxis":{"type":"category","title":{"text":"category"},"categories":null}},"theme":{"chart":{"backgroundColor":"transparent"}},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
-   </div>
-   </div>
-
 </div>
-<div id="correlation" class="section level3">
-<h3>Correlation</h3>
-
-<div class="row">
-   <div class="col-md-6">
-   <span><a href="charts_scatterplots.html">Scatterplots [tutorial]</a> are very simple visualisations that allow viewers to compare the correlation between two variables, typically between multiple groups of data. Scatterplots may also include trendlines for comparison purposes, however the inclusion of error bars complicates the chart sufficiently to be counted as a separate type of chart.</span>
-   <br>
-   <strong>Required Data:</strong>
-   <ul>
-   <li>x coordinates: traditionally this is the independent variable, for instance the year a measurement is taken</li>
-   <li>y coordinates: traditionally this is the dependent variable, for instance the value of a measurement in a specific year</li>
-   </ul>
-   </div>
-   <div class="col-md-4 vcenter">
-<div id="htmlwidget-ffdef85105ddfec2655d" style="width:300px;height:300px;" class="highchart html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ffdef85105ddfec2655d">{"x":{"hc_opts":{"title":{"text":null},"yAxis":{"title":{"text":"median.life.exp"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":true},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}}},"series":[{"name":"Africa","data":[{"continent":"Africa","year":1952,"median.life.exp":38.833,"x":1952,"y":38.833},{"continent":"Africa","year":1957,"median.life.exp":40.5925,"x":1957,"y":40.5925},{"continent":"Africa","year":1962,"median.life.exp":42.6305,"x":1962,"y":42.6305},{"continent":"Africa","year":1967,"median.life.exp":44.6985,"x":1967,"y":44.6985},{"continent":"Africa","year":1972,"median.life.exp":47.0315,"x":1972,"y":47.0315},{"continent":"Africa","year":1977,"median.life.exp":49.2725,"x":1977,"y":49.2725},{"continent":"Africa","year":1982,"median.life.exp":50.756,"x":1982,"y":50.756},{"continent":"Africa","year":1987,"median.life.exp":51.6395,"x":1987,"y":51.6395},{"continent":"Africa","year":1992,"median.life.exp":52.429,"x":1992,"y":52.429},{"continent":"Africa","year":1997,"median.life.exp":52.759,"x":1997,"y":52.759},{"continent":"Africa","year":2002,"median.life.exp":51.2355,"x":2002,"y":51.2355},{"continent":"Africa","year":2007,"median.life.exp":52.9265,"x":2007,"y":52.9265}],"type":"scatter"},{"name":"Americas","data":[{"continent":"Americas","year":1952,"median.life.exp":54.745,"x":1952,"y":54.745},{"continent":"Americas","year":1957,"median.life.exp":56.074,"x":1957,"y":56.074},{"continent":"Americas","year":1962,"median.life.exp":58.299,"x":1962,"y":58.299},{"continent":"Americas","year":1967,"median.life.exp":60.523,"x":1967,"y":60.523},{"continent":"Americas","year":1972,"median.life.exp":63.441,"x":1972,"y":63.441},{"continent":"Americas","year":1977,"median.life.exp":66.353,"x":1977,"y":66.353},{"continent":"Americas","year":1982,"median.life.exp":67.405,"x":1982,"y":67.405},{"continent":"Americas","year":1987,"median.life.exp":69.498,"x":1987,"y":69.498},{"continent":"Americas","year":1992,"median.life.exp":69.862,"x":1992,"y":69.862},{"continent":"Americas","year":1997,"median.life.exp":72.146,"x":1997,"y":72.146},{"continent":"Americas","year":2002,"median.life.exp":72.047,"x":2002,"y":72.047},{"continent":"Americas","year":2007,"median.life.exp":72.899,"x":2007,"y":72.899}],"type":"scatter"},{"name":"Asia","data":[{"continent":"Asia","year":1952,"median.life.exp":44.869,"x":1952,"y":44.869},{"continent":"Asia","year":1957,"median.life.exp":48.284,"x":1957,"y":48.284},{"continent":"Asia","year":1962,"median.life.exp":49.325,"x":1962,"y":49.325},{"continent":"Asia","year":1967,"median.life.exp":53.655,"x":1967,"y":53.655},{"continent":"Asia","year":1972,"median.life.exp":56.95,"x":1972,"y":56.95},{"continent":"Asia","year":1977,"median.life.exp":60.765,"x":1977,"y":60.765},{"continent":"Asia","year":1982,"median.life.exp":63.739,"x":1982,"y":63.739},{"continent":"Asia","year":1987,"median.life.exp":66.295,"x":1987,"y":66.295},{"continent":"Asia","year":1992,"median.life.exp":68.69,"x":1992,"y":68.69},{"continent":"Asia","year":1997,"median.life.exp":70.265,"x":1997,"y":70.265},{"continent":"Asia","year":2002,"median.life.exp":71.028,"x":2002,"y":71.028},{"continent":"Asia","year":2007,"median.life.exp":72.396,"x":2007,"y":72.396}],"type":"scatter"},{"name":"Europe","data":[{"continent":"Europe","year":1952,"median.life.exp":65.9,"x":1952,"y":65.9},{"continent":"Europe","year":1957,"median.life.exp":67.65,"x":1957,"y":67.65},{"continent":"Europe","year":1962,"median.life.exp":69.525,"x":1962,"y":69.525},{"continent":"Europe","year":1967,"median.life.exp":70.61,"x":1967,"y":70.61},{"continent":"Europe","year":1972,"median.life.exp":70.885,"x":1972,"y":70.885},{"continent":"Europe","year":1977,"median.life.exp":72.335,"x":1977,"y":72.335},{"continent":"Europe","year":1982,"median.life.exp":73.49,"x":1982,"y":73.49},{"continent":"Europe","year":1987,"median.life.exp":74.815,"x":1987,"y":74.815},{"continent":"Europe","year":1992,"median.life.exp":75.451,"x":1992,"y":75.451},{"continent":"Europe","year":1997,"median.life.exp":76.116,"x":1997,"y":76.116},{"continent":"Europe","year":2002,"median.life.exp":77.5365,"x":2002,"y":77.5365},{"continent":"Europe","year":2007,"median.life.exp":78.6085,"x":2007,"y":78.6085}],"type":"scatter"},{"name":"Oceania","data":[{"continent":"Oceania","year":1952,"median.life.exp":69.255,"x":1952,"y":69.255},{"continent":"Oceania","year":1957,"median.life.exp":70.295,"x":1957,"y":70.295},{"continent":"Oceania","year":1962,"median.life.exp":71.085,"x":1962,"y":71.085},{"continent":"Oceania","year":1967,"median.life.exp":71.31,"x":1967,"y":71.31},{"continent":"Oceania","year":1972,"median.life.exp":71.91,"x":1972,"y":71.91},{"continent":"Oceania","year":1977,"median.life.exp":72.855,"x":1977,"y":72.855},{"continent":"Oceania","year":1982,"median.life.exp":74.29,"x":1982,"y":74.29},{"continent":"Oceania","year":1987,"median.life.exp":75.32,"x":1987,"y":75.32},{"continent":"Oceania","year":1992,"median.life.exp":76.945,"x":1992,"y":76.945},{"continent":"Oceania","year":1997,"median.life.exp":78.19,"x":1997,"y":78.19},{"continent":"Oceania","year":2002,"median.life.exp":79.74,"x":2002,"y":79.74},{"continent":"Oceania","year":2007,"median.life.exp":80.7195,"x":2007,"y":80.7195}],"type":"scatter"}],"xAxis":{"type":"linear","title":{"text":"year"},"categories":null}},"theme":{"chart":{"backgroundColor":"transparent"}},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
-   </div>
-   </div>
-
+<div class="col-sm-6">
+<ul>
+<li>Deviation Stories:
+<ul>
+<li>What lead did candidate X have in the election?</li>
+<li>In which regions did candidate X lead over candidate Y?</li>
+</ul></li>
+</ul>
 </div>
-<div id="distribution" class="section level3">
-<h3>Distribution</h3>
-<p>We don’t currently have any tutorials for creating these types of charts, please consider making a <a href="https://github.com/ox-it/OxfordIDN_charts">pull request on GitHub</a>.</p>
+</div>
+<div class="row">
+<div class="col-sm-6">
+<ul>
+<li>Correlation Stories:
+<ul>
+<li>Are variables X and Y correlated?</li>
+<li>How well does your model fit your data?</li>
+</ul></li>
+</ul>
+</div>
+<div class="col-sm-6">
+<ul>
+<li>Distribution Stories:
+<ul>
+<li>What’s the age distribution in country X?</li>
+<li>How does the age distribution vary between country X and Y?</li>
+<li>What are the min and max values for each category in your data?</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="example-stories-brexit-referendum-2016" class="section level3">
+<h3>Example Stories: Brexit Referendum 2016</h3>
+<p>To demonstrate the different types of stories we can tell with charts, let’s consider a public dataset; the results of the <a href="https://www.electoralcommission.org.uk/find-information-by-subject/elections-and-referendums/past-elections-and-referendums/eu-referendum/electorate-and-count-information">United Kingdom’s Brexit Referendum</a>. In the referendum, voters were asked to select between one of two options; Remain a member of the European Union or Leave the European Union.</p>
+<ul>
+<li><strong>Who won?</strong> This is a magnitude story, we care about whether Remain or Leave got more of the vote. A horizontal barchart is an excellent choice for this story, note it’s important to order the bars from largest to smallest. <a href="http://ft-interactive.github.io/visual-vocabulary/">See the Financial Time’s Visual Vocabulary for more example dataviz.</a></li>
+</ul>
+<p><img src="charts_files/figure-html/unnamed-chunk-6-1.png" width="384" style="display: block; margin: auto;" /></p>
+<ul>
+<li><strong>How did voter turnout compare between the regions of the UK?</strong> This is a comparison story, note that if there’s a sensible way to rank values in your data it will make the dataviz easier to read. While a horizontal barchart could work for this data, we’ve chosen to use a horizontal lollipop chart as we care about the voter turn out values and not ‘which region had the biggest impact on the referendum’. <a href="http://ft-interactive.github.io/visual-vocabulary/">See the Financial Time’s Visual Vocabulary for more example dataviz.</a></li>
+</ul>
+<p><img src="charts_files/figure-html/unnamed-chunk-7-1.png" width="480" style="display: block; margin: auto;" /></p>
+<ul>
+<li><strong>How did the results vary between regions?</strong> This is a deviation question, as we’re asking what is the variance from 50:50 for each region. Stacked barcharts are very good options for this purpose, as always with barcharts the order of the categories matters. The first chart is a very good chart if you have the specific question, “How did Leaves margin vary between regions”. <a href="http://ft-interactive.github.io/visual-vocabulary/">See the Financial Time’s Visual Vocabulary for more example dataviz.</a></li>
+</ul>
+<p><img src="charts_files/figure-html/unnamed-chunk-8-1.png" width="960" style="display: block; margin: auto;" /></p>
+<ul>
+<li><strong>Does the vote margin depend on region populaton?</strong> This is a (fairly silly) correlation question, as we’re asking do larger regions tend to have a smaller/larger margins. Scatter plots are the most useful type of chart for these questions. In general, a <em>chart</em> is used to present/compare data and a <em>plot</em> is used in the analysis of variables. <a href="http://ft-interactive.github.io/visual-vocabulary/">See the Financial Time’s Visual Vocabulary for more example dataviz.</a></li>
+</ul>
+<p><img src="charts_files/figure-html/unnamed-chunk-9-1.png" width="960" style="display: block; margin: auto;" /></p>
+<ul>
+<li><strong>How do the populations of the different constituencis vary?</strong> This is a distribution story, as we want readers to understand the minimum, maximum and “average” constituency population sizes. <a href="http://ft-interactive.github.io/visual-vocabulary/">See the Financial Time’s Visual Vocabulary for more example dataviz.</a></li>
+</ul>
+<p><img src="charts_files/figure-html/unnamed-chunk-10-1.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="types-of-data" class="section level2">
+<h2>Types of Data</h2>
+<p>Chart selection is heavily dependent on what <strong>types</strong> of data you have. Many dataviz tools automatically recommend charts to you based on the data type definitions below. Let’s consider an example dataset:</p>
+<blockquote>
+<p>You’ve collected exam results from an exam with 100 questions, taken by 200 students. In the data you have three columns; grade, number of correct responses, and percentage of correct responses.</p>
+</blockquote>
+<center>
+<img src='images/gg_types_of_data.png' width='500px'></img>
+</center>
+<ul>
+<li><p>Grades: This is a <strong>categorical</strong> and <strong>discrete variable</strong> as there are a limited set of available values. Because the <em>order</em> of these values is important (i.e. “Fail” should always be displayed before “Pass”) this is also an <strong>ordinal variable</strong>.</p></li>
+<li><p>Number of correct responses: This is a <strong>discrete variable</strong> as students can only answer an integer number of questions correctly.</p></li>
+<li><p>Percentage of correct responses: This is a <strong>continuous variable</strong> as results can vary between 0 - 100%. However, <em>practically</em> this is a discrete variable .</p></li>
+</ul>
+<p>A common issue with discrete variables masquerading as continuous variables is weird-looking histograms that are often not fit for purpose; <strong>the charts below</strong> (histogram, violin chart, column chart) all display the distribution of exam result percentages differently. The “best” chart of the three is dependent on the <strong>story the chart is telling</strong>.</p>
+<center>
+<img src="charts_files/figure-html/unnamed-chunk-12-1.png" width="768" />
+</center>
+<p>In general, this is sufficient knowledge about variables to get the most from other more detailed resources. It’s important to be careful with <strong>ordered ordinal variables</strong> as their intrinsic order must be well presented in the dataviz.</p>
+<div id="recommended-reading" class="section level3">
+<h3>Recommended Reading</h3>
+<p>As mentioned above, many charting tools automatically choose the most appropriate charts based on the type of data you have. This is a fairly mature field of research, commonly called <em>graphical perception theory</em>. Cleveland and McGill’s seminal paper in 1987 [<a href="http://doi.org/10.2307/2288400">DOI:10.2307/2288400</a>] was the first to systematically explore how the human perception system processes graphical data and continues to be relevant today.</p>
+<div class="row">
+<div class="col-sm-7">
+<p>In addition to automatically recommending charts, tools like ReVision [<a href="https://doi.org/10.1145/2047196.2047247">DOI:10.1145/2047196.2047247</a>] are even capable of using computer vision to take existing charts and re-design them to be more accessible and easily read by humans.</p>
+</div>
+<div class="col-sm-5">
+<p><img src='images/revision-pie.png'></img></p>
+</div>
+</div>
+<!---
+
+Add these sections: 
+
+## Chart Colours
+
+## Designing Good Charts
+
+!-->
+<!-- # Other -->
+<!-- Charts and plots are typically used for comparing datasets, plotting raw data or for visualising mathematical expressions. There are many, many different types of charts/plot that serve wildly different purposes. -->
+<!-- For help choosing which chart to use you might consider using these resources: -->
+<!-- - [Financial Times' Visual Vocabulary](http://ft-interactive.github.io/visual-vocabulary/) -->
+<!-- - [Visualising Data: Chart Directory](http://chartmaker.visualisingdata.com/) -->
+<!-- We've chosen to split our charts up using a similar hierarchy to the FT's Visual Vocabulary. -->
+<!-- ### Comparison / Ranking / Magnitude -->
+<!--  -->
+<!-- <div class="row"> -->
+<!--    <div class="col-md-6"> -->
+<!--    <span><a href="charts_barcharts.html">Barcharts [tutorial]</a> are very flexible visualisations that allow viewers to quickly compare the relative magnitude/ranking of multiple categories of data. By using grouped or stacked barcharts it is also possible to compare subcategories within each category.</span> -->
+<!--    <br> -->
+<!--    <strong>Required Data:</strong> -->
+<!--    <ul> -->
+<!--    <li>Categories: For instance, class of animal e.g. mammal or reptile</li> -->
+<!--    <li>Values: For instance, number of animals of each class</li> -->
+<!--    </ul> -->
+<!--    </div> -->
+<!--    <div class="col-md-4 vcenter"> -->
+<!-- ```{r echo=FALSE} -->
+<!-- library("highcharter") -->
+<!-- library("tidyverse") -->
+<!-- my_data <- tribble( -->
+<!--   ~category, ~subcategory, ~value, -->
+<!--   "Mammal", "human", 3, -->
+<!--   "Mammal", "non-human", 4, -->
+<!--   "Reptile", "snake", 6, -->
+<!--   "Reptile", "iguana", 8 -->
+<!-- ) -->
+<!-- my_data %>% -->
+<!--   hchart( -->
+<!--     type = "bar", -->
+<!--     hcaes( -->
+<!--       x = category, -->
+<!--       y = value -->
+<!--     ) -->
+<!--   ) %>% -->
+<!--   hc_size(width = "300px", height = "300px") -->
+<!-- ``` -->
+<!--    </div> -->
+<!--    </div> -->
+<!--    <br> -->
+<!--  -->
+<!--  -->
+<!-- <div class="row"> -->
+<!--    <div class="col-md-6"> -->
+<!--    <span><a href="charts_piecharts.html">Piecharts [tutorial]</a> are useful visualisations for breaking down observations into a number of categories, the totals of which sum to 100% of the data. Piecharts are fairly widely panned as poor options for data with many categorisations, it is always possible to replace a piechart with a barchart.</span> -->
+<!--    <br> -->
+<!--    <strong>Required Data:</strong> -->
+<!--    <ul> -->
+<!--    <li>Categories: For instance, species of animal e.g. human or iguana</li> -->
+<!--    <li>Values: For instance, number of animals of each species</li> -->
+<!--    </ul> -->
+<!--    </div> -->
+<!--    <div class="col-md-4 vcenter"> -->
+<!-- ```{r echo=FALSE} -->
+<!-- library("highcharter") -->
+<!-- library("tidyverse") -->
+<!-- my_data <- tribble( -->
+<!--   ~category, ~value, -->
+<!--   "human", 3, -->
+<!--   "non-human", 4, -->
+<!--   "snake", 6, -->
+<!--   "iguana", 8 -->
+<!-- ) -->
+<!-- my_data %>% -->
+<!--   hchart( -->
+<!--     type = "pie", -->
+<!--     hcaes( -->
+<!--       x = category, -->
+<!--       y = value -->
+<!--     ) -->
+<!--   ) %>% -->
+<!--   hc_plotOptions(pie = list(dataLabels = list(enabled = FALSE))) %>% -->
+<!--   hc_size(width = "300px", height = "300px") -->
+<!-- ``` -->
+<!--    </div> -->
+<!--    </div> -->
+<!--  -->
+<!-- ### Correlation -->
+<!--  -->
+<!-- <div class="row"> -->
+<!--    <div class="col-md-6"> -->
+<!--    <span><a href="charts_scatterplots.html">Scatterplots [tutorial]</a> are very simple visualisations that allow viewers to compare the correlation between two variables, typically between multiple groups of data. Scatterplots may also include trendlines for comparison purposes, however the inclusion of error bars complicates the chart sufficiently to be counted as a separate type of chart.</span> -->
+<!--    <br> -->
+<!--    <strong>Required Data:</strong> -->
+<!--    <ul> -->
+<!--    <li>x coordinates: traditionally this is the independent variable, for instance the year a measurement is taken</li> -->
+<!--    <li>y coordinates: traditionally this is the dependent variable, for instance the value of a measurement in a specific year</li> -->
+<!--    </ul> -->
+<!--    </div> -->
+<!--    <div class="col-md-4 vcenter"> -->
+<!-- ```{r echo=FALSE} -->
+<!-- library("tidyverse") -->
+<!-- library("gapminder") -->
+<!-- library("highcharter") -->
+<!-- gapminder %>% -->
+<!--   group_by(continent, year) %>% -->
+<!--   summarise(median.life.exp = median(lifeExp)) %>% -->
+<!--   hchart(type = "scatter", -->
+<!--          hcaes(x = year, y = median.life.exp, group = continent)) %>% -->
+<!--   hc_size(width = "300px", height = "300px") -->
+<!-- ``` -->
+<!--    </div> -->
+<!--    </div> -->
+<!--  -->
+<!-- ### Distribution -->
+<!-- We don't currently have any tutorials for creating these types of charts, please consider making a [pull request on GitHub](https://github.com/ox-it/OxfordIDN_charts). -->
+</div>
 </div>
 </div>
 
@@ -410,8 +427,6 @@ $(".main-container").removeClass("main-container").removeClass("container-fluid"
 <script type="text/javascript" src="//cdn.bizible.com/scripts/bizible.js" async=""></script>
 
 
-</div>
-</div>
 
 </div>
 

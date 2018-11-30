@@ -2,9 +2,6 @@
 title: "Other types of visualisation"
 output:
   html_document:
-    toc: true
-    toc_float:
-      collapsed: false
     includes:
       before_body: [includes/include_header.html, includes/include_header_navpage.html]
 editor_options: 

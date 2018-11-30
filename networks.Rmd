@@ -2,9 +2,6 @@
 title: "Networks"
 output:
   html_document:
-    toc: true
-    toc_float:
-      collapsed: false
     includes:
       before_body: [includes/include_header.html, includes/include_header_navpage.html]
 editor_options: 
@@ -19,22 +16,28 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Networks
+# Networks and graph {.tabset}
 
-Network diagrams, or graph, are extremely useful visualisations to communicate the connections between distinct elements in your data; for instance the collaborations between researchers in a particular field or the connections between transport hubs in a logistics network. All network diagrams require the same basic data: nodes, edges and a layout algorithm.
+Networks (or graph) are visualisations of the connections/interactions between elements of a dataset. It's often possible to reframe your data as a network and extract useful information from analysis of the graph. Here are some examples of where graph may be interesting:
 
-### Nodes
 
-Nodes are the unique elements in your data (the individuals). They might well have a number of different properties which are important when visualising the data:
-
-- Node appearance: nodes are often styled to convey information about the thing the node represents, typical channels of communication include size, colour and shape
-- Intrinsic properties: nodes may have intrinsic properties that are important if one was constructing a journey (or path) through the network and might be displayed to the user when nodes are clicked or hovered over.
-
-It's extremely important to understand that **in general the absolute positions of nodes is unimportant**. Most [layout algorithms](networks.html#layout-algorithms) are non-deterministic, i.e. final node positions are computed by running a computer simulation. The three graph below display exactly the same data using a very general purpose layout algorithm but with slightly different random seeds (initial positions of the nodes for the simulation):
-
-<!--html_preserve-->
 <div class="row">
-   <div class="col-md-4">
+
+<div class='col-sm-6'>
+
+- **Social interactions**: Which members of a social network interact with one another?
+- **Social media data**: What content is accessed by which members of a social network?
+- **Purchasing decisions**: Which items are bought together?
+- **Genetic data**: Which genes are common amongst individuals who express characteristic X?
+- **Technical dependencies**: Which components of a machine are critically dependent on which other components?
+
+It's extremely important to understand that **you must *not* interpet features of a graph based on how close nodes are to one another**. In general, the *absolute positions of nodes is unimportant* as most layout algorithms are non-deterministic; i.e. final node positions are computed by running a computer simulation. 
+
+</div>
+
+<div class='col-sm-6'>
+
+<center>
 
 ```{r}
 library("tidyverse")
@@ -62,43 +65,35 @@ my_edges <- tribble(
 )
 visNetwork(my_nodes,
            my_edges,
-           width = "200px",
-           height = "200px") %>%
-  visIgraphLayout(randomSeed = 1) %>%
-  visInteraction(zoomView = FALSE)
-```
-
-</div>
-
-   <div class="col-md-4">
-
-```{r}
-visNetwork(my_nodes,
-           my_edges,
-           width = "200px",
-           height = "200px") %>%
+           width = "150px",
+           height = "150px") %>%
   visIgraphLayout(randomSeed = 15) %>%
   visInteraction(zoomView = FALSE)
 ```
 
-</div>
-
-   <div class="col-md-4">
-
 ```{r}
 visNetwork(my_nodes,
            my_edges,
-           width = "200px",
-           height = "200px") %>%
+           width = "150px",
+           height = "150px") %>%
   visIgraphLayout(randomSeed = 2002) %>%
   visInteraction(zoomView = FALSE)
 ```
 
-</div>
-</div>
-<!--/html_preserve-->
+</center>
 
-### Edges
+</div>
+
+</div>
+
+## Nodes
+
+Nodes are the unique elements in your data (the individuals). They might well have a number of different properties which are important when visualising the data:
+
+- Node appearance: nodes are often styled to convey information about the thing the node represents, typical channels of communication include size, colour and shape
+- Intrinsic properties: nodes may have intrinsic properties that are important if one was constructing a journey (or path) through the network and might be displayed to the user when nodes are clicked or hovered over.
+
+## Edges
 
 Edges communicate how two nodes are connected to one another, they have the following properties:
 
@@ -195,7 +190,7 @@ visNetwork(my_nodes,
 </div>
 <!--/html_preserve-->
 
-### Layout algorithms {#layout-algorithms}
+## Layout algorithms {#layout-algorithms}
 
 As mentioned above, **in general the absolute positions of nodes is unimportant**. Most [layout algorithms](networks.html#layout-algorithms) are non-deterministic, i.e. final node positions are computed by running a computer simulation. Deciding on which layout algorithm (or graph embedding) to use for your visualisations is somewhat of an art as opposed to a science. The three graph below display the exact same dataset using three very different layout algorithms from the excellent [igraph library](http://igraph.org/r/doc/layout_.html){target='_blank'}. In the future this website will include a page dedicated to choosing layout algorithms.
 

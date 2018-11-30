@@ -1,0 +1,4 @@
+/* title: populates the tab title, but don't want to show */
+h1.title.toc-ignore {
+font-size: 0;
+}
