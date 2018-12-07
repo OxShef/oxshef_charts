@@ -16,23 +16,40 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Other types of visualisation
+# Other types of visualisation {.tabset}
 
 There are many types of data visualisation that don't neatly fit into the other categories but are arguably extremely important and sometimes the only valid way to present your data to others in an easily consumable fashion.
 
-# Interactive tables
+## Interactive tables
 
-<!--html_preserve-->
-<div class="row">
-   <div class="col-md-6">
-   <span><a href="other_interactive-tables.html">Interactive tables [tutorial]</a> are extremely useful for presenting data directly to your audience for them to explore, much like an Excel document. Interactivity typically includes; ability to filter individual columns, reorder columns in ascending/descending order and a filter across the entire table.</span>
-   <br>
-   <strong>Required Data:</strong>
-   <ul>
-   <li>Table of data: This data could conceivable be of any type, and include columns of multiple data types including but not limited to text, numbers, images and more.</li>
-   </ul>
-   </div>
-   <div class="col-md-6">
+Interactive tables are extremely useful for presenting data directly to your audience for them to explore, much like an Excel document. Interactivity typically includes; ability to filter individual columns, reorder columns in ascending/descending order and a filter across the entire table. Often conditional formatting is applied to tables to highlight/label data.
+
+Required Data:
+
+- Table of data: This data could conceivable be of any type, and include columns of multiple data types including but not limited to text, numbers, images and more
+
+<br/>
+
+<div class='row'>
+
+<div class='col-md-6'>
+
+```{r basic_barchart, echo=FALSE, message=FALSE, warning=FALSE}
+library("DT")
+library("tidyverse")
+library("gapminder")
+
+gapminder %>%
+  datatable(width = "100%",
+            height = "250px",
+            rownames = FALSE,
+            options = list(pageLength = 5))
+
+```
+
+</div>
+
+<div class='col-md-6'>
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 library("rhandsontable")
@@ -41,7 +58,7 @@ MAT = matrix(runif(100, -1, 1), nrow = 10,
              dimnames = list(LETTERS[1:10], LETTERS[1:10]))
 diag(MAT) = 1
 MAT[upper.tri(MAT)] = MAT[lower.tri(MAT)]
-rhandsontable(MAT, readOnly = TRUE, width = "100%", height = "200px") %>%
+rhandsontable(MAT, readOnly = TRUE, width = "100%", height = "300px") %>%
   hot_cols(renderer = "
            function (instance, td, row, col, prop, value, cellProperties) {
              Handsontable.renderers.NumericRenderer.apply(this, arguments);
@@ -57,6 +74,25 @@ rhandsontable(MAT, readOnly = TRUE, width = "100%", height = "200px") %>%
              }
            }")
 ```
+</div>
+
+</div>
+
+## Interactive tablesdd
+
+<!--html_preserve-->
+<div class="row">
+   <div class="col-md-6">
+   <span><a href="other_interactive-tables.html">Interactive tables [tutorial]</a> are extremely useful for presenting data directly to your audience for them to explore, much like an Excel document. Interactivity typically includes; ability to filter individual columns, reorder columns in ascending/descending order and a filter across the entire table.</span>
+   <br>
+   <strong>Required Data:</strong>
+   <ul>
+   <li>Table of data: This data could conceivable be of any type, and include columns of multiple data types including but not limited to text, numbers, images and more.</li>
+   </ul>
+   </div>
+   <div class="col-md-6">
+
+
    </div>
    </div>
 

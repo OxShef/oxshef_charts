@@ -28,6 +28,7 @@ library("ggrepel")
 library("gapminder")
 library("leaflet")
 library("leaflet.extras")
+library("glue")
 ```
 
 
@@ -195,6 +196,8 @@ library("DT")
 geoviz_descriptions <- read_xlsx("data/geoviz-types.xlsx")
 
 geoviz_descriptions %>%
+  mutate(Name = glue("{Name}<br>{Example}")) %>%
+  select(Name, `What is this useful for?`, `Required GIS Data`) %>%
   datatable(options = list(dom = "t"),
             rownames = FALSE,
             escape = FALSE) 

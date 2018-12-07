@@ -292,22 +292,25 @@ timeseries_descriptions %>%
 
 ```
 
+## Date and time formats
 
-
-## Original Content
-
-- Inter-day datasets (e.g. stock prices, thermostat measurements) require hour:minute:second formatted axes.
-- Annualised datasets (e.g. company performance numbers, global temperature) require month:day formatted axes
-- Historical datasets require axes that span both BC and AD dates.
-- Timelines for historical/geological periods require axes that allow some overlap and are a specialised type of time series visualisation.
-
-Before starting to design your time series visualisations ensure that your data is well formatted for visualisation, most tools expect specific formats for dates/times. The most general purpose standard for formatting dates/times is [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601), which can be summarised into the following guidance:
+You must use both consistency and sense when working with temporal data. It is **highly** recommended that you use the [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format:
 
 - Date format: yyyy-mm-dd
 - Time format: hh:mm:ss
 - Combined date and time (UTC time zone) format: yyyy-mm-ddThh:mm:ss+00:00
 
+If MS Excel is included in your data processing workflow it is extremely likely that your dates will have been converted into Excel format. Excel dates are an example of a epoch dates.
 
+### Epoch dates in Excel
+
+Epoch date systems count the number of units if time that have elapsed since an epoch (start) date/data-time. MS Excel has a particularly complicated date system. Take the Excel sheet below which contains Christine Lagarde's (Head of the MFI) date of birth:
+
+<img src='images/Christine_Lagarde_DOB.png'></img>
+
+This is stored within Excel as `20455.0`, i.e. 20,455 days since the epoch time of January 0, 1900. There's a good discussion of [why 0th January and not 1st January](https://www.joelonsoftware.com/2008/02/19/why-are-the-microsoft-office-file-formats-so-complicated-and-some-workarounds/) here.
+
+There are many different tools for converting between MS Excel date formats and the ISO 8601 format, but these depend very much on what dataviz technology you are using.
 
 
 

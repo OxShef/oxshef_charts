@@ -192,7 +192,7 @@ visNetwork(my_nodes,
 
 ## Layout algorithms {#layout-algorithms}
 
-As mentioned above, **in general the absolute positions of nodes is unimportant**. Most [layout algorithms](networks.html#layout-algorithms) are non-deterministic, i.e. final node positions are computed by running a computer simulation. Deciding on which layout algorithm (or graph embedding) to use for your visualisations is somewhat of an art as opposed to a science. The three graph below display the exact same dataset using three very different layout algorithms from the excellent [igraph library](http://igraph.org/r/doc/layout_.html){target='_blank'}. In the future this website will include a page dedicated to choosing layout algorithms.
+As mentioned above, **in general the absolute positions of nodes is unimportant**. Most [layout algorithms](networks.html#layout-algorithms) are non-deterministic, i.e. final node positions are computed by running a computer simulation. Deciding on which layout algorithm (or graph embedding) to use for your visualisations is somewhat of an art as opposed to a science. The three graph below display the exact same dataset using three very different layout algorithms from the excellent [igraph library](http://igraph.org/r/doc/layout_.html){target='_blank'}.
 
 <!--html_preserve-->
 <div class="row">
